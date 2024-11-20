@@ -15,8 +15,9 @@
                     <ul class="footer-links">
                         <li><a href="index.jsp">Home</a></li>
                         <li><a href="movies.jsp">Movies</a></li>
-                        <li><a href="offers.jsp">Offers</a></li>
-                        <li><a href="contact.jsp">Contact</a></li>
+                        <li><a href="promotions.jsp">Promotions</a></li>
+                        <li><a href="aboutus.jsp">About Us</a></li>
+                        <li><a href="contactus.jsp">Contact Us</a></li>
                     </ul>
                 </div>
 
@@ -24,9 +25,9 @@
                 <div class="footer-section">
                     <h3>Follow Us</h3>
                     <div class="social-icons">
-                        <a href="#"><img src="./images/facebook.png" alt="Facebook"></a>
-                        <a href="#"><img src="./images/twitter.png" alt="Twitter"></a>
-                        <a href="#"><img src="./images/instagram.png" alt="Instagram"></a>
+                        <a href="https://www.facebook.com/"><img src="./images/facebook.png" alt="Facebook"></a>
+                        <a href="https://www.twitter.com/"><img src="./images/twitter.png" alt="Twitter"></a>
+                        <a href="https://www.instagram.com/"><img src="./images/instagram.png" alt="Instagram"></a>
                     </div>
                 </div>
             </div>

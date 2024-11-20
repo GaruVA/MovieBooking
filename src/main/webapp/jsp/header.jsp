@@ -40,10 +40,12 @@
             opacity: 0.9;
             color: var(--surface);
         }
+        
+        /*footer*/
 
         .footer {
-            background-color: #102C57; /* Deep navy blue background */
-            color: #FEFAF6; /* Light cream text */
+            background-color: #102C57; 
+            color: #FFFFFF; 
             padding: 40px 20px;
             text-align: center;
             margin-top: 40px;
@@ -59,13 +61,13 @@
 
         /* Footer Sections */
         .footer-section {
-            flex: 1 1 30%; /* Flexible layout for sections */
+            flex: 1 1 30%; 
             margin: 10px;
             text-align: left;
         }
 
         .footer-section h3 {
-            color: #EADBC8; /* Beige for headings */
+            color: #FFFFFF; 
             margin-bottom: 15px;
             font-size: 1.25rem;
         }
@@ -85,13 +87,13 @@
         }
 
         .footer-links a {
-            color: #DAC0A3; /* Light brown for links */
+            color: #FFFFFF; /* Light brown for links */
             text-decoration: none;
             font-size: 1rem;
         }
 
         .footer-links a:hover {
-            color: #FEFAF6; /* Cream on hover */
+            color: #FFFF00; 
             text-decoration: underline;
         }
 
@@ -115,10 +117,10 @@
         /* Footer Bottom */
         .footer-bottom {
             margin-top: 20px;
-            border-top: 1px solid #DAC0A3; /* Light brown border */
+            border-top: 1px solid #FFFFFF; /* Light brown border */
             padding-top: 15px;
             font-size: 0.9rem;
-            color: #EADBC8;
+            color: #FFFFFF;
         }
 
         /* Responsive Design */

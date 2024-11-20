@@ -3,88 +3,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
 */
 
-.navbar {
-    background-color: #EADBC8; 
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
-}
-
-.navbar-brand img {
-    border-radius: 50%; 
-    border: 2px solid #FEFAF6; 
-}
-
-.navbar-nav .nav-item .nav-link {
-    color: #102C57; /* Deep navy blue text for nav links */
-    font-size: 1rem; /* Standard font size */
-    font-weight: bold; /* Bold text */
-    text-transform: uppercase; /* Capitalize text */
-    margin: 0 5px; /* Add spacing between items */
-}
-
-.navbar-nav .nav-item .nav-link:hover {
-    color: #DAC0A3; /* Light brown color on hover */
-    text-decoration: underline; /* Underline on hover */
-}
-
-.nav-item.active .nav-link {
-    color: #DAC0A3 !important; /* Highlight active link in light brown */
-    font-weight: bold;
-}
-
-/* Search Box Styling */
-.form-control {
-    border-radius: 20px; /* Rounded corners for the input box */
-    padding: 5px 15px;
-    width: 250px; /* Fixed width */
-    border: 1px solid #DAC0A3; /* Light brown border */
-    background-color: #FEFAF6; /* Cream background */
-    color: #102C57; /* Navy blue text */
-}
-
-.btn-outline-success {
-    border-radius: 20px; /* Rounded button */
-    border: 2px solid #DAC0A3; /* Light brown border */
-    color: #DAC0A3; /* Light brown text */
-    background-color: #FEFAF6; /* Cream background */
-}
-
-.btn-outline-success:hover {
-    background-color: #DAC0A3; /* Light brown background */
-    color: #FEFAF6; /* Cream text */
-}
-
-/* Signup and Login Links */
-.navbar-nav .nav-item .nav-link:last-child {
-    margin-left: 20px; /* Add spacing to separate from the rest */
-}
-
-.navbar-nav .nav-item .nav-link {
-    padding: 10px 15px; /* Padding for better spacing */
-    border-radius: 5px; /* Slight rounding for buttons */
-}
-
-.navbar-nav .nav-item .nav-link:hover {
-    background-color: rgba(16, 44, 87, 0.1); /* Subtle navy blue background on hover */
-}
-
-/* Mobile View Adjustments */
-@media (max-width: 768px) {
-    .navbar-nav {
-        text-align: center; /* Center align items in mobile view */
-        margin-top: 10px;
-    }
-
-    .form-control {
-        width: 100%; /* Full width search box */
-        margin-bottom: 10px;
-    }
-
-    .btn-outline-success {
-        width: 100%; /* Full width button */
-    }
-}
-
-
 /* Footer Styling */
 .footer {
     background-color: #102C57; /* Deep navy blue background */
@@ -154,13 +72,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .social-icons img:hover {
-    transform: scale(1.2); /* Slight zoom on hover */
+    transform: scale(1.2); 
 }
 
 /* Footer Bottom */
 .footer-bottom {
     margin-top: 20px;
-    border-top: 1px solid #DAC0A3; /* Light brown border */
+    border-top: 1px solid #DAC0A3; 
     padding-top: 15px;
     font-size: 0.9rem;
     color: #EADBC8;
@@ -169,7 +87,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 /* Responsive Design */
 @media (max-width: 768px) {
     .footer .container {
-        flex-direction: column; /* Stack sections vertically */
+        flex-direction: column; 
         text-align: center;
     }
 
