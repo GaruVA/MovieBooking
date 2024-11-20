@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
     <style>
         .navbar {
             background-color: var(--primary);
@@ -41,36 +42,99 @@
         }
 
         .footer {
-            background-color: var(--primary);
-            color: var(--text-light);
-            margin-top: auto;
-            padding: 2rem 0;
+            background-color: #102C57; /* Deep navy blue background */
+            color: #FEFAF6; /* Light cream text */
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 40px;
         }
 
-        .footer h5 {
-            color: var(--surface);
-            margin-bottom: 1rem;
+        .footer .container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .footer-link {
-            color: var(--text-light);
+        /* Footer Sections */
+        .footer-section {
+            flex: 1 1 30%; /* Flexible layout for sections */
+            margin: 10px;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            color: #EADBC8; /* Beige for headings */
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+        }
+
+        .footer-section p {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin: 10px 0;
+        }
+
+        .footer-links a {
+            color: #DAC0A3; /* Light brown for links */
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-size: 1rem;
         }
 
-        .footer-link:hover {
-            color: var(--accent);
+        .footer-links a:hover {
+            color: #FEFAF6; /* Cream on hover */
+            text-decoration: underline;
         }
 
-        .social-icon {
-            color: var(--text-light);
-            font-size: 1.5rem;
-            margin-right: 1rem;
-            transition: color 0.3s ease;
+        /* Social Media Icons */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-start;
         }
 
-        .social-icon:hover {
-            color: var(--accent);
+        .social-icons img {
+            width: 30px;
+            height: 30px;
+            transition: transform 0.3s;
+        }
+
+        .social-icons img:hover {
+            transform: scale(1.2); /* Slight zoom on hover */
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            margin-top: 20px;
+            border-top: 1px solid #DAC0A3; /* Light brown border */
+            padding-top: 15px;
+            font-size: 0.9rem;
+            color: #EADBC8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .footer .container {
+                flex-direction: column; /* Stack sections vertically */
+                text-align: center;
+            }
+
+            .footer-section {
+                margin-bottom: 20px;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
         }
     </style>
 </head>
