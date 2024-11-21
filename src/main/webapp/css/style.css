@@ -20,3 +20,111 @@ body {
     background-color: var(--background);
 }
 
+/*Registration page style*/
+
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F7F9FC; /* Light background for contrast */
+    color: #333333; /* Neutral dark text color */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header and footer styles */
+header, footer {
+    background-color: #4A628A; /* Primary color */
+    color: #FFFFFF; /* White text for contrast */
+    padding: 15px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+/* Main container styling */
+main.login-form {
+    padding: 50px 0;
+}
+
+.cotainer {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #FFFFFF; /* White background for form container */
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Card styles */
+.card {
+    background-color: #F0F4F9; /* Light blueish background for cards */
+    border: none;
+    border-radius: 10px;
+}
+
+.card-header {
+    background-color: #4A628A; /* Primary color */
+    color: #FFFFFF; /* White text */
+    font-size: 1.5em;
+    text-align: center;
+    padding: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* Form styles */
+form {
+    margin-top: 20px;
+}
+
+.form-control {
+    background-color: #FFFFFF; /* White input background */
+    border: 1px solid #C1CFDD; /* Subtle border */
+    color: #4A628A; /* Primary color for text */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #4A628A; /* Highlight input with primary color */
+    box-shadow: 0 0 5px rgba(74, 98, 138, 0.5);
+}
+
+/* Button styles */
+.btn-primary {
+    background-color: #4A628A; /* Primary button color */
+    border: none;
+    color: #FFFFFF; /* White text */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #3A5072; /* Slightly darker shade on hover */
+    color: #FFFFFF;
+}
+
+/* Label and form group alignment */
+.form-group label {
+    color: #4A628A; /* Primary color for labels */
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .cotainer {
+        padding: 15px;
+    }
+
+    .card-header {
+        font-size: 1.2em;
+    }
+}
+
