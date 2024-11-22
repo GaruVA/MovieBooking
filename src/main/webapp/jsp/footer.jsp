@@ -1,51 +1,39 @@
 <body>
     <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <h5>ABC Cinema</h5>
-                    <p>Experience movies like never before with state-of-the-art technology and ultimate comfort.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+            <div class="container">
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Address: 123 ABC Cinema Lane, <br> Movie City</p>
+                    <p>Phone: +94 234 567 890</p>
+                    <p>Email: info@abccinema.com</p>
+                </div>
+
+                <!-- Links -->
+                <div class="footer-section">
+                    <h3>Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.jsp">Home</a></li>
+                        <li><a href="movies.jsp">Movies</a></li>
+                        <li><a href="promotions.jsp">Promotions</a></li>
+                        <li><a href="aboutus.jsp">About Us</a></li>
+                        <li><a href="contactus.jsp">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Media -->
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/"><img src="./images/facebook.png" alt="Facebook"></a>
+                        <a href="https://www.twitter.com/"><img src="./images/twitter.png" alt="Twitter"></a>
+                        <a href="https://www.instagram.com/"><img src="./images/instagram.png" alt="Instagram"></a>
                     </div>
                 </div>
-                <div class="col-md-2 mb-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="footer-link">Movies</a></li>
-                        <li><a href="#" class="footer-link">Schedule</a></li>
-                        <li><a href="#" class="footer-link">Promotions</a></li>
-                        <li><a href="#" class="footer-link">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <h5>Help & Support</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="footer-link">FAQs</a></li>
-                        <li><a href="#" class="footer-link">Terms of Service</a></li>
-                        <li><a href="#" class="footer-link">Privacy Policy</a></li>
-                        <li><a href="#" class="footer-link">Contact Support</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <h5>Contact Info</h5>
-                    <ul class="list-unstyled">
-                        <li class="text-light">123 Cinema Street</li>
-                        <li class="text-light">Movie City, MC 12345</li>
-                        <li class="text-light">Phone: (123) 456-7890</li>
-                        <li class="text-light">Email: info@abccinema.com</li>
-                    </ul>
-                </div>
             </div>
-            <hr class="mt-4 mb-4" style="border-color: var(--text-light);">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <p class="mb-0">&copy; 2024 ABC Cinema. All rights reserved.</p>
-                </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ABC Cinema | All rights reserved</p>
             </div>
-        </div>
-    </footer>
+        </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
