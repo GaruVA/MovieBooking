@@ -5,10 +5,14 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css">
+
         <%@ include file="jsp/header.jsp"%>
+
     </head>
     <body>
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+
+        <div id="carouselExample" class="carousel slide">
+
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="./images/cimg1.jpg" class="d-block w-100" alt="..." height="550px" width="1525px">
@@ -23,14 +27,15 @@
                 </div>
             </div>
 
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="visually-hidden">Previous</span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
 
         <br>
@@ -50,7 +55,7 @@
                         <div class="card-body">
                             <h5 class="card-title">The Wild Robot</h5>
                             <p class="card-text">Some quick example text for card 1.</p>
-                            <a href="./info1.jsp" class="btn btn-primary">More Info</a>
+                            <a href="#" class="btn btn-primary">More Info</a>
                         </div>
                     </div>
                 </div>
@@ -235,4 +240,5 @@
         </div>
     </body>
     <%@ include file="jsp/footer.jsp"%>
+    
 </html>

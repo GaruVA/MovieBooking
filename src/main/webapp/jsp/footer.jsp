@@ -9,9 +9,9 @@
                     <p>Email: info@abccinema.com</p>
                 </div>
 
-                <!-- Quick Links -->
+                <!-- Links -->
                 <div class="footer-section">
-                    <h3>Quick Links</h3>
+                    <h3>Links</h3>
                     <ul class="footer-links">
                         <li><a href="index.jsp">Home</a></li>
                         <li><a href="movies.jsp">Movies</a></li>
