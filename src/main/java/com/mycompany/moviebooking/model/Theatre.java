@@ -24,8 +24,4 @@ public class Theatre {
     public void setLocation(String location) {
         this.location = location;
     }
-
-    public void setTheatreId(int id) {
-        this.id = id;
-    }
 }

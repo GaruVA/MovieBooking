@@ -99,7 +99,7 @@ public class TheatreCTL extends HttpServlet {
                 ResultSet rs = stmt.executeQuery();
                 while (rs.next()) {
                     Theatre theatre = new Theatre();
-                    theatre.setTheatreId(rs.getInt("theatre_id"));
+                    theatre.setId(rs.getInt("theatre_id"));
                     theatre.setName(rs.getString("name"));
                     theatre.setLocation(rs.getString("location"));
                     theatres.add(theatre);

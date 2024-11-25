@@ -17,13 +17,4 @@ public class Movie {
     public void setTitle(String title) {
         this.title = title;
     }
-
-    public void setMovieId(int id) {
-        this.id = id;
-    }
-
-    public void setPosterUrl(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
-
