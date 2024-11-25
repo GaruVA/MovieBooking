@@ -5,25 +5,20 @@
 package com.mycompany.moviebooking.controller;
 
 import com.google.gson.Gson;
-import com.mycompany.moviebooking.model.Movie;
 import com.mycompany.moviebooking.model.Showtime;
-import com.mycompany.moviebooking.model.Theatre;
 import com.mycompany.moviebooking.utility.JDBCDataSource;
-import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -73,80 +68,79 @@ public class ShowtimeCTL extends HttpServlet {
         // processRequest(request, response);
 response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        
+
+        // Retrieve parameters from the request
         String movieId = request.getParameter("movie_id");
         String theatreId = request.getParameter("theatre_id");
         String showDate = request.getParameter("show_date");
-        
-        if (showDate == null || showDate.trim().isEmpty()) {
+
+        // Validate `show_date` parameter
+        if (showDate == null || showDate.isEmpty()) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.getWriter().write("{\"error\":\"Missing required parameter: show_date\"}");
             return;
         }
-        
+
         List<Showtime> showtimes = new ArrayList<>();
-        StringBuilder sql = new StringBuilder(
-            "SELECT s.*, m.title, m.poster_url, t.name, t.location " +
-            "FROM showtimes s " +
-            "JOIN movies m ON s.movie_id = m.movie_id " +
-            "JOIN theatres t ON s.theatre_id = t.theatre_id " +
-            "WHERE s.show_date = ?"
-        );
-        
-        List<Object> params = new ArrayList<>();
-        params.add(showDate);
-        
-        if (movieId != null && !movieId.trim().isEmpty()) {
-            sql.append(" AND s.movie_id = ?");
-            params.add(Integer.parseInt(movieId));
-        }
-        
-        if (theatreId != null && !theatreId.trim().isEmpty()) {
-            sql.append(" AND s.theatre_id = ?");
-            params.add(Integer.parseInt(theatreId));
-        }
-        
-        try (Connection conn = JDBCDataSource.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql.toString())) {
-            
-            for (int i = 0; i < params.size(); i++) {
-                stmt.setObject(i + 1, params.get(i));
+
+
+        try (Connection connection = JDBCDataSource.getConnection()) {
+            StringBuilder query = new StringBuilder(
+                "SELECT s.showtime_id, s.movie_id, m.title AS movie_title, s.theatre_id, t.name AS theatre_name, " +
+                "s.show_date, s.show_time, s.available_seats " +
+                "FROM showtimes s " +
+                "JOIN movies m ON s.movie_id = m.movie_id " +
+                "JOIN theatres t ON s.theatre_id = t.theatre_id " +
+                "WHERE s.show_date = ?"
+            );
+
+            // Append conditions for optional parameters
+            if (movieId != null && !movieId.isEmpty()) {
+                query.append(" AND s.movie_id = ?");
             }
-            
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                Showtime showtime = new Showtime();
-                // Set showtime properties
-                showtime.setShowtimeId(rs.getInt("showtime_id"));
-                showtime.setMovieId(rs.getInt("movie_id"));
-                showtime.setTheatreId(rs.getInt("theatre_id"));
-                showtime.setShowDate(rs.getDate("show_date"));
-                showtime.setShowTime(rs.getTime("show_time"));
-                showtime.setAvailableSeats(rs.getInt("available_seats"));
-                
-                // Set movie and theatre properties
-                Movie movie = new Movie();
-                movie.setMovieId(rs.getInt("movie_id"));
-                movie.setTitle(rs.getString("title"));
-                movie.setPosterUrl(rs.getString("poster_url"));
-                showtime.setMovie(movie);
-                
-                Theatre theatre = new Theatre();
-                theatre.setTheatreId(rs.getInt("theatre_id"));
-                theatre.setName(rs.getString("name"));
-                theatre.setLocation(rs.getString("location"));
-                showtime.setTheatre(theatre);
-                
+            if (theatreId != null && !theatreId.isEmpty()) {
+                query.append(" AND s.theatre_id = ?");
+            }
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query.toString());
+            preparedStatement.setString(1, showDate);
+
+            int paramIndex = 2;
+            if (movieId != null && !movieId.isEmpty()) {
+                preparedStatement.setInt(paramIndex++, Integer.parseInt(movieId));
+            }
+            if (theatreId != null && !theatreId.isEmpty()) {
+                preparedStatement.setInt(paramIndex++, Integer.parseInt(theatreId));
+            }
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Process the results
+            while (resultSet.next()) {
+                Showtime showtime = new Showtime(
+                    resultSet.getInt("showtime_id"),
+                    resultSet.getInt("movie_id"),
+                    resultSet.getString("movie_title"),
+                    resultSet.getInt("theatre_id"),
+                    resultSet.getString("theatre_name"),
+                    resultSet.getString("show_date"),
+                    resultSet.getString("show_time"),
+                    resultSet.getInt("available_seats")
+                );
                 showtimes.add(showtime);
             }
-        } catch (SQLException e) {
+
+        } catch (Exception e) {
+            e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.getWriter().write("{\"error\":\"Internal server error\"}");
             return;
-        } catch (Exception ex) {
-            Logger.getLogger(ShowtimeCTL.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        String json = new Gson().toJson(showtimes);
-        response.getWriter().write(json);
+
+        // Convert the showtimes to JSON and write to response
+        PrintWriter out = response.getWriter();
+        out.write(new Gson().toJson(showtimes));
+        out.flush();
     }
 
     /**
