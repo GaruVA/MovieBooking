@@ -1,7 +1,7 @@
 package com.mycompany.moviebooking.model;
 
 public class Showtime {
-    private int showtimeId;
+    private int id;
     private Movie movie; // Reference to Movie object
     private Theatre theatre; // Reference to Theatre object
     private String showDate;
@@ -9,8 +9,8 @@ public class Showtime {
     private int availableSeats;
 
     // Constructor
-    public Showtime(int showtimeId, Movie movie, Theatre theatre, String showDate, String showTime, int availableSeats) {
-        this.showtimeId = showtimeId;
+    public Showtime(int id, Movie movie, Theatre theatre, String showDate, String showTime, int availableSeats) {
+        this.id = id;
         this.movie = movie;
         this.theatre = theatre;
         this.showDate = showDate;
@@ -19,8 +19,8 @@ public class Showtime {
     }
 
     // Getters
-    public int getShowtimeId() {
-        return showtimeId;
+    public int getId() {
+        return id;
     }
 
     public Movie getMovie() {
@@ -44,8 +44,8 @@ public class Showtime {
     }
 
     // Setters
-    public void setShowtimeId(int showtimeId) {
-        this.showtimeId = showtimeId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setMovie(Movie movie) {
