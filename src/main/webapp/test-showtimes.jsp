@@ -170,19 +170,19 @@
                     return;
                 }
 
-                var movieId = showtime.movieId || 'unknown';
-                var theatreId = showtime.theatreId || 'unknown';
+                var movieId = showtime.movie.id || 'unknown';
+                var theatreId = showtime.theatre.id || 'unknown';
 
                 if (!groupedShowtimes[movieId]) {
                     groupedShowtimes[movieId] = {
-                        movieTitle: showtime.movieTitle || 'Unknown Movie',
+                        movieTitle: showtime.movie.title || 'Unknown Movie',
                         theatres: {}
                     };
                 }
 
                 if (!groupedShowtimes[movieId].theatres[theatreId]) {
                     groupedShowtimes[movieId].theatres[theatreId] = {
-                        theatreName: showtime.theatreName || 'Unknown Theatre',
+                        theatreName: showtime.theatre.name || 'Unknown Theatre',
                         times: []
                     };
                 }
@@ -253,14 +253,13 @@ function formatTime(timeString) {
             
             // Pad minutes with zero if needed
             minutes = minutes < 10 ? '0' + minutes : minutes;
-            
+
             return hours + ':' + minutes + ' ' + period;
         }
-        return timeString;
     } catch (error) {
         console.error('Error formatting time:', error);
-        return 'Invalid Time';
     }
+    return 'Invalid Time';
 }
     </script>
 </body>

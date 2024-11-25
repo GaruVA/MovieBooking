@@ -73,7 +73,7 @@ public class MovieCTL extends HttpServlet {
                 ResultSet rs = stmt.executeQuery();
                 while (rs.next()) {
                     Movie movie = new Movie();
-                    movie.setMovieId(rs.getInt("movie_id"));
+                    movie.setId(rs.getInt("movie_id"));
                     movie.setTitle(rs.getString("title"));
                     // ... set other properties
                     movies.add(movie);

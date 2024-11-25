@@ -2,22 +2,17 @@ package com.mycompany.moviebooking.model;
 
 public class Showtime {
     private int showtimeId;
-    private int movieId;
-    private String movieTitle;
-    private int theatreId;
-    private String theatreName;
+    private Movie movie; // Reference to Movie object
+    private Theatre theatre; // Reference to Theatre object
     private String showDate;
     private String showTime;
     private int availableSeats;
 
     // Constructor
-    public Showtime(int showtimeId, int movieId, String movieTitle, int theatreId, String theatreName,
-                    String showDate, String showTime, int availableSeats) {
+    public Showtime(int showtimeId, Movie movie, Theatre theatre, String showDate, String showTime, int availableSeats) {
         this.showtimeId = showtimeId;
-        this.movieId = movieId;
-        this.movieTitle = movieTitle;
-        this.theatreId = theatreId;
-        this.theatreName = theatreName;
+        this.movie = movie;
+        this.theatre = theatre;
         this.showDate = showDate;
         this.showTime = showTime;
         this.availableSeats = availableSeats;
@@ -28,20 +23,12 @@ public class Showtime {
         return showtimeId;
     }
 
-    public int getMovieId() {
-        return movieId;
+    public Movie getMovie() {
+        return movie;
     }
 
-    public String getMovieTitle() {
-        return movieTitle;
-    }
-
-    public int getTheatreId() {
-        return theatreId;
-    }
-
-    public String getTheatreName() {
-        return theatreName;
+    public Theatre getTheatre() {
+        return theatre;
     }
 
     public String getShowDate() {
@@ -61,20 +48,12 @@ public class Showtime {
         this.showtimeId = showtimeId;
     }
 
-    public void setMovieId(int movieId) {
-        this.movieId = movieId;
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
 
-    public void setMovieTitle(String movieTitle) {
-        this.movieTitle = movieTitle;
-    }
-
-    public void setTheatreId(int theatreId) {
-        this.theatreId = theatreId;
-    }
-
-    public void setTheatreName(String theatreName) {
-        this.theatreName = theatreName;
+    public void setTheatre(Theatre theatre) {
+        this.theatre = theatre;
     }
 
     public void setShowDate(String showDate) {

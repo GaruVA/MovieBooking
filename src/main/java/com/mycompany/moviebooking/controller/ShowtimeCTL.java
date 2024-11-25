@@ -1,11 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package com.mycompany.moviebooking.controller;
 
 import com.google.gson.Gson;
+import com.mycompany.moviebooking.model.Movie;
 import com.mycompany.moviebooking.model.Showtime;
+import com.mycompany.moviebooking.model.Theatre;
 import com.mycompany.moviebooking.utility.JDBCDataSource;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,53 +18,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author User
- */
 @WebServlet(name = "showtimes", urlPatterns = {"/showtimes"})
 public class ShowtimeCTL extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ShowtimeCTL</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ShowtimeCTL at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // processRequest(request, response);
-response.setContentType("application/json");
+        response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
         // Retrieve parameters from the request
@@ -82,7 +40,6 @@ response.setContentType("application/json");
         }
 
         List<Showtime> showtimes = new ArrayList<>();
-
 
         try (Connection connection = JDBCDataSource.getConnection()) {
             StringBuilder query = new StringBuilder(
@@ -117,12 +74,20 @@ response.setContentType("application/json");
 
             // Process the results
             while (resultSet.next()) {
+                // Create Movie and Theatre objects
+                Movie movie = new Movie();
+                movie.setId(resultSet.getInt("movie_id"));
+                movie.setTitle(resultSet.getString("movie_title"));
+
+                Theatre theatre = new Theatre();
+                theatre.setId(resultSet.getInt("theatre_id"));
+                theatre.setName(resultSet.getString("theatre_name"));
+
+                // Create Showtime object with Movie and Theatre references
                 Showtime showtime = new Showtime(
                     resultSet.getInt("showtime_id"),
-                    resultSet.getInt("movie_id"),
-                    resultSet.getString("movie_title"),
-                    resultSet.getInt("theatre_id"),
-                    resultSet.getString("theatre_name"),
+                    movie,
+                    theatre,
                     resultSet.getString("show_date"),
                     resultSet.getString("show_time"),
                     resultSet.getInt("available_seats")
@@ -143,28 +108,16 @@ response.setContentType("application/json");
         out.flush();
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        // For this example, we are not handling POST requests
+        response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+        response.getWriter().write("{\"error\":\"POST method not allowed\"}");
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+        return "Showtime Controller";
+    }
 }
