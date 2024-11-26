@@ -8,7 +8,7 @@
 <div class="container py-5">
     <div class="card">
         <div class="card-body">
-            <h2 class="card-title text-center mb-4">Book Your Movie</h2>
+            <h2 class="card-title mb-4">Book Movie Tickets</h2>
 
             <div class="row g-3 mb-4">
                 <div class="col-md-4">
