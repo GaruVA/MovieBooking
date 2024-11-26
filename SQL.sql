@@ -2,11 +2,13 @@ CREATE TABLE movies (
     movie_id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
     description TEXT,
-    release_date DATE,
-    status VARCHAR(50),
-    genre VARCHAR(100),
-    duration INT,
-    poster_url VARCHAR(255)
+    release_date DATE NOT NULL,
+    status ENUM('Now Showing', 'Coming Soon') NOT NULL,
+    genre VARCHAR(255),
+    duration TIME,
+    poster_path VARCHAR(255) NOT NULL,
+    imdb_rating FLOAT(2, 1) DEFAULT NULL,
+    last_updated DATETIME
 );
 
 CREATE TABLE theatres (
