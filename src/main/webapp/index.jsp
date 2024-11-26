@@ -1,6 +1,6 @@
 <!-- Include header with parameters -->
 <jsp:include page="jsp/header.jsp">
-    <jsp:param name="title" value="Your Page Title" />
+    <jsp:param name="title" value="ABC Cinema" />
     <jsp:param name="css" value="style.css" />
 </jsp:include>
 
