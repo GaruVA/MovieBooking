@@ -49,7 +49,7 @@
                 <div class="card-body">
                     <h5 class="card-title">The Wild Robot</h5>
                     <p class="card-text">Some quick example text for card 1.</p>
-                    <a href="#" class="btn btn-primary">More Info</a>
+                    <a href="./TheWildRobot.jsp" class="btn btn-primary">More Info</a>
                 </div>
             </div>
         </div>
