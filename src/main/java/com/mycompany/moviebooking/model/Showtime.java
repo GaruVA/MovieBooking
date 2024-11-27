@@ -6,16 +6,14 @@ public class Showtime {
     private Theatre theatre; // Reference to Theatre object
     private String showDate;
     private String showTime;
-    private int availableSeats;
 
     // Constructor
-    public Showtime(int id, Movie movie, Theatre theatre, String showDate, String showTime, int availableSeats) {
+    public Showtime(int id, Movie movie, Theatre theatre, String showDate, String showTime) {
         this.id = id;
         this.movie = movie;
         this.theatre = theatre;
         this.showDate = showDate;
         this.showTime = showTime;
-        this.availableSeats = availableSeats;
     }
 
     // Getters
@@ -39,10 +37,6 @@ public class Showtime {
         return showTime;
     }
 
-    public int getAvailableSeats() {
-        return availableSeats;
-    }
-
     // Setters
     public void setId(int id) {
         this.id = id;
@@ -62,9 +56,5 @@ public class Showtime {
 
     public void setShowTime(String showTime) {
         this.showTime = showTime;
-    }
-
-    public void setAvailableSeats(int availableSeats) {
-        this.availableSeats = availableSeats;
     }
 }

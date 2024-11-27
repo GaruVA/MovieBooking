@@ -68,7 +68,7 @@ public class MovieCTL extends HttpServlet {
         List<Movie> movies = new ArrayList<>();
         
         try (Connection conn = JDBCDataSource.getConnection()) {
-            String sql = "SELECT * FROM movies";
+            String sql = "SELECT * FROM movies WHERE status='Now Showing'";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 ResultSet rs = stmt.executeQuery();
                 while (rs.next()) {

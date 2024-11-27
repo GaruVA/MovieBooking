@@ -44,7 +44,7 @@ public class ShowtimeCTL extends HttpServlet {
         try (Connection connection = JDBCDataSource.getConnection()) {
             StringBuilder query = new StringBuilder(
                 "SELECT s.showtime_id, s.movie_id, m.title AS movie_title, s.theatre_id, t.name AS theatre_name, " +
-                "s.show_date, s.show_time, s.available_seats " +
+                "s.show_date, s.show_time " +
                 "FROM showtimes s " +
                 "JOIN movies m ON s.movie_id = m.movie_id " +
                 "JOIN theatres t ON s.theatre_id = t.theatre_id " +
@@ -89,8 +89,7 @@ public class ShowtimeCTL extends HttpServlet {
                     movie,
                     theatre,
                     resultSet.getString("show_date"),
-                    resultSet.getString("show_time"),
-                    resultSet.getInt("available_seats")
+                    resultSet.getString("show_time")
                 );
                 showtimes.add(showtime);
             }

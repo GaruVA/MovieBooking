@@ -28,13 +28,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Home</a>
+                            <a class="nav-link active" href="./index.jsp">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Movies</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Schedule</a>
+                            <a class="nav-link" href="#">Theatres</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">About</a>
