@@ -1,7 +1,9 @@
 <!-- Include header with parameters -->
+<!-- activePage: pass an empty string if the page isn't listed in navbar-->
 <jsp:include page="jsp/header.jsp">
     <jsp:param name="title" value="ABC Cinema" />
     <jsp:param name="css" value="style.css" />
+    <jsp:param name="activePage" value="home" />   
 </jsp:include>
 
 <!-- Your page-specific content goes here -->

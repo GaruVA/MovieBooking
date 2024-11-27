@@ -1,0 +1,18 @@
+.theatre-card {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.theatre-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+.theatre-card img {
+    height: 200px;
+    object-fit: cover;
+}
+.theatre-card h5 {
+    color: #343a40;
+}
+.theatre-card p {
+    color: #6c757d;
+}

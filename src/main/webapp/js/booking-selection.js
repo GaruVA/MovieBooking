@@ -61,6 +61,11 @@ async function loadTheatres() {
             const option = new Option(theatre.name, theatre.id);
             select.add(option);
         });
+        
+        const selectedTheatreId = getUrlParameter('theatre_id');
+        if (selectedTheatreId) {
+            select.value = selectedTheatreId;
+        }
     } catch (error) {
         console.error('Error loading theatres:', error);
         const select = document.getElementById('theatreSelect');

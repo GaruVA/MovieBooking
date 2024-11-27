@@ -28,20 +28,20 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="./index.jsp">Home</a>
+                            <a class="nav-link ${param.activePage == 'home' ? 'active' : ''}" href="./index.jsp">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Movies</a>
+                            <a class="nav-link ${param.activePage == 'movies' ? 'active' : ''}" href="#">Movies</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Theatres</a>
+                            <a class="nav-link ${param.activePage == 'theatres' ? 'active' : ''}" href="./theatres.jsp">Theatres</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link ${param.activePage == 'about' ? 'active' : ''}" href="#">About</a>
                         </li>
                     </ul>
                     <div class="d-flex gap-3">
-                        <a href="#" class="nav-link">Login</a>
+                        <a href="#" class="nav-link ${param.activePage == 'login' ? 'active' : ''}">Login</a>
                         <a href="./booking-selection.jsp" class="btn btn-book-now">Book Now</a>
                     </div>
                 </div>

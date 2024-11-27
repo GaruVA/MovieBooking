@@ -27,7 +27,7 @@ CREATE TABLE movies (
     status ENUM('Now Showing', 'Coming Soon') NOT NULL,
     genre VARCHAR(255),
     duration TIME,
-    poster_path VARCHAR(255) NOT NULL,
+    image_path VARCHAR(255) NOT NULL,
     imdb_rating FLOAT(2, 1) DEFAULT NULL,
     last_updated DATETIME
 );
@@ -35,7 +35,8 @@ CREATE TABLE movies (
 CREATE TABLE theatres (
     theatre_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
-    location VARCHAR(255)
+    location VARCHAR(255),
+    image_path VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE showtimes (
@@ -50,15 +51,15 @@ CREATE TABLE showtimes (
 
 
 -- INSERT TEST DATA
-INSERT INTO movies (movie_id, title, description, release_date, status, genre, duration, poster_path, imdb_rating, last_updated) VALUES 
+INSERT INTO movies (movie_id, title, description, release_date, status, genre, duration, image_path, imdb_rating, last_updated) VALUES 
 (1, 'Inception', 'A thief who enters the dreams of others to steal their secrets gets a chance to regain his old life in exchange for planting an idea in a CEO\'s mind.', '2010-07-16', 'Now Showing', 'Sci-Fi/Action', '02:28:00', '/images/inception.jpg', 8.8, NOW()),
 (2, 'The Dark Knight', 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.', '2008-07-18', 'Now Showing', 'Action/Crime/Drama', '02:32:00', '/images/dark_knight.jpg', 9.0, NOW()),
 (3, 'Interstellar', 'A team of explorers travel through a wormhole in space in an attempt to ensure humanity\'s survival.', '2014-11-07', 'Now Showing', 'Sci-Fi/Adventure', '02:49:00', '/images/interstellar.jpg', 8.6, NOW()),
 (4, 'Dune: Part Two', 'A mythic and emotionally charged hero’s journey, Dune: Part Two will explore the mythic dimensions of Denis Villeneuve’s universe.', '2024-12-15', 'Coming Soon', 'Sci-Fi/Adventure', '02:30:00', '/images/dune_part_two.jpg', 0.0, NOW());
 
-INSERT INTO theatres (theatre_id, name, location) VALUES
-(1, 'Cinema City', '123 Main Street, Downtown'),
-(2, 'Starlight Theatre', '456 Park Avenue, Uptown');
+INSERT INTO theatres (theatre_id, name, location, image_path) VALUES
+(1, 'Cinema City', '123 Main Street, Downtown','theatre1.jpg'),
+(2, 'Starlight Theatre', '456 Park Avenue, Uptown','theatre2.jpg');
 
 INSERT INTO showtimes (movie_id, theatre_id, show_date, show_time)
 VALUES

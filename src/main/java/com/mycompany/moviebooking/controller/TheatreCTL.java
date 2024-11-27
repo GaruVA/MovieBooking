@@ -64,30 +64,6 @@ public class TheatreCTL extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // processRequest(request, response);
-//        String movieId = request.getParameter("movie_id");
-//        response.setContentType("application/json");
-//
-//        try {
-//            // Fetch theatres using DAO
-//            List<Theatre> theatres = TheatreDAO.getTheatresByMovie(Integer.parseInt(movieId));
-//
-//            // Convert to JSON
-//            PrintWriter out = response.getWriter();
-//            out.print("[");
-//            boolean first = true;
-//            for (Theatre theatre : theatres) {
-//                if (!first) out.print(",");
-//                out.print("{\"theatre_id\": " + theatre.getId() +
-//                           ", \"name\": \"" + theatre.getName() + "\"" +
-//                           ", \"location\": \"" + theatre.getLocation() + "\"}");
-//                first = false;
-//            }
-//            out.print("]");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Database error");
-//        }
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
@@ -102,6 +78,7 @@ public class TheatreCTL extends HttpServlet {
                     theatre.setId(rs.getInt("theatre_id"));
                     theatre.setName(rs.getString("name"));
                     theatre.setLocation(rs.getString("location"));
+                    theatre.setImagePath(rs.getString("image_path"));
                     theatres.add(theatre);
                 }
             }
