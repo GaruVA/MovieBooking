@@ -1,19 +1,23 @@
 package com.mycompany.moviebooking.model;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Showtime {
     private int id;
     private Movie movie; // Reference to Movie object
     private Theatre theatre; // Reference to Theatre object
     private String showDate;
-    private String showTime;
+    private Date showTime; 
 
     // Constructor
-    public Showtime(int id, Movie movie, Theatre theatre, String showDate, String showTime) {
+    public Showtime(int id, Movie movie, Theatre theatre, String showDate, String showTime) throws ParseException {
         this.id = id;
         this.movie = movie;
         this.theatre = theatre;
         this.showDate = showDate;
-        this.showTime = showTime;
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        this.showTime = format.parse(showTime);
     }
 
     // Getters
@@ -33,7 +37,7 @@ public class Showtime {
         return showDate;
     }
 
-    public String getShowTime() {
+    public Date getShowTime() {
         return showTime;
     }
 
@@ -54,7 +58,8 @@ public class Showtime {
         this.showDate = showDate;
     }
 
-    public void setShowTime(String showTime) {
-        this.showTime = showTime;
+    public void setShowTime(String showTime) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        this.showTime = format.parse(showTime);
     }
 }
