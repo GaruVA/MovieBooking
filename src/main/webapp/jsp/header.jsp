@@ -34,7 +34,7 @@
                             <a class="nav-link ${param.activePage == 'movies' ? 'active' : ''}" href="#">Movies</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ${param.activePage == 'theatres' ? 'active' : ''}" href="./theatres.jsp">Theatres</a>
+                            <a class="nav-link ${param.activePage == 'theatres' ? 'active' : ''}" href="./theatres">Theatres</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link ${param.activePage == 'about' ? 'active' : ''}" href="#">About</a>
