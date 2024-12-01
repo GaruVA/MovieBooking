@@ -21,7 +21,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
             <div class="container">
-                <a class="navbar-brand" href="#"><img src="./images/ABC.png" alt="ABC Cinema" height="50px"></a>
+                <a class="navbar-brand" href="./"><img src="./images/ABC.png" alt="ABC Cinema" height="50px"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>

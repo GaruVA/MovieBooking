@@ -20,14 +20,14 @@ import java.util.logging.Logger;
  *
  * @author USER
  */
-@WebServlet(name = "informations", urlPatterns = {"/Informations"})
+@WebServlet(name = "information", urlPatterns = {"/information"})
 public class InformationCTL extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Retrieve the movie ID from the query parameter
-        String movieId = request.getParameter("id");
+        String movieId = request.getParameter("movie_id");
         Movie movie = new Movie();
 
         if (movieId != null) {

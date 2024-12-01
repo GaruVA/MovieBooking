@@ -19,20 +19,20 @@
             </div>
         </c:if>
 
-        <c:if test="${empty moviess}">
+        <c:if test="${empty movies}">
             <div class="col-12">
                 <p class="text-center">No Movies Available.</p>
             </div>
         </c:if>
 
-        <c:forEach var="movie" items="${moviess}">
+        <c:forEach var="movie" items="${movies}">
             <div class="col-md-3">
                 <div class="card">
-                    <img src="${empty movie.image_path ? './images/ABC.png' : movie.image_path}" class="card-img-top" alt="Card 1">
+                    <img src="${empty movie.image_path ? './images/placeholder.png' : movie.image_path}" class="card-img-top" alt="${movie.title}">
                     <div class="card-body">
                         <h5 class="card-title">${movie.title}</h5>
                         <p class="card-text">${movie.description}</p>
-                        <a href="./Informations?id=${movie.id}" class="btn btn-primary">More Info</a>
+                        <a href="./information?movie_id=${movie.id}" class="btn btn-primary">More Info</a>
                     </div>
                 </div>
             </div>

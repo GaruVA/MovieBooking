@@ -56,7 +56,7 @@ public class MovieCTL extends HttpServlet {
 //        request.getRequestDispatcher("/movies.jsp").forward(request, response);
 //        
          // Set both lists as request attributes
-        request.setAttribute("moviess", movies);         // All movies
+        request.setAttribute("movies", movies);         // All movies
      
 
         // Forward to index.jsp once

@@ -52,11 +52,11 @@
         <c:forEach var="movie" items="${nowshow}">
             <div class="col-md-3">
                 <div class="card">
-                    <img src="${empty movie.image_path ? './images/ABC.png' : movie.image_path}" class="card-img-top" alt="Card 1">
+                    <img src="${empty movie.image_path ? './images/placeholder.png' : movie.image_path}" class="card-img-top" alt="${movie.title}">
                     <div class="card-body">
                         <h5 class="card-title">${movie.title}</h5>
                         <p class="card-text">${movie.description}</p>
-                        <a href="./Informations?id=${movie.id}" class="btn btn-primary">More Info</a>
+                        <a href="./information?movie_id=${movie.id}" class="btn btn-primary">More Info</a>
                     </div>
                 </div>
             </div>
@@ -79,20 +79,20 @@
 <div class="container mt-4">
     <div class="row">
         <!-- Card 1 -->
-        <c:forEach var="movieone" items="${comingsoon}">
+        <c:forEach var="movie" items="${comingsoon}">
             <div class="col-md-3">
                 <div class="card">
-                    <img src="${empty movieone.image_path ? './images/ABC.png' : movieone.image_path}" class="card-img-top" alt="Card 1">
+                    <img src="${empty movie.image_path ? './images/placeholder.png' : movie.image_path}" class="card-img-top" alt="${movie.title}">
                     <div class="card-body">
-                        <h5 class="card-title">${movieone.title}</h5>
-                        <p class="card-text">${movieone.description}</p>
-                        <a href="./Informations?id=${movie.id}" class="btn btn-primary">More Info</a>
+                        <h5 class="card-title">${movie.title}</h5>
+                        <p class="card-text">${movie.description}</p>
+                        <a href="./information?movie_id=${movie.id}" class="btn btn-primary">More Info</a>
                     </div>
                 </div>
             </div>
         </c:forEach>
 
-        <c:if test="${empty comingSoon}">
+        <c:if test="${empty comingsoon}">
             <p>No movies currently showing.</p>
         </c:if>
     </div>
