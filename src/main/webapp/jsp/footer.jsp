@@ -14,11 +14,11 @@
         <div class="footer-section">
             <h3>Links</h3>
             <ul class="footer-links">
-                <li><a href="index.jsp">Home</a></li>
-                <li><a href="movies.jsp">Movies</a></li>
-                <li><a href="promotions.jsp">Promotions</a></li>
-                <li><a href="aboutus.jsp">About Us</a></li>
-                <li><a href="contactus.jsp">Contact Us</a></li>
+                <li><a href="index">Home</a></li>
+                <li><a href="movies">Movies</a></li>
+                <li><a href="#">Promotions</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
             </ul>
         </div>
 

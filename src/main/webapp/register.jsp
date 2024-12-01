@@ -1,4 +1,7 @@
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="jsp/header.jsp"%>
+
 <div class="cotainer">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -34,6 +37,18 @@
                     </form>
                 </div>
             </div>
+            <c:forEach var="movie" items="${nowshow}">
+                <div class="col-md-3">
+                    <div class="card">
+                        <img src="${empty movie.image_path ? './images/ABC.png' : movie.image_path}" class="card-img-top" alt="Card 1">
+                        <div class="card-body">
+                            <h5 class="card-title">${movie.title}</h5>
+                            <p class="card-text">${movie.description}</p>
+                            <a href="#" class="btn btn-primary">More Info</a>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
         </div>
     </div>
 </div>
