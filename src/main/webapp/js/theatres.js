@@ -1,50 +1,27 @@
-const contextPath = window.location.pathname.split('/')[1];
-const BASE_URL = '/' + contextPath;
+function editTheatre(id, name, location, imagePath) {
+    document.getElementById('editTheatreId').value = id;
+    document.getElementById('editTheatreName').value = name;
+    document.getElementById('editTheatreLocation').value = location;
 
-document.addEventListener("DOMContentLoaded", () => {
-    const container = document.getElementById("theatre-container");
-    const servletUrl = BASE_URL + "/theatres";
+    // Set current image
+    const imageElement = document.getElementById('currentTheatreImage');
+    imageElement.src = imagePath || './images/placeholder.png';
 
-    // Fetch data from the servlet
-    fetch(servletUrl)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Failed to fetch theatres.");
-                }
-                return response.json(); // Parse the JSON response
-            })
-            .then(data => {
-                if (data && data.length > 0) {
-                    renderTheatres(data);
-                } else {
-                    container.innerHTML = "<p class='text-center'>No theatres available.</p>";
-                }
-            })
-            .catch(error => {
-                console.error("Error fetching theatres:", error);
-                container.innerHTML = "<p class='text-center text-danger'>Error loading theatres. Please try again later.</p>";
-            });
+    // Preview new image when selected
+    document.getElementById('editImageInput').addEventListener('change', function (e) {
+        if (this.files && this.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imageElement.src = e.target.result;
+            };
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
 
-    // Function to render theatres
-    function renderTheatres(theatres) {
-        theatres.forEach(theatre => {
-            const col = document.createElement("div");
-            col.className = "col-md-4";
+    new bootstrap.Modal(document.getElementById('editTheatreModal')).show();
+}
 
-            const imageUrl = theatre.image_path || "./images/placeholder.png"; // Use default image if none provided
-            col.innerHTML = `
-            <div class="card theatre-card shadow-sm" onclick="redirectToTheatre(${theatre.id})">
-                <img src="${theatre.image_path}" class="card-img-top" alt="${theatre.name}">
-                <div class="card-body">
-                    <h5 class="card-title">${theatre.name}</h5>
-                    <p class="card-text">${theatre.location}</p>
-                </div>
-            </div>
-        `;
-            container.appendChild(col);
-        });
-    }
-});
-function redirectToTheatre(theatreId) {
-    window.location.href = `booking-selection.jsp?theatre_id=${theatreId}`;
+function deleteTheatre(id) {
+    document.getElementById('deleteTheatreId').value = id;
+    new bootstrap.Modal(document.getElementById('deleteTheatreModal')).show();
 }

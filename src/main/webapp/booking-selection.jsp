@@ -90,4 +90,6 @@
 </div>
 
 <!-- Include footer -->
-<jsp:include page="jsp/footer.jsp" />
+<jsp:include page="jsp/footer.jsp">
+    <jsp:param name="js" value="booking-selection.js" />
+</jsp:include>
