@@ -1,18 +1,28 @@
 .theatre-card {
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.2s ease-in-out;
 }
-.theatre-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
+
+/*.theatre-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+}*/
+
 .theatre-card img {
     height: 200px;
     object-fit: cover;
 }
-.theatre-card h5 {
-    color: #343a40;
+
+.admin-controls {
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
 }
-.theatre-card p {
-    color: #6c757d;
+
+.modal-lg {
+    max-width: 800px;
+}
+
+#currentTheatreImage {
+    border: 1px solid #dee2e6;
+    padding: 0.25rem;
+    background: #fff;
 }
