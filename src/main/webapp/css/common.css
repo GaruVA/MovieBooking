@@ -29,6 +29,8 @@ body {
     color: var(--surface) !important;
     font-weight: bold;
     font-size: 1.5rem;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 .nav-link {
@@ -164,3 +166,30 @@ footer {
     }
 }
 
+.cs-button {
+  background-color: var(--surface);
+  color: var(--primary);
+  border-color: var(--primary);
+  transition: all 0.3s ease;
+}
+
+.cs-button:hover {
+  background-color: var(--primary);
+  color: var(--surface);
+}
+
+.btn-outline-primary {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary);
+  color: var(--surface);
+}
+
+.title {
+  color: var(--primary);
+  font-size: 2rem;
+  font-weight: bold;
+}

@@ -21,20 +21,20 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
             <div class="container">
-                <a class="navbar-brand" href="#">ABC Cinema</a>
+                <a class="navbar-brand" href="./"><img src="./images/ABC.png" alt="ABC Cinema" height="50px"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link ${param.activePage == 'home' ? 'active' : ''}" href="./index.jsp">Home</a>
+                            <a class="nav-link ${param.activePage == 'home' ? 'active' : ''}" href="./">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ${param.activePage == 'movies' ? 'active' : ''}" href="#">Movies</a>
+                            <a class="nav-link ${param.activePage == 'movies' ? 'active' : ''}" href="./movies">Movies</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ${param.activePage == 'theatres' ? 'active' : ''}" href="./theatres.jsp">Theatres</a>
+                            <a class="nav-link ${param.activePage == 'theatres' ? 'active' : ''}" href="./theatres">Theatres</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link ${param.activePage == 'about' ? 'active' : ''}" href="#">About</a>
@@ -42,7 +42,7 @@
                     </ul>
                     <div class="d-flex gap-3">
                         <a href="#" class="nav-link ${param.activePage == 'login' ? 'active' : ''}">Login</a>
-                        <a href="./booking-selection.jsp" class="btn btn-book-now">Book Now</a>
+                        <a href="./booking-selection" class="btn btn-book-now">Book Now</a>
                     </div>
                 </div>
             </div>

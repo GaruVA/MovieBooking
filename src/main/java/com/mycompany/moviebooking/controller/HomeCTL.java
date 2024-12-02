@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 package com.mycompany.moviebooking.controller;
 
 import com.mycompany.moviebooking.model.Movie;
@@ -17,18 +21,23 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@WebServlet(name = "movies", urlPatterns = {"/movies"})
-public class MovieCTL extends HttpServlet {
+/**
+ *
+ * @author USER
+ */
+@WebServlet(name = "index.jsp", urlPatterns = {"/index"})
+public class HomeCTL extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Movie> movies = new ArrayList<>();
+
         List<Movie> nowShowMovies = new ArrayList<>();
+        List<Movie> comingSoonMovies = new ArrayList<>();
 
         try (Connection conn = JDBCDataSource.getConnection()) {
-            String sql = "SELECT * FROM movies";
-            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            String sqlNowShowing = "SELECT * FROM movies WHERE status='Now Showing'";
+            try (PreparedStatement stmt = conn.prepareStatement(sqlNowShowing)) {
                 ResultSet rs = stmt.executeQuery();
                 while (rs.next()) {
                     Movie movie = new Movie();
@@ -40,7 +49,24 @@ public class MovieCTL extends HttpServlet {
 //                    theatre.setLocation(rs.getString("location"));
                     movie.setImage_path(rs.getString("image_path"));
 //                    theatres.add(theatre);
-                    movies.add(movie);
+                    nowShowMovies.add(movie);
+                }
+            }
+
+            String sqlComingSoon = "SELECT * FROM movies WHERE status='Coming Soon'";
+            try (PreparedStatement stmt = conn.prepareStatement(sqlComingSoon)) {
+                ResultSet rs = stmt.executeQuery();
+                while (rs.next()) {
+                    Movie movie = new Movie();
+                    movie.setId(rs.getInt("movie_id"));
+                    movie.setTitle(rs.getString("title"));
+                    movie.setDescription(rs.getString("description"));
+//                    theatre.setId(rs.getInt("theatre_id"));
+//                    theatre.setName(rs.getString("name"));
+//                    theatre.setLocation(rs.getString("location"));
+                    movie.setImage_path(rs.getString("image_path"));
+//                    theatres.add(theatre);
+                    comingSoonMovies.add(movie);
                 }
             }
 
@@ -52,14 +78,12 @@ public class MovieCTL extends HttpServlet {
             request.setAttribute("error", "An unexpected error occurred.");
         }
 
-//        request.setAttribute("moviess", movies);
-//        request.getRequestDispatcher("/movies.jsp").forward(request, response);
-//        
-         // Set both lists as request attributes
-        request.setAttribute("movies", movies);         // All movies
-     
+        // Set both lists as request attributes
+        request.setAttribute("nowshow", nowShowMovies);         // All movies
+        request.setAttribute("comingsoon", comingSoonMovies);
 
         // Forward to index.jsp once
-        request.getRequestDispatcher("/movies.jsp").forward(request, response);
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
+
 }
