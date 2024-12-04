@@ -20,4 +20,7 @@
         <p>${movieDescription}</p>
         <img src="${movieImagePath}" alt="Movie Image" class="img-fluid" />
     </c:if>
+
+    <!-- Include footer -->
+    <jsp:include page="jsp/footer.jsp" />
 </div>
