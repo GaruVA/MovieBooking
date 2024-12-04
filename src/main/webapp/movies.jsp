@@ -173,8 +173,6 @@
     </div>
 </c:if>
 
-
-
 <!-- Include footer -->
 <jsp:include page="jsp/footer.jsp" />
 </div>
