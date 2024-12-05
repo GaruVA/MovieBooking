@@ -41,7 +41,7 @@
                         </li>
                     </ul>
                     <div class="d-flex gap-3">
-                        <a href="#" class="nav-link ${param.activePage == 'login' ? 'active' : ''}">Login</a>
+                        <a href="./login" class="nav-link ${param.activePage == 'login' ? 'active' : ''}">Login</a>
                         <a href="./booking-selection" class="btn btn-book-now">Book Now</a>
                     </div>
                 </div>
