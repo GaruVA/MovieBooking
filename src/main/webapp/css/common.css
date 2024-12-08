@@ -1,16 +1,24 @@
 :root {
-    --primary: #1F2937;
-    --secondary: #DC2626;
-    --accent: #FCD34D;
-
-    --background: #F3F4F6;
-    --surface: #FFFFFF;
-    --text: #1F2937;
-    --text-light: #6B7280;
-
-    --success: #10B981;
-    --warning: #F59E0B;
-    --error: #EF4444;
+    --primary: #102027;
+    /* Dark Teal */
+    --secondary: #37474f;
+    /* Charcoal Gray */
+    --accent: #26a69a;
+    /* Aqua Teal for Highlights */
+    --background: #ffffff;
+    /* Pure White */
+    --surface: #e0f7fa;
+    /* Light Teal for Cards */
+    --text: #1a1a1a;
+    /* Charcoal Black */
+    --text-light: #607d8b;
+    /* Cool Gray */
+    --success: #66bb6a;
+    /* Fresh Green */
+    --warning: #ffca28;
+    /* Bright Amber */
+    --error: #ff5252;
+    /* Bold Coral Red */
 }
 
 body {
@@ -47,7 +55,7 @@ body {
     color: var(--surface) !important;
 }
 
-.btn-book-now {
+.btn.btn-book-now {
     background-color: var(--secondary);
     color: var(--surface);
     border: none;
@@ -55,9 +63,10 @@ body {
     transition: opacity 0.3s ease;
 }
 
-.btn-book-now:hover {
+.btn.btn-book-now:hover {
     opacity: 0.9;
     color: var(--surface);
+    background-color: var(--secondary);
 }
 
 main {
@@ -167,29 +176,72 @@ footer {
 }
 
 .cs-button {
-  background-color: var(--surface);
-  color: var(--primary);
-  border-color: var(--primary);
-  transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    padding: 0.5rem 2rem;
+    border-radius: 5px;
 }
 
-.cs-button:hover {
-  background-color: var(--primary);
-  color: var(--surface);
+.btn-outline-primary.cs-button {
+    background-color: var(--surface);
+    color: var(--primary);
+    border-color: var(--primary);
 }
 
-.btn-outline-primary {
-  color: var(--primary);
-  border-color: var(--primary);
+.btn-outline-primary.cs-button:hover {
+    background-color: var(--primary);
+    color: var(--surface);
+    border-color: var(--primary);
 }
 
-.btn-outline-primary:hover {
-  background-color: var(--primary);
-  color: var(--surface);
+.btn-outline-danger.cs-button {
+    color: var(--error);
+    border-color: var(--error);
 }
-
+.btn-outline-danger.cs-button:hover {
+    background-color: var(--error);
+    color: var(--surface);
+    border-color: var(--error);
+}
 .title {
-  color: var(--primary);
-  font-size: 2rem;
-  font-weight: bold;
+    color: var(--text);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.card {
+    border-radius: 10px;
+    border: none;
+}
+
+.card-header {
+    background-color: var(--primary);
+    color: var(--surface);
+    border-radius: 10px 10px 0 0 !important;
+    padding: 1rem;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.form-control:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 0.2rem rgba(var(--accent-rgb), 0.25);
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, .03);
+}
+
+.table th {
+    border-top: none;
+    font-weight: 600;
 }
