@@ -2,7 +2,6 @@
 -- Highlight the specific query or queries you want to execute
 -- Right-click on the selected query and choose Run Selection
 
-
 -- CREATE TABLE
 CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -12,12 +11,12 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     role VARCHAR(20)
 );
-
+/*
 CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL
-);
+);*/
 
 CREATE TABLE movies (
     movie_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -129,3 +128,5 @@ TRUNCATE TABLE movies;
 TRUNCATE TABLE theatres;
 
 TRUNCATE TABLE showtimes;
+
+select * from booking;

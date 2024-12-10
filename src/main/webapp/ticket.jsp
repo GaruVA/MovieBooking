@@ -17,7 +17,7 @@
         <p><strong>Movie Name:</strong> <span>${movie_name}</span></p>
         <p><strong>Date:</strong> <span>${date}</span></p>
         <p><strong>Time:</strong> <span>${time}</span></p>
-        <p><strong>Seat Number:</strong> <span>${seat_number}</span></p>
+<!--        <p><strong>Seat Number:</strong> <span>${seat_number}</span></p>-->
         <p><strong>Ticket ID:</strong> <span>${ticket_id}</span></p>
         <p><strong>Quantity:</strong> <span>${quantity}</span></p>
         <p><strong>Internet Handling Fees:</strong> <span>${internet_fees}</span></p>
@@ -34,5 +34,24 @@
 </div>
 
 <button id="generateTicket">Generate Ticket</button>
+
+<script>
+    document.getElementById('generateTicket').addEventListener('click', function () {
+        const bookingId = '${booking_id}'; // Replace with your server-side value
+        fetch(`/moviebooking/TicketCTL?bookingId=${booking_id}`, { method: 'POST' })
+            .then(response => {
+                if (response.ok) {
+                    alert("E-Ticket link has been sent to your email!");
+                } else {
+                    alert("Failed to send the email. Please try again.");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("An unexpected error occurred.");
+            });
+    });
+</script>
+
 
 <%@ include file="jsp/footer.jsp"%>
