@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
-     <welcome-file-list>
-        <welcome-file>index</welcome-file>  <!-- Or index.jsp -->
+    <welcome-file-list>
+        <welcome-file>index</welcome-file>
+        <!-- Or index.jsp -->
     </welcome-file-list>
     <servlet>
         <servlet-name>NewServlet</servlet-name>
@@ -15,6 +16,18 @@
         <servlet-name>User</servlet-name>
         <servlet-class>User</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PaymentServlet</servlet-name>
+        <servlet-class>com.mycompany.moviebooking.controller.PaymentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MoviePriceServlet</servlet-name>
+        <servlet-class>com.mycompany.moviebooking.controller.MoviePriceServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AuthorizePaymentServlet</servlet-name>
+        <servlet-class>com.mycompany.moviebooking.controller.AuthorizePaymentServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -26,6 +39,18 @@
     <servlet-mapping>
         <servlet-name>User</servlet-name>
         <url-pattern>/User</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentServlet</servlet-name>
+        <url-pattern>/PaymentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MoviePriceServlet</servlet-name>
+        <url-pattern>/MoviePriceServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AuthorizePaymentServlet</servlet-name>
+        <url-pattern>/AuthorizePaymentServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
