@@ -13,12 +13,6 @@ CREATE TABLE users (
     role VARCHAR(20)
 );
 
-CREATE TABLE users (
-    user_id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL
-);
-
 CREATE TABLE movies (
     movie_id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
@@ -51,6 +45,10 @@ CREATE TABLE showtimes (
 
 
 -- INSERT TEST DATA
+INSERT INTO users (username, email, phone, password, role) VALUES
+('admin', 'admin@example.com', '123-456-7890', 'password', 'admin'),
+('user', 'user@example.com', '098-765-4321', 'password', 'user');
+
 INSERT INTO movies (movie_id, title, description, release_date, status, genre, duration, image_path, imdb_rating, last_updated) VALUES 
 (1, 'Inception', 'A thief who enters the dreams of others to steal their secrets gets a chance to regain his old life in exchange for planting an idea in a CEO\'s mind.', '2010-07-16', 'Now Showing', 'Sci-Fi/Action', '02:28:00', './images/inception.jpg', 8.8, NOW()),
 (2, 'The Dark Knight', 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.', '2008-07-18', 'Now Showing', 'Action/Crime/Drama', '02:32:00', './images/dark_knight.jpg', 9.0, NOW()),
