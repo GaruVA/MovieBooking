@@ -1,4 +1,3 @@
-</main>
 <!-- Footer content -->
 <footer class="footer">
     <div class="container">

@@ -15,15 +15,15 @@
 
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="./images/cimg1.jpg" class="d-block w-100" alt="..." height="550px" width="1525px">
+            <img src="./images/carousel1.jpg" class="d-block w-100" alt="..." height="550px" width="1525px">
         </div>
 
         <div class="carousel-item">
-            <img src="./images/cimg2.jpg" class="d-block w-100" alt="..." height="550px" width="1525px" >
+            <img src="./images/carousel2.jpg" class="d-block w-100" alt="..." height="550px" width="1525px" >
         </div>
 
         <div class="carousel-item">
-            <img src="./images/cimg3.jpg" class="d-block w-100" alt="..." height="550px" width="1525px" >
+            <img src="./images/carousel3.jpg" class="d-block w-100" alt="..." height="550px" width="1525px" >
         </div>
     </div>
 
@@ -42,7 +42,6 @@
     <H2>NOW SHOWING</h2>
     <div class="row">
         <!-- Card 1 -->
-<<<<<<< HEAD
         <c:forEach var="movie" items="${nowshow}">
             <div class="col-md-3">
                 <div class="card">
@@ -58,15 +57,6 @@
                     </div>
 =======
         <div class="col-md-3">
-            <div class="card">
-                <img src="./images/image1.jpg" class="card-img-top" alt="Card 1">
-                <div class="card-body">
-                    <h5 class="card-title">The Wild Robot</h5>
-                    <p class="card-text">Some quick example text for card 1.</p>
-                    <a href="./TheWildRobot.jsp" class="btn btn-primary">More Info</a>
->>>>>>> 2c6129f93293a9cf646864f03f5ff801de9a6972
-                </div>
-            </div>
         </c:forEach>
 
         <c:if test="${empty nowshow}">
