@@ -6,11 +6,11 @@
 
 <jsp:include page="jsp/header.jsp">
     <jsp:param name="title" value="ABC Cinema" />
-    <jsp:param name="css" value="style.css" />
+    <jsp:param name="css" value="home.css" />
     <jsp:param name="activePage" value="home" />   
 </jsp:include>
 
-<!-- Your page-specific content goes here -->
+<!-- carousel -->
 <div id="carouselExample" class="carousel slide">
 
     <div class="carousel-inner">
@@ -38,15 +38,8 @@
     </button>
 </div>
 
-<br>
-<h1>WELCOME TO ABC CINEMA</h1>
-
-<br>
-
-<H2><center>NOW SHOWING</center></h2>
-<br>
-
 <div class="container mt-4">
+    <H2>NOW SHOWING</h2>
     <div class="row">
         <!-- Card 1 -->
         <c:forEach var="movie" items="${nowshow}">
@@ -55,8 +48,12 @@
                     <img src="${empty movie.image_path ? './images/placeholder.png' : movie.image_path}" class="card-img-top" alt="${movie.title}">
                     <div class="card-body">
                         <h5 class="card-title">${movie.title}</h5>
-                        <p class="card-text">${movie.description}</p>
-                        <a href="./information?movie_id=${movie.id}" class="btn btn-primary">More Info</a>
+                        <div class="movie-imdb">
+                            <i class="ri-star-s-fill"></i>${movie.imdb_rating}
+                        </div>
+    <!--                        <p class="card-text">${movie.description}</p>-->
+                        <center><a href="./information?movie_id=${movie.id}" class="btn btn-outline-light">More Info</a>
+                            <a href="#" class="btn btn-outline-light">Book Now</a></center>
                     </div>
                 </div>
             </div>
@@ -66,17 +63,10 @@
             <p>No movies currently showing.</p>
         </c:if>
     </div>
-
 </div>
 
-<br>
-
-<H2><center>COMING SOON</center></h2>
-<br>
-
-
-
 <div class="container mt-4">
+    <H2>COMING SOON</h2>
     <div class="row">
         <!-- Card 1 -->
         <c:forEach var="movie" items="${comingsoon}">
@@ -85,8 +75,12 @@
                     <img src="${empty movie.image_path ? './images/placeholder.png' : movie.image_path}" class="card-img-top" alt="${movie.title}">
                     <div class="card-body">
                         <h5 class="card-title">${movie.title}</h5>
-                        <p class="card-text">${movie.description}</p>
-                        <a href="./information?movie_id=${movie.id}" class="btn btn-primary">More Info</a>
+                        <div class="movie-imdb">
+                            <i class="ri-star-s-fill"></i>${movie.imdb_rating}
+                        </div>
+    <!--                        <p class="card-text">${movie.description}</p>-->
+                        <center><a href="./information?movie_id=${movie.id}" class="btn btn-outline-light">More Info</a>
+                            <a href="#" class="btn btn-outline-light">Book Now</a></center>
                     </div>
                 </div>
             </div>
@@ -96,8 +90,9 @@
             <p>No movies currently showing.</p>
         </c:if>
     </div>
-
 </div>
+
+<br>
 
 <!-- Include footer with parameters -->
 <jsp:include page="jsp/footer.jsp">

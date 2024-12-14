@@ -47,6 +47,7 @@ public class HomeCTL extends HttpServlet {
                     movie.setId(rs.getInt("movie_id"));
                     movie.setTitle(rs.getString("title"));
                     movie.setDescription(rs.getString("description"));
+                    movie.setImdb_rating(rs.getFloat("imdb_rating"));
 //                    theatre.setId(rs.getInt("theatre_id"));
 //                    theatre.setName(rs.getString("name"));
 //                    theatre.setLocation(rs.getString("location"));

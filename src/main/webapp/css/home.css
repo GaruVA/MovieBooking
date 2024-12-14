@@ -1,1 +1,51 @@
+h2 {
+    font-family: 'Arial', sans-serif;  
+    font-size: 28px; 
+    color: var(--primary);
+    text-transform: uppercase; 
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Button Style */
+/*.btn-primary {
+    background-color: var(--surface) !important;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    font-weight: bold;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary);
+    color: var(--primary);
+    cursor: pointer;
+}*/
+
+.movie-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.ri-star-s-fill {
+    color: var(--secondary); 
+    font-size: 1.5rem;
+    margin-right: 5px;
+}
+
+.card {
+    background-color: var(--primary);
+    color: var(--surface) !important;
+}
+.card-body {
+    background-color: var(--primary);
+    color: var(--surface) !important;
+}
+
+
+
+
 

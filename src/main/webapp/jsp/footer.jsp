@@ -16,7 +16,7 @@
             <ul class="footer-links">
                 <li><a href="index">Home</a></li>
                 <li><a href="movies">Movies</a></li>
-                <li><a href="#">Promotions</a></li>
+                <li><a href="#">Theatres</a></li>
                 <li><a href="#">About Us</a></li>
                 <li><a href="#">Contact Us</a></li>
             </ul>
