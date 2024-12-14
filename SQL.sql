@@ -48,6 +48,18 @@ CREATE TABLE showtimes (
     FOREIGN KEY (movie_id) REFERENCES movies(movie_id),
     FOREIGN KEY (theatre_id) REFERENCES theatres(theatre_id)
 );
+CREATE TABLE seat_booked_details
+(
+    id           INT(10) NOT NULL AUTO_INCREMENT,
+    seat_number  VARCHAR(50) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+    theatre_id   INT(10) NOT NULL,
+    showtime_id INT(10) NOT NULL,
+    seat_status  INT(10) NOT NULL DEFAULT '1' COMMENT '1-booked 2- temp-booked',
+    PRIMARY KEY (id) USING BTREE
+) COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=0
+;
 
 
 -- INSERT TEST DATA
@@ -110,6 +122,8 @@ SELECT * FROM theatres;
 
 SELECT * FROM showtimes;
 
+SELECT * FROM seat_booked_details;
+
 
 -- DELETE TABLE
 DROP TABLE users;
@@ -119,6 +133,8 @@ DROP TABLE movies;
 DROP TABLE theatres;
 
 DROP TABLE showtimes;
+
+DROP TABLE seat_booked_details;
 
 
 -- DELETE TABLE DATA
