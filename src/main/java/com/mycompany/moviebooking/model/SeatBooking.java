@@ -1,6 +1,5 @@
 package com.mycompany.moviebooking.model;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,15 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SeatBooking {
     private int id;
-    private int orderId;
     private String seatNumber;
-    private int theatreId;
     private int showtimeId;
-    private int seatStatus;
+    private String seatStatus;
 
-    public SeatBooking(String seatNumber, int theatreId, int showtimeId, int seatStatus) {
+    public SeatBooking(String seatNumber, int showtimeId, String seatStatus) {
         this.seatNumber = seatNumber;
-        this.theatreId = theatreId;
         this.showtimeId = showtimeId;
         this.seatStatus = seatStatus;
     }

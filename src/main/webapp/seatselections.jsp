@@ -37,7 +37,6 @@
     <div class="screen">Screen</div>
     <div class="seats">
         <%
-
             int rows = 5;
             int cols = 5;
             Map<String, Object> seatStatusMap = new HashMap<>();
@@ -53,31 +52,30 @@
                 out.print("<div class='row'>");
                 for (int j = 1; j <= cols; j++) {
                     String seatNumber = "L" + i + "C" + j;
-                    SeatBooking details= (SeatBooking) seatStatusMap.get(seatNumber);
-                    if (details!=null){
-                        if (details.getSeatNumber().equals(seatNumber)) {
+                    SeatBooking details = (SeatBooking) seatStatusMap.get(seatNumber);
+                    if (details != null) {
+                        if (details.getSeatNumber().equals(seatNumber) && (details.getSeatStatus().equals("Booked") || details.getSeatStatus().equals("Temp Booked"))) {
                             out.print("<div disabled class='seat booked non-clickable' id='" + seatNumber + "' onclick='toggleSeat(this)'>");
                         } else {
                             out.print("<div class='seat' id='" + seatNumber + "' onclick='toggleSeat(this)'>");
                         }
-                    }else{
+                    } else {
                         out.print("<div class='seat' id='" + seatNumber + "' onclick='toggleSeat(this)'>");
                     }
-
                     out.print(seatNumber);
                     out.print("</div>");
                 }
                 out.print("<div class='staircase'></div>");
                 for (int j = 1; j <= cols; j++) {
                     String seatNumber = "R" + i + "C" + j;
-                    SeatBooking details= (SeatBooking) seatStatusMap.get(seatNumber);
-                    if (details!=null){
-                        if (details.getSeatNumber().equals(seatNumber)) {
-                            out.print("<div disabled class='seat booked ' id='" + seatNumber + "' onclick='toggleSeat(this)'>");
+                    SeatBooking details = (SeatBooking) seatStatusMap.get(seatNumber);
+                    if (details != null) {
+                        if (details.getSeatNumber().equals(seatNumber) && (details.getSeatStatus().equals("Booked") || details.getSeatStatus().equals("Temp Booked"))) {
+                            out.print("<div disabled class='seat booked' id='" + seatNumber + "' onclick='toggleSeat(this)'>");
                         } else {
                             out.print("<div class='seat' id='" + seatNumber + "' onclick='toggleSeat(this)'>");
                         }
-                    }else{
+                    } else {
                         out.print("<div class='seat' id='" + seatNumber + "' onclick='toggleSeat(this)'>");
                     }
                     out.print(seatNumber);
@@ -90,12 +88,12 @@
     <p id="seatCount" class="seat-count">0 ticket(s) selected. Please select attendees.</p>
     <div class="buttons">
         <button onclick="history.back()">Back</button>
-<%--        todo: replace next-servlet from your servlet --%>
-        <form id="seatForm" action="next-servlet" method="POST">
+        <form id="seatForm" action="seat-selection" method="POST">
             <input type="hidden" id="selectedSeatsInput" name="selectedSeats" />
+            <input type="hidden" id="totalPriceInput" name="totalPrice" />
+            <input type="hidden" id="showtimeIdInput" name="showtime_id" value="<%= request.getParameter("showtime_id") %>" />
             <button type="submit" id="continueButton" onclick="submitSeats()" disabled>Continue</button>
         </form>
-
     </div>
 </div>
 
