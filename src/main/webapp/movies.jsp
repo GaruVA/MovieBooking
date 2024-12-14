@@ -125,6 +125,7 @@
                                 <option value="Coming Soon">Coming Soon</option>
                             </select>
                         </div>
+                        <b>ACTORS</b>
                         <div class="mb-3">
                             <label class="form-label">Actor 1</label>
                             <input type="text" class="form-control" name="actor1">
@@ -137,6 +138,7 @@
                             <label class="form-label">Actor 3</label>
                             <input type="text" class="form-control" name="actor3">
                         </div>
+                        <b>CHARACTERS</b>
                         <div class="mb-3">
                             <label class="form-label">Character 1</label>
                             <input type="text" class="form-control" name="character1">
@@ -149,20 +151,21 @@
                             <label class="form-label">Character 3</label>
                             <input type="text" class="form-control" name="character3">
                         </div>
+                        <b>TEAM</b>
                         <div class="mb-3">
-                            <label class="form-label">Director</label>
+                            <label class="form-label">Directed by</label>
                             <input type="text" class="form-control" name="director">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Produce</label>
+                            <label class="form-label">Produced by</label>
                             <input type="text" class="form-control" name="produce">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Writer</label>
+                            <label class="form-label">Written by</label>
                             <input type="text" class="form-control" name="writer">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Music</label>
+                            <label class="form-label">Music by</label>
                             <input type="text" class="form-control" name="music">
                         </div>
 
@@ -196,7 +199,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Genre</label>
-                                    <input type="text" class="form-control" name="genre" required>
+                                    <input type="text" class="form-control" name="genre" id="editMovieGenre" required>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label fw-bold">Description</label>
@@ -204,11 +207,11 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">IMDB Rating</label>
-                                    <input type="text" class="form-control" name="imdb_rating" required>
+                                    <input type="text" class="form-control" name="imdb_rating" id="editMovieImdb_Rating" required>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Duration</label>
-                                    <input type="text" class="form-control" name="duration" required>
+                                    <input type="text" class="form-control" name="duration" id="editMovieDuration" required>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Release Date</label>
@@ -223,43 +226,46 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Actor 1</label>
-                                    <input type="text" class="form-control" name="actor1">
+                                    <input type="text" class="form-control" name="actor1" id="editMovieActor1">
                                 </div>
+                                <b>ACTORS</b>
                                 <div class="mb-3">
                                     <label class="form-label">Actor 2</label>
-                                    <input type="text" class="form-control" name="actor2">
+                                    <input type="text" class="form-control" name="actor2" id="editMovieActor2">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Actor 3</label>
-                                    <input type="text" class="form-control" name="actor3">
+                                    <input type="text" class="form-control" name="actor3" id="editMovieActor3">
                                 </div>
+                                <b>CHARACTERS</b>
                                 <div class="mb-3">
                                     <label class="form-label">Character 1</label>
-                                    <input type="text" class="form-control" name="character1">
+                                    <input type="text" class="form-control" name="character1" id="editMovieCharacter1">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Character 2</label>
-                                    <input type="text" class="form-control" name="character2">
+                                    <input type="text" class="form-control" name="character2" id="editMovieCharacter2">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Character 3</label>
-                                    <input type="text" class="form-control" name="character3">
+                                    <input type="text" class="form-control" name="character3" id="editMovieCharacter3">
                                 </div>
+                                <b>TEAM</b>
                                 <div class="mb-3">
                                     <label class="form-label">Director</label>
-                                    <input type="text" class="form-control" name="director">
+                                    <input type="text" class="form-control" name="director" id="editMovieDirector">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Produce</label>
-                                    <input type="text" class="form-control" name="produce">
+                                    <input type="text" class="form-control" name="produce" id="editMovieProduce">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Writer</label>
-                                    <input type="text" class="form-control" name="writer">
+                                    <input type="text" class="form-control" name="writer" id="editMovieWriter">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Music</label>
-                                    <input type="text" class="form-control" name="music">
+                                    <input type="text" class="form-control" name="music" id="editMovieMusic">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label fw-bold">Update Movie Image</label>

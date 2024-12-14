@@ -112,7 +112,7 @@ public class Movie {
     }
     
      public void setActor2(String actor2) {
-        this.title = actor2;
+        this.actor2 = actor2;
     }
      
      public String getActor3() {
@@ -120,7 +120,7 @@ public class Movie {
     }
 
     public void setActor3(String actor3) {
-        this.title = actor3;
+        this.actor3 = actor3;
     }
     
     public String getCharacter1() {

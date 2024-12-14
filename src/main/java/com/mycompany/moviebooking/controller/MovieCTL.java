@@ -209,8 +209,8 @@ public class MovieCTL extends HttpServlet {
 
         try (Connection conn = JDBCDataSource.getConnection()) {
             String sql = newImagePath != null
-                    ? "UPDATE movies SET title = ?, genre = ?, description = ?, imdb_rating = ?, duration = ?, release_date = ?, image_path = ?, status = ?, actor1 = ?, actor2 = ?, actor3 = ?, character1 = ?, character2 = ?, character3 = ?, directoe = ?, produce = ?, writer = ?, music = ? WHERE movie_id = ?"
-                    : "UPDATE movies SET title = ?, genre = ?, description = ?, imdb_rating = ?, duration = ?, release_date = ?, status = ?, actor1 = ?, actor2 = ?, actor3 = ?, character1 = ?, character2 = ?, character3 = ?, directoe = ?, produce = ?, writer = ?, music = ? WHERE movie_id = ?";
+                    ? "UPDATE movies SET title = ?, genre = ?, description = ?, imdb_rating = ?, duration = ?, release_date = ?, status = ?, actor1 = ?, actor2 = ?, actor3 = ?, character1 = ?, character2 = ?, character3 = ?, director = ?, produce = ?, writer = ?, music = ?, image_path = ? WHERE movie_id = ?"
+                    : "UPDATE movies SET title = ?, genre = ?, description = ?, imdb_rating = ?, duration = ?, release_date = ?, status = ?, actor1 = ?, actor2 = ?, actor3 = ?, character1 = ?, character2 = ?, character3 = ?, director = ?, produce = ?, writer = ?, music = ? WHERE movie_id = ?";
 
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, title);
@@ -219,26 +219,26 @@ public class MovieCTL extends HttpServlet {
                 stmt.setString(4, imdb_rating);
                 stmt.setString(5, duration);
                 stmt.setString(6, release_date);
-                stmt.setString(8, status);
-                stmt.setString(9, actor1);
-                stmt.setString(10, actor2);
-                stmt.setString(11, actor3);
-                stmt.setString(12, character1);
-                stmt.setString(13, character2);
-                stmt.setString(14, character3);
-                stmt.setString(15, director);
-                stmt.setString(16, produce);
-                stmt.setString(17, writer);
-                stmt.setString(18, music);
+                stmt.setString(7, status);
+                stmt.setString(8, actor1);
+                stmt.setString(9, actor2);
+                stmt.setString(10, actor3);
+                stmt.setString(11, character1);
+                stmt.setString(12, character2);
+                stmt.setString(13, character3);
+                stmt.setString(14, director);
+                stmt.setString(15, produce);
+                stmt.setString(16, writer);
+                stmt.setString(17, music);
                 if (newImagePath != null) {
-                    stmt.setString(7, newImagePath);
+                    stmt.setString(18, newImagePath);
                     stmt.setInt(19, movieId);
                     // Delete old image after successful update
                     if (oldImagePath != null) {
                         deleteImage(oldImagePath);
                     }
                 } else {
-                    stmt.setInt(5, movieId);
+                    stmt.setInt(18, movieId);
                 }
                 stmt.executeUpdate();
             }

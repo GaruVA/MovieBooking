@@ -19,7 +19,7 @@
             <!-- Movie Image -->
             <div class="col-md-6">
                 <div class="position-relative">
-                    <img src="${movieImagePath}" alt="Movie Image" class="img-fluid movie-image">
+                    <img src="${movie.image_path}" alt="Movie Image" class="img-fluid movie-image">
                     <!-- Button under the image -->
                     <div class="text-center">
                         <br>
@@ -32,9 +32,9 @@
             <div class="col-md-6 movie-description">
                 <!-- Movie Title and IMDb Rating -->
                 <div class="movie-title-rating">
-                    <h1 class="movie-title">${movieTitle}</h1>
+                    <h1 class="movie-title">${movie.title}</h1>
                     <div class="movie-imdb">
-                        IMDB RATING <i class="ri-star-s-fill"></i>${imdb}/10
+                        IMDB RATING <i class="ri-star-s-fill"></i>${movie.imdb_rating}/10
                     </div>
                     <!-- Horizontal line-->
                     <hr class="custom-hr">
@@ -43,9 +43,9 @@
                 <br>
 
                 <!-- Movie Description -->
-                <h4>STORY LINE</h4>
-                <p>${movieDescription}</p>
-                <h6>GENRES</h6> <p>${movieGenre}</p>
+                <h3>STORY LINE</h3>
+                <p>${movie.description}</p>
+                <h6>GENRES</h6> <p style="font-size: 0.8rem; margin: 0; padding: 0; list-style: none;">${movie.genre}</p>
                 <!-- Horizontal line-->
                 <hr class="custom-hr">
 
@@ -54,32 +54,49 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h6>Actors</h6>
-                        <ul>
-                            ${movieActor1}<br>
-                            ${movieActor2}<br>
-                            ${movieActor3}
+                        <ul style="font-size: 0.8rem; margin: 0; padding: 0; list-style: none;">
+                            ${movie.actor1}<br>
+                            ${movie.actor2}<br>
+                            ${movie.actor3}
                         </ul>
                     </div>
 
                     <div class="col-md-6">
                         <h6>Characters</h6>
-                        <ul>
-                            ${movieCharacter1}<br>
-                            ${movieCharacter2}<br>
-                            ${movieCharacter3}
+                        <ul style="font-size: 0.8rem; margin: 0; padding: 0; list-style: none;">
+                            ${movie.character1}<br>
+                            ${movie.character2}<br>
+                            ${movie.character3}
                         </ul>
+                    </div>
+                </div><br>
+
+                <h4>TEAM</h4>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div style="display: flex; justify-content: flex-start; gap: 10px; font-size: 0.9rem;">
+                        <h6 style="margin: 0; font-size: 0.9rem;">Directed by</h6> 
+                        <span style="font-size: 0.9rem;">${movie.director}</span>
+                    </div>
+                    <div style="display: flex; justify-content: flex-start; gap: 10px; font-size: 0.9rem;">
+                        <h6 style="margin: 0; font-size: 0.9rem;">Produced by</h6> 
+                        <span style="font-size: 0.9rem;">${movie.produce}</span>
+                    </div>
+                    <div style="display: flex; justify-content: flex-start; gap: 10px; font-size: 0.9rem;">
+                        <h6 style="margin: 0; font-size: 0.9rem;">Written by</h6> 
+                        <span style="font-size: 0.9rem;">${movie.writer}</span>
+                    </div>
+                    <div style="display: flex; justify-content: flex-start; gap: 10px; font-size: 0.9rem;">
+                        <h6 style="margin: 0; font-size: 0.9rem;">Music by</h6> 
+                        <span style="font-size: 0.9rem;">${movie.music}</span>
                     </div>
                 </div>
 
-                <h4>TEAM</h4>
-                <h6>Directed by</h6> ${movieDirector}
-                <h6>Produced by</h6> ${movieProduce}
-                <h6>Written by</h6> ${movieWriter}
-                <h6>Music by</h6> ${movieMusic}
+
             </div>
         </div>
     </c:if>
 
-    <!-- Include footer -->
-    <jsp:include page="jsp/footer.jsp" />
 </div>
+
+<!-- Include footer -->
+<jsp:include page="jsp/footer.jsp" />

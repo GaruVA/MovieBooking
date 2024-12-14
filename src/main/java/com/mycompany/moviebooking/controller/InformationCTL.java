@@ -42,10 +42,24 @@ public class InformationCTL extends HttpServlet {
                     if (rs.next()) {
                         // Populate the Movie object with data from the result set
                         movie.setId(rs.getInt("movie_id"));
-                        movie.setImdb_rating(rs.getFloat("imdb_rating"));
                         movie.setTitle(rs.getString("title"));
+                        movie.setGenre(rs.getString("genre"));
                         movie.setDescription(rs.getString("description"));
+                        movie.setImdb_rating(rs.getFloat("imdb_rating"));
+                        movie.setDuration(rs.getTime("duration"));
+                        movie.setRelease_date(rs.getDate("release_date"));
                         movie.setImage_path(rs.getString("image_path"));
+                        movie.setStatus(rs.getString("status"));
+                        movie.setActor1(rs.getString("actor1"));
+                        movie.setActor2(rs.getString("actor2"));
+                        movie.setActor3(rs.getString("actor3"));
+                        movie.setCharacter1(rs.getString("character1"));
+                        movie.setCharacter2(rs.getString("character2"));
+                        movie.setCharacter3(rs.getString("character3"));
+                        movie.setDirector(rs.getString("director"));
+                        movie.setProduce(rs.getString("produce"));
+                        movie.setWriter(rs.getString("writer"));
+                        movie.setMusic(rs.getString("music"));
                     } else {
                         // Handle case when no movie is found
                         request.setAttribute("error", "Movie not found for ID: " + movieId);
@@ -62,10 +76,7 @@ public class InformationCTL extends HttpServlet {
             }
 
             // Set attributes to forward to the JSP
-            request.setAttribute("movieTitle", movie.getTitle());
-            request.setAttribute("movieDescription", movie.getDescription());
-            request.setAttribute("movieImagePath", movie.getImage_path());
-            request.setAttribute("imdb", movie.getImdb_rating());
+            request.setAttribute("movie", movie);
 
             // Forward the request to informations.jsp
             request.getRequestDispatcher("/informations.jsp").forward(request, response);
@@ -77,4 +88,3 @@ public class InformationCTL extends HttpServlet {
     }
 
 }
-
