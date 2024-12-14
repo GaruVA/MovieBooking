@@ -33,12 +33,12 @@
     </div>
 </div>
 
-<button id="generateTicket">Generate Ticket</button>
+<button id="generateTicket">Generate Email</button>
 
 <script>
     document.getElementById('generateTicket').addEventListener('click', function () {
         const bookingId = '${booking_id}'; // Replace with your server-side value
-        fetch(`/moviebooking/TicketCTL?bookingId=${booking_id}`, { method: 'POST' })
+        fetch(`/moviebooking/TicketCTL?bookingId=${booking_id}&email=${email}`, { method: 'POST' })
             .then(response => {
                 if (response.ok) {
                     alert("E-Ticket link has been sent to your email!");
@@ -50,7 +50,7 @@
                 console.error('Error:', error);
                 alert("An unexpected error occurred.");
             });
-    });
+    }); 
 </script>
 
 
