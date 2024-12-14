@@ -31,7 +31,11 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
+<<<<<<< HEAD
                             <a class="nav-link ${param.activePage == 'home' ? 'active' : ''}" href="./">Home</a>
+=======
+                            <a class="nav-link active" href="index.jsp">Home</a>
+>>>>>>> 2c6129f93293a9cf646864f03f5ff801de9a6972
                         </li>
                         <li class="nav-item">
                             <a class="nav-link ${param.activePage == 'movies' ? 'active' : ''}" href="./movies">Movies</a>
