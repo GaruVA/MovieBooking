@@ -72,7 +72,7 @@
                                 <div class="theatre-name">${theatreEntry.value.theatre.name}</div>
                                 <div class="showtime-grid">
                                     <c:forEach var="showtime" items="${theatreEntry.value.showtimes}">
-                                        <form action="seats" method="get" style="display: inline;">
+                                        <form action="seat-selection" method="get" style="display: inline;">
                                             <input type="hidden" name="showtime_id" value="${showtime.id}">
                                             <button type="submit" class="btn btn-outline-primary showtime-button">
                                                 <fmt:formatDate value="${showtime.showTime}" pattern="HH:mm" />

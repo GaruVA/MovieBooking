@@ -15,6 +15,18 @@
         <servlet-name>User</servlet-name>
         <servlet-class>User</servlet-class>
     </servlet>
+
+    <!-- Servlet Configuration -->
+    <servlet>
+        <servlet-name>SeatSelectionServlet</servlet-name>
+        <servlet-class>com.mycompany.moviebooking.controller.SeatCTL</servlet-class>
+    </servlet>
+
+    <!-- Servlet Mapping -->
+    <servlet-mapping>
+        <servlet-name>SeatSelectionServlet</servlet-name>
+        <url-pattern>/seat-selection</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
