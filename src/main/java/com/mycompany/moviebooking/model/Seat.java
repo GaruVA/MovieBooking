@@ -7,15 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SeatBooking {
-    private int id;
+public class Seat {
     private String seatNumber;
     private int showtimeId;
     private String seatStatus;
-
-    public SeatBooking(String seatNumber, int showtimeId, String seatStatus) {
-        this.seatNumber = seatNumber;
-        this.showtimeId = showtimeId;
-        this.seatStatus = seatStatus;
-    }
 }

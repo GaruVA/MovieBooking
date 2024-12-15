@@ -1,4 +1,4 @@
-<%@ page import="com.mycompany.moviebooking.model.SeatBooking" %>
+<%@ page import="com.mycompany.moviebooking.model.Seat" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.HashMap" %>
@@ -41,10 +41,10 @@
             int cols = 5;
             Map<String, Object> seatStatusMap = new HashMap<>();
             if (request.getAttribute("seatDetails") != null) {
-                List<SeatBooking> seatDetails = (List<SeatBooking>) request.getAttribute("seatDetails");
+                List<Seat> seatDetails = (List<Seat>) request.getAttribute("seatDetails");
                 if (!seatDetails.isEmpty()) {
-                    for (SeatBooking booking : seatDetails) {
-                        seatStatusMap.put(booking.getSeatNumber(), booking);
+                    for (Seat seat : seatDetails) {
+                        seatStatusMap.put(seat.getSeatNumber(), seat);
                     }
                 }
             }
@@ -52,7 +52,7 @@
                 out.print("<div class='row'>");
                 for (int j = 1; j <= cols; j++) {
                     String seatNumber = "L" + i + "C" + j;
-                    SeatBooking details = (SeatBooking) seatStatusMap.get(seatNumber);
+                    Seat details = (Seat) seatStatusMap.get(seatNumber);
                     if (details != null) {
                         if (details.getSeatNumber().equals(seatNumber) && (details.getSeatStatus().equals("Booked") || details.getSeatStatus().equals("Temp Booked"))) {
                             out.print("<div disabled class='seat booked non-clickable' id='" + seatNumber + "' onclick='toggleSeat(this)'>");
@@ -68,7 +68,7 @@
                 out.print("<div class='staircase'></div>");
                 for (int j = 1; j <= cols; j++) {
                     String seatNumber = "R" + i + "C" + j;
-                    SeatBooking details = (SeatBooking) seatStatusMap.get(seatNumber);
+                    Seat details = (Seat) seatStatusMap.get(seatNumber);
                     if (details != null) {
                         if (details.getSeatNumber().equals(seatNumber) && (details.getSeatStatus().equals("Booked") || details.getSeatStatus().equals("Temp Booked"))) {
                             out.print("<div disabled class='seat booked' id='" + seatNumber + "' onclick='toggleSeat(this)'>");
