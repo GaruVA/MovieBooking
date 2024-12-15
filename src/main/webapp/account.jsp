@@ -98,22 +98,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>12345</td>
-                                <td>Inception</td>
-                                <td>ABC Theatre</td>
-                                <td>2023-10-01 19:00</td>
-                                <td>2</td>
-                                <td>Confirmed</td>
-                            </tr>
-                            <tr>
-                                <td>67890</td>
-                                <td>Interstellar</td>
-                                <td>XYZ Theatre</td>
-                                <td>2023-10-05 21:00</td>
-                                <td>4</td>
-                                <td>Cancelled</td>
-                            </tr>
+                            <c:forEach var="booking" items="${bookings}">
+                                <tr>
+                                    <td>${booking.bookingId}</td>
+                                    <td>${booking.movieTitle}</td>
+                                    <td>${booking.theatreName}</td>
+                                    <td>${booking.showtime}</td>
+                                    <td>${booking.seatNumbers}</td>
+                                    <td>${booking.status}</td>
+                                </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>
