@@ -44,7 +44,7 @@
                             <a class="nav-link ${param.activePage == 'about' ? 'active' : ''}" href="#">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ${param.activePage == 'feedback' ? 'active' : ''}" href="./feedback.jsp">Feedback</a>
+                            <a class="nav-link ${param.activePage == 'feedback' ? 'active' : ''}" href="./feedback">Feedback</a>
                         </li>
                     </ul>
                     <div class="d-flex gap-3">

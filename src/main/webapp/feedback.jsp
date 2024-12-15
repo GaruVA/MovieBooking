@@ -8,7 +8,7 @@
 </jsp:include>
  
 <!-- Feedback Form Section -->
-<div class="container mt-5">
+<div class="container py-5">
     <h2 class="text-center">We Value Your Feedback!</h2>
     <form action="./feedback" method="POST">
         <c:if test="${not empty error}">

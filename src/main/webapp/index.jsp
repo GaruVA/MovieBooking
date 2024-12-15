@@ -33,22 +33,20 @@
 </div>
 
 <div class="container mt-4">
-    <H2>NOW SHOWING</h2>
+    <H2>NOW SHOWING</H2>
     <div class="scroll-container">
         <!-- Card 1 -->
         <c:forEach var="movie" items="${nowshow}">
-            <div class="col-md-3">
-                <div class="card shadow-sm">
-                    <img src="${empty movie.image_path ? './images/placeholder.png' : movie.image_path}" class="card-img-top" alt="${movie.title}">
-                    <div class="card-body">
-                        <h5 class="card-title">${movie.title}</h5>
-                        <div class="movie-imdb">
-                            <i class="ri-star-s-fill"></i>${movie.imdb_rating}
-                        </div>
-                        <!-- <p class="card-text">${movie.description}</p> -->
-                        <center><a href="./information?movie_id=${movie.id}" class="btn btn-outline-light">More Info</a>
-                            <a href="./booking-selection?movie_id=${movie.id}" class="btn btn-outline-light">Book Now</a></center>
+            <div class="card shadow-sm">
+                <img src="${empty movie.image_path ? './images/placeholder.png' : movie.image_path}" class="card-img-top" alt="${movie.title}">
+                <div class="card-body">
+                    <h5 class="card-title">${movie.title}</h5>
+                    <div class="movie-imdb">
+                        <i class="ri-star-s-fill"></i>${movie.imdb_rating}
                     </div>
+                    <!-- <p class="card-text">${movie.description}</p> -->
+                    <center><a href="./information?movie_id=${movie.id}" class="btn btn-outline-light">More Info</a>
+                        <a href="./booking-selection?movie_id=${movie.id}" class="btn btn-outline-light">Book Now</a></center>
                 </div>
             </div>
         </c:forEach>
@@ -60,22 +58,20 @@
 </div>
 
 <div class="container mt-4">
-    <H2>COMING SOON</h2>
+    <H2>COMING SOON</H2>
     <div class="scroll-container">
         <!-- Card 1 -->
         <c:forEach var="movie" items="${comingsoon}">
-            <div class="col-md-3">
-                <div class="card shadow-sm">
-                    <img src="${empty movie.image_path ? './images/placeholder.png' : movie.image_path}" class="card-img-top" alt="${movie.title}">
-                    <div class="card-body">
-                        <h5 class="card-title">${movie.title}</h5>
-                        <div class="movie-imdb">
-                            <i class="ri-star-s-fill"></i>${movie.imdb_rating}
-                        </div>
-                        <!-- <p class="card-text">${movie.description}</p> -->
-                        <center><a href="./information?movie_id=${movie.id}" class="btn btn-outline-light">More Info</a>
-                            <a href="./booking-selection?movie_id=${movie.id}" class="btn btn-outline-light">Book Now</a></center>
+            <div class="card shadow-sm">
+                <img src="${empty movie.image_path ? './images/placeholder.png' : movie.image_path}" class="card-img-top" alt="${movie.title}">
+                <div class="card-body">
+                    <h5 class="card-title">${movie.title}</h5>
+                    <div class="movie-imdb">
+                        <i class="ri-star-s-fill"></i>${movie.imdb_rating}
                     </div>
+                    <!-- <p class="card-text">${movie.description}</p> -->
+                    <center><a href="./information?movie_id=${movie.id}" class="btn btn-outline-light">More Info</a>
+                        <a href="./booking-selection?movie_id=${movie.id}" class="btn btn-outline-light">Book Now</a></center>
                 </div>
             </div>
         </c:forEach>
@@ -112,10 +108,17 @@
 
 .card {
     flex: 0 0 auto; 
-    width: 200px; 
+    width: 322px; 
     border: 1px solid #ddd; 
     border-radius: 5px; 
     overflow: hidden; 
+    margin-right: 0px; /* Remove gaps between cards */
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 100%; /* Make cards full width on smaller screens */
+    }
 }
 </style>
 
