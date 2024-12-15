@@ -9,8 +9,8 @@
  
 <!-- Feedback Form Section -->
 <div class="container py-5">
-    <h2 class="text-center">We Value Your Feedback!</h2>
-    <form action="./feedback" method="POST">
+    <h2 class="text-center mb-4">We Value Your Feedback!</h2>
+    <form action="./feedback" method="POST" class="shadow p-4 rounded bg-light">
         <c:if test="${not empty error}">
             <div class="alert alert-danger">${error}</div>
         </c:if>
@@ -42,9 +42,34 @@
             <textarea class="form-control" id="comment" name="comment" rows="3" placeholder="Share your thoughts..."></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit Feedback</button>
+        <button type="submit" class="btn btn-primary w-100">Submit Feedback</button>
     </form>
 </div>
+
+<!-- Admin View Section -->
+<c:if test="${sessionScope.role eq 'admin'}">
+    <div class="container py-5">
+        <h2 class="text-center mb-4">All Feedbacks</h2>
+        <table class="table table-striped table-bordered shadow-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th>Feedback ID</th>
+                    <th>Rating</th>
+                    <th>Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="feedback" items="${feedbacks}">
+                    <tr>
+                        <td>${feedback.feedbackId}</td>
+                        <td>${feedback.rating}</td>
+                        <td>${feedback.comment}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </div>
+</c:if>
 
 <jsp:include page="jsp/footer.jsp">
     <jsp:param name="js" value="feedback.js" />

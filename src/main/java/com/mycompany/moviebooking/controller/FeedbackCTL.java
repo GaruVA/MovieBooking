@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "feedback", urlPatterns = {"/feedback"})
 public class FeedbackCTL extends HttpServlet {
@@ -19,6 +21,26 @@ public class FeedbackCTL extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // Check if the user is an admin
+        if ("admin".equals(request.getSession().getAttribute("role"))) {
+            // Fetch all feedbacks from the database
+            String sql = "SELECT * FROM feedback";
+            try (Connection con = JDBCDataSource.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                List<Feedback> feedbackList = new ArrayList<>();
+                while (rs.next()) {
+                    Feedback feedback = new Feedback();
+                    feedback.setFeedbackId(rs.getInt("feedback_id"));
+                    feedback.setRating(rs.getInt("rating"));
+                    feedback.setComment(rs.getString("comment"));
+                    feedbackList.add(feedback);
+                }
+                request.setAttribute("feedbacks", feedbackList);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         request.getRequestDispatcher("/feedback.jsp").forward(request, response);
     }
 
