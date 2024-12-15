@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -44,8 +45,15 @@
                         </li>
                     </ul>
                     <div class="d-flex gap-3">
-                        <a href="#" class="nav-link ${param.activePage == 'login' ? 'active' : ''}">Login</a>
                         <a href="./booking-selection" class="btn btn-book-now">Book Now</a>
+                        <c:choose>
+                            <c:when test="${sessionScope.user_id == null}">
+                                <a href="./login" class="nav-link ${param.activePage == 'login' ? 'active' : ''}">Login</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="./account" class="nav-link ${param.activePage == 'account' ? 'active' : ''}">My Account</a>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>

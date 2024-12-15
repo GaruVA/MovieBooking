@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,10 +15,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author USER
- */
 @WebServlet(name = "information", urlPatterns = {"/information"})
 public class InformationCTL extends HttpServlet {
 
@@ -50,12 +45,8 @@ public class InformationCTL extends HttpServlet {
                         movie.setRelease_date(rs.getDate("release_date"));
                         movie.setImage_path(rs.getString("image_path"));
                         movie.setStatus(rs.getString("status"));
-                        movie.setActor1(rs.getString("actor1"));
-                        movie.setActor2(rs.getString("actor2"));
-                        movie.setActor3(rs.getString("actor3"));
-                        movie.setCharacter1(rs.getString("character1"));
-                        movie.setCharacter2(rs.getString("character2"));
-                        movie.setCharacter3(rs.getString("character3"));
+                        movie.setActors(rs.getString("actors"));
+                        movie.setCharacters(rs.getString("characters"));
                         movie.setDirector(rs.getString("director"));
                         movie.setProduce(rs.getString("produce"));
                         movie.setWriter(rs.getString("writer"));
@@ -86,5 +77,4 @@ public class InformationCTL extends HttpServlet {
             request.getRequestDispatcher("/informations.jsp").forward(request, response);
         }
     }
-
 }

@@ -14,12 +14,8 @@ public class Movie {
     private Time duration;
     private String image_path;
     private Float imdb_rating;
-    private String actor1;
-    private String actor2;
-    private String actor3;
-    private String character1;
-    private String character2;
-    private String character3;
+    private String actors;
+    private String characters;
     private String director;
     private String produce;
     private String writer;
@@ -98,55 +94,23 @@ public class Movie {
     public void setImdb_rating(Float imdb_rating) {
         this.imdb_rating = imdb_rating;
     }
-    
-    public String getActor1() {
-        return actor1;
+
+    public String getActors() {
+        return actors;
     }
 
-    public void setActor1(String actor1) {
-        this.actor1 = actor1;
-    }
-    
-    public String getActor2() {
-        return actor2;
-    }
-    
-     public void setActor2(String actor2) {
-        this.actor2 = actor2;
-    }
-     
-     public String getActor3() {
-        return actor3;
+    public void setActors(String actors) {
+        this.actors = actors;
     }
 
-    public void setActor3(String actor3) {
-        this.actor3 = actor3;
-    }
-    
-    public String getCharacter1() {
-        return character1;
+    public String getCharacters() {
+        return characters;
     }
 
-    public void setCharacter1(String character1) {
-        this.character1 = character1;
-    }
-    
-    public String getCharacter2() {
-        return character2;
+    public void setCharacters(String characters) {
+        this.characters = characters;
     }
 
-    public void setCharacter2(String character2) {
-        this.character2 = character2;
-    }
-    
-    public String getCharacter3() {
-        return character3;
-    }
-
-    public void setCharacter3(String character3) {
-        this.character3 = character3;
-    }
-    
     public String getDirector() {
         return director;
     }
@@ -154,7 +118,7 @@ public class Movie {
     public void setDirector(String director) {
         this.director = director;
     }
-    
+
     public String getProduce() {
         return produce;
     }
@@ -162,7 +126,7 @@ public class Movie {
     public void setProduce(String produce) {
         this.produce = produce;
     }
-    
+
     public String getWriter() {
         return writer;
     }
@@ -170,7 +134,7 @@ public class Movie {
     public void setWriter(String writer) {
         this.writer = writer;
     }
-    
+
     public String getMusic() {
         return music;
     }
@@ -178,7 +142,7 @@ public class Movie {
     public void setMusic(String music) {
         this.music = music;
     }
-    
+
     public Date getLast_updated() {
         return last_updated;
     }
