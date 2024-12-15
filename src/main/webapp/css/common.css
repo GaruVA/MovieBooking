@@ -1,24 +1,16 @@
 :root {
-    --primary: #102027;
-    /* Dark Teal */
-    --secondary: #37474f;
-    /* Charcoal Gray */
-    --accent: #26a69a;
-    /* Aqua Teal for Highlights */
-    --background: #ffffff;
-    /* Pure White */
-    --surface: #e0f7fa;
-    /* Light Teal for Cards */
-    --text: #1a1a1a;
-    /* Charcoal Black */
-    --text-light: #607d8b;
-    /* Cool Gray */
-    --success: #66bb6a;
-    /* Fresh Green */
-    --warning: #ffca28;
-    /* Bright Amber */
-    --error: #ff5252;
-    /* Bold Coral Red */
+    --primary: #1F2937;
+    --secondary: #DC2626;
+    --accent: #FCD34D;
+
+    --background: #F3F4F6;
+    --surface: #FFFFFF;
+    --text: #1F2937;
+    --text-light: #6B7280;
+
+    --success: #10B981;
+    --warning: #F59E0B;
+    --error: #EF4444;
 }
 
 body {
@@ -206,6 +198,7 @@ footer {
     color: var(--text);
     font-size: 2rem;
     font-weight: bold;
+    font-family: 'Arial', sans-serif; 
 }
 
 .card {

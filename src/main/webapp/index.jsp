@@ -47,7 +47,7 @@
                         </div>
                         <!-- <p class="card-text">${movie.description}</p> -->
                         <center><a href="./information?movie_id=${movie.id}" class="btn btn-outline-light">More Info</a>
-                            <a href="#" class="btn btn-outline-light">Book Now</a></center>
+                            <a href="./booking-selection?movie_id=${movie.id}" class="btn btn-outline-light">Book Now</a></center>
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                         </div>
                         <!-- <p class="card-text">${movie.description}</p> -->
                         <center><a href="./information?movie_id=${movie.id}" class="btn btn-outline-light">More Info</a>
-                            <a href="#" class="btn btn-outline-light">Book Now</a></center>
+                            <a href="./booking-selection?movie_id=${movie.id}" class="btn btn-outline-light">Book Now</a></center>
                     </div>
                 </div>
             </div>
