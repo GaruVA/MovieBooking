@@ -2,7 +2,6 @@
 -- Highlight the specific query or queries you want to execute
 -- Right-click on the selected query and choose Run Selection
 
-
 -- CREATE TABLE
 CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -49,12 +48,24 @@ CREATE TABLE showtimes (
     FOREIGN KEY (theatre_id) REFERENCES theatres(theatre_id)
 );
 
-CREATE TABLE seat_booked_details (
+CREATE TABLE temp_seats (
     id INT PRIMARY KEY AUTO_INCREMENT,
     seat_number VARCHAR(10),
     showtime_id INT,
-    seat_status ENUM('Booked', 'Temp Booked'),
     booking_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (showtime_id) REFERENCES showtimes(showtime_id)
+);
+
+CREATE TABLE bookings (
+    booking_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    showtime_id INT,
+    seat_numbers VARCHAR(255),
+    amount FLOAT,
+    payment_date DATETIME,
+    payment_method VARCHAR(50),
+    status VARCHAR(50),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (showtime_id) REFERENCES showtimes(showtime_id)
 );
 
@@ -65,12 +76,11 @@ CREATE EVENT remove_temp_bookings
 ON SCHEDULE EVERY 1 MINUTE
 DO
 BEGIN
-    DELETE FROM seat_booked_details
-    WHERE seat_status = 'Temp Booked' AND booking_time < NOW() - INTERVAL 5 MINUTE;
+    DELETE FROM temp_seats
+    WHERE booking_time < NOW() - INTERVAL 5 MINUTE;
 END //
 
 DELIMITER ;
-
 
 -- INSERT TEST DATA
 INSERT INTO users (user_id, username, email, phone, password, role) VALUES
@@ -126,44 +136,35 @@ VALUES
     (3, 2, CURRENT_DATE + INTERVAL 2 DAY, '11:00:00'),
     (3, 2, CURRENT_DATE + INTERVAL 2 DAY, '14:00:00');
 
-INSERT INTO seat_booked_details (seat_number, showtime_id, seat_status) VALUES
-('L1C1', 1, 'Booked'),
-('L1C2', 1, 'Temp Booked'),
-('R1C1', 2, 'Booked'),
-('R1C2', 2, 'Temp Booked');
+INSERT INTO temp_seats (seat_number, showtime_id) VALUES
+('L1C2', 1),
+('R1C2', 2);
 
+INSERT INTO bookings (user_id, showtime_id, seat_numbers, amount, payment_date, payment_method, status) VALUES
+(2, 1, 'L1C1', 1250.0, NOW(), 'Credit Card', 'Booked'),
+(2, 2, 'R1C1', 1250.0, NOW(), 'Credit Card', 'Booked');
 
 -- DISPLAY TABLE
 SELECT * FROM users;
-
 SELECT * FROM movies;
-
 SELECT * FROM theatres;
-
 SELECT * FROM showtimes;
-
-SELECT * FROM seat_booked_details;
-
+SELECT * FROM temp_seats;
+SELECT * FROM bookings;
 
 -- DELETE TABLE
 DROP TABLE users;
-
 DROP TABLE movies;
-
 DROP TABLE theatres;
-
 DROP TABLE showtimes;
-
-DROP TABLE seat_booked_details;
-
+DROP TABLE temp_seats;
+DROP TABLE bookings;
+DROP EVENT remove_temp_bookings;
 
 -- DELETE TABLE DATA
 TRUNCATE TABLE users;
-
 TRUNCATE TABLE movies;
-
 TRUNCATE TABLE theatres;
-
 TRUNCATE TABLE showtimes;
-
-
+TRUNCATE TABLE temp_seats;
+TRUNCATE TABLE bookings;

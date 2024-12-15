@@ -9,9 +9,9 @@
 </jsp:include>
 
 <div class="container py-5">
+    <h2 class="title mb-4">Book Movie Tickets</h2>
     <div class="card">
         <div class="card-body">
-            <h2 class="card-title mb-4">Book Movie Tickets</h2>
 
             <c:if test="${not empty error}">
                 <div class="alert alert-danger" role="alert">

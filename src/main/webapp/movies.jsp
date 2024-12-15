@@ -8,12 +8,12 @@
     <jsp:param name="activePage" value="movies" />
 </jsp:include>
 
-<div class="container mt-4 mb-4">
-    <h2 class="title mb-4">Movies</h2>
+<div class="container py-5">
+    <h2 class="title mb-3">Movies</h2>
 
     <nav aria-label="breadcrumb" class="d-flex justify-content-end">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="./index.jsp">HOME</a></li>
+            <li class="breadcrumb-item"><a href="./">HOME</a></li>
             <li class="breadcrumb-item active" aria-current="page">MOVIES</li>
         </ol>
     </nav>
@@ -54,7 +54,7 @@
                         </div>
     <!--                        <p class="card-text">${movie.description}</p>-->
                         <center> <a href="./information?movie_id=${movie.id}" class="btn btn-outline-light"> More Info </a>
-                            <a href="#" class="btn btn-outline-light"> Book Now </a></center>
+                            <a href="./booking-selection?movie_id=${movie.id}" class="btn btn-outline-light"> Book Now </a></center>
 
                         <div class="admin-controls mt-3">
                             <div class="d-flex justify-content-between align-items-center">

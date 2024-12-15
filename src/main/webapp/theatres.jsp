@@ -12,7 +12,13 @@
     <!-- Admin Controls -->
     <div class="row mb-4">
         <div class="col-12">
-            <h2 class="title mb-3">Theatres</h2>
+            <h2 class="title mb-3">THEATRES</h2>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-end">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="./">HOME</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">THEATRES</li>
+                </ol>
+            </nav>
             <c:if test="${sessionScope.role eq 'admin'}">
                 <button type="button" class="btn btn-outline-primary cs-button" data-bs-toggle="modal" data-bs-target="#addTheatreModal">
                     Add New Theatre

@@ -1,7 +1,6 @@
 package com.mycompany.moviebooking.controller;
 
-
-import com.mycompany.moviebooking.model.SeatBooking;
+import com.mycompany.moviebooking.model.Seat;
 import com.mycompany.moviebooking.utility.JDBCDataSource;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,7 +8,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import javax.security.sasl.SaslException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -44,7 +42,7 @@ public class SeatCTL extends HttpServlet {
         try {
             String[] selectedSeats = req.getParameter("selectedSeats").split(",");
             int showtimeId = Integer.parseInt(req.getParameter("showtime_id"));
-            tempBookSeats(selectedSeats, showtimeId);
+            addTempBookSeats(selectedSeats, showtimeId);
             req.setAttribute("selectedSeats", req.getParameter("selectedSeats"));
             req.setAttribute("totalPrice", req.getParameter("totalPrice"));
             req.setAttribute("showtime_id", req.getParameter("showtime_id"));
@@ -54,16 +52,23 @@ public class SeatCTL extends HttpServlet {
         req.getRequestDispatcher("next-servlet").forward(req, resp);
     }
 
-    public List<SeatBooking> getBookedSeats(HttpServletRequest req) throws Exception {
+    public List<Seat> getBookedSeats(HttpServletRequest req) throws Exception {
         int showtimeId = Integer.parseInt(req.getParameter("showtime_id"));
-        List<SeatBooking> seats = new ArrayList<>();
+        List<Seat> seats = new ArrayList<>();
+        seats.addAll(getTempBookedSeats(showtimeId));
+        seats.addAll(getBookedSeatsFromBookings(showtimeId));
+        return seats;
+    }
+
+    private List<Seat> getTempBookedSeats(int showtimeId) throws Exception {
+        List<Seat> seats = new ArrayList<>();
         try (Connection conn = JDBCDataSource.getConnection()) {
-            String sql = "SELECT id, seat_number, showtime_id, seat_status FROM seat_booked_details WHERE showtime_id = ? ORDER BY id;";
+            String sql = "SELECT seat_number, 'Temp Booked' AS seat_status FROM temp_seats WHERE showtime_id = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setInt(1, showtimeId);
                 try (ResultSet rs = stmt.executeQuery()) {
                     while (rs.next()) {
-                        seats.add(new SeatBooking(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4)));
+                        seats.add(new Seat(rs.getString(1), showtimeId, rs.getString(2)));
                     }
                 }
             }
@@ -71,23 +76,28 @@ public class SeatCTL extends HttpServlet {
         return seats;
     }
 
-    public void tempBookSeats(String[] seatNumbers, int showtimeId) throws Exception {
+    private List<Seat> getBookedSeatsFromBookings(int showtimeId) throws Exception {
+        List<Seat> seats = new ArrayList<>();
         try (Connection conn = JDBCDataSource.getConnection()) {
-            String sql = "INSERT INTO seat_booked_details (seat_number, showtime_id, seat_status) VALUES (?, ?, 'Temp Booked')";
+            String sql = "SELECT seat_numbers FROM bookings WHERE showtime_id = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                for (String seatNumber : seatNumbers) {
-                    stmt.setString(1, seatNumber);
-                    stmt.setInt(2, showtimeId);
-                    stmt.addBatch();
+                stmt.setInt(1, showtimeId);
+                try (ResultSet rs = stmt.executeQuery()) {
+                    while (rs.next()) {
+                        String[] seatNumbers = rs.getString(1).split(",");
+                        for (String seatNumber : seatNumbers) {
+                            seats.add(new Seat(seatNumber, showtimeId, "Booked"));
+                        }
+                    }
                 }
-                stmt.executeBatch();
             }
         }
+        return seats;
     }
 
-    public void finalizeBooking(String[] seatNumbers, int showtimeId) throws Exception {
+    public void addTempBookSeats(String[] seatNumbers, int showtimeId) throws Exception {
         try (Connection conn = JDBCDataSource.getConnection()) {
-            String sql = "UPDATE seat_booked_details SET seat_status = 'Booked' WHERE seat_number = ? AND showtime_id = ?";
+            String sql = "INSERT INTO temp_seats (seat_number, showtime_id) VALUES (?, ?)";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 for (String seatNumber : seatNumbers) {
                     stmt.setString(1, seatNumber);
