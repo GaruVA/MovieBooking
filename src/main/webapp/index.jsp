@@ -40,7 +40,7 @@
 
 <div class="container mt-4">
     <H2>NOW SHOWING</h2>
-    <div class="row">
+    <div class="scroll-container">
         <!-- Card 1 -->
         <c:forEach var="movie" items="${nowshow}">
             <div class="col-md-3">
@@ -67,7 +67,7 @@
 
 <div class="container mt-4">
     <H2>COMING SOON</h2>
-    <div class="row">
+    <div class="scroll-container">
         <!-- Card 1 -->
         <c:forEach var="movie" items="${comingsoon}">
             <div class="col-md-3">
@@ -93,6 +93,38 @@
 </div>
 
 <br>
+
+<style>
+.scroll-container {
+    display: flex; 
+    flex-wrap: nowrap; 
+    overflow-x: auto;
+    gap: 0px; 
+    padding: 10px 0; 
+}
+
+.scroll-container::-webkit-scrollbar {
+    height: 3px; 
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 4px; 
+}
+
+.scroll-container::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+.card {
+    flex: 0 0 auto; 
+    width: 200px; 
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+    overflow: hidden; 
+}
+</style>
+
 
 <!-- Include footer with parameters -->
 <jsp:include page="jsp/footer.jsp">
