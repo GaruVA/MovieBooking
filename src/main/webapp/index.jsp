@@ -124,6 +124,4 @@
 
 
 <!-- Include footer with parameters -->
-<jsp:include page="jsp/footer.jsp">
-    <jsp:param name="js" value="index.js" />
-</jsp:include>
+<%@ include file="jsp/footer.jsp"%>
