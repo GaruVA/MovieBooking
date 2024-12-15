@@ -38,7 +38,7 @@
         <!-- Card 1 -->
         <c:forEach var="movie" items="${nowshow}">
             <div class="col-md-3">
-                <div class="card">
+                <div class="card shadow-sm">
                     <img src="${empty movie.image_path ? './images/placeholder.png' : movie.image_path}" class="card-img-top" alt="${movie.title}">
                     <div class="card-body">
                         <h5 class="card-title">${movie.title}</h5>
@@ -65,7 +65,7 @@
         <!-- Card 1 -->
         <c:forEach var="movie" items="${comingsoon}">
             <div class="col-md-3">
-                <div class="card">
+                <div class="card shadow-sm">
                     <img src="${empty movie.image_path ? './images/placeholder.png' : movie.image_path}" class="card-img-top" alt="${movie.title}">
                     <div class="card-body">
                         <h5 class="card-title">${movie.title}</h5>
