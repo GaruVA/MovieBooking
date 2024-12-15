@@ -1,12 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package com.mycompany.moviebooking.controller;
 
 import com.mycompany.moviebooking.model.Movie;
 import com.mycompany.moviebooking.utility.JDBCDataSource;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,11 +18,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author USER
- */
 @WebServlet(name = "index.jsp", urlPatterns = {"/index"})
+@MultipartConfig(
+        fileSizeThreshold = 1024 * 1024, // 1MB
+        maxFileSize = 1024 * 1024 * 10, // 10MB
+        maxRequestSize = 1024 * 1024 * 15 // 15MB
+)
 public class HomeCTL extends HttpServlet {
 
     @Override
@@ -44,11 +42,8 @@ public class HomeCTL extends HttpServlet {
                     movie.setId(rs.getInt("movie_id"));
                     movie.setTitle(rs.getString("title"));
                     movie.setDescription(rs.getString("description"));
-//                    theatre.setId(rs.getInt("theatre_id"));
-//                    theatre.setName(rs.getString("name"));
-//                    theatre.setLocation(rs.getString("location"));
+                    movie.setImdb_rating(rs.getFloat("imdb_rating"));
                     movie.setImage_path(rs.getString("image_path"));
-//                    theatres.add(theatre);
                     nowShowMovies.add(movie);
                 }
             }
@@ -61,29 +56,25 @@ public class HomeCTL extends HttpServlet {
                     movie.setId(rs.getInt("movie_id"));
                     movie.setTitle(rs.getString("title"));
                     movie.setDescription(rs.getString("description"));
-//                    theatre.setId(rs.getInt("theatre_id"));
-//                    theatre.setName(rs.getString("name"));
-//                    theatre.setLocation(rs.getString("location"));
+                    movie.setImdb_rating(rs.getFloat("imdb_rating"));
                     movie.setImage_path(rs.getString("image_path"));
-//                    theatres.add(theatre);
                     comingSoonMovies.add(movie);
                 }
             }
 
         } catch (SQLException e) {
-            Logger.getLogger(MovieCTL.class.getName()).log(Level.SEVERE, "Error fetching movies", e);
+            Logger.getLogger(HomeCTL.class.getName()).log(Level.SEVERE, "Error fetching movies", e);
             request.setAttribute("error", "Failed to load movies. Please try again later.");
         } catch (Exception ex) {
-            Logger.getLogger(MovieCTL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HomeCTL.class.getName()).log(Level.SEVERE, null, ex);
             request.setAttribute("error", "An unexpected error occurred.");
         }
 
         // Set both lists as request attributes
-        request.setAttribute("nowshow", nowShowMovies);         // All movies
+        request.setAttribute("nowshow", nowShowMovies);
         request.setAttribute("comingsoon", comingSoonMovies);
 
-        // Forward to index.jsp once
+        // Forward to index.jsp
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
-
 }
