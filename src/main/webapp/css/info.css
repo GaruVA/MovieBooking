@@ -1,0 +1,64 @@
+/*body {
+    background-color: var(--surface) !important;  
+    color: #000000;  Text color 
+    font-family: 'Arial', sans-serif;
+}*/
+
+/* Image Section */
+.movie-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px; /* Optional: adds rounded corners */
+}
+
+/* Overlay for Title and IMDb Rating */
+.movie-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--surface) !important;
+    text-align: center;
+    z-index: 2;
+}
+
+.movie-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+/* IMDb Rating Star Icon */
+.ri-star-s-fill {
+    color: var(--secondary); 
+    font-size: 1.5rem;
+    margin-right: 5px;
+}
+
+/* Movie Description Section */
+.movie-description {
+    margin-top: 20px;
+}
+
+/*.my-3 {
+    border: 2px solid var(--secondary);
+    margin: 15px 0;
+    width: 100%;
+}*/
+
+/* Button Style */
+.btn-primary {
+    background-color: var(--surface) !important;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    font-weight: bold;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary);
+    color: var(--primary);
+    cursor: pointer;
+}

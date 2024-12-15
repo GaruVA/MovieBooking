@@ -9,9 +9,9 @@
 </jsp:include>
 
 <div class="container py-5">
+    <h2 class="title mb-4">Book Movie Tickets</h2>
     <div class="card">
         <div class="card-body">
-            <h2 class="card-title mb-4">Book Movie Tickets</h2>
 
             <c:if test="${not empty error}">
                 <div class="alert alert-danger" role="alert">
@@ -72,7 +72,7 @@
                                 <div class="theatre-name">${theatreEntry.value.theatre.name}</div>
                                 <div class="showtime-grid">
                                     <c:forEach var="showtime" items="${theatreEntry.value.showtimes}">
-                                        <form action="seats" method="get" style="display: inline;">
+                                        <form action="seat-selection" method="get" style="display: inline;">
                                             <input type="hidden" name="showtime_id" value="${showtime.id}">
                                             <button type="submit" class="btn btn-outline-primary showtime-button">
                                                 <fmt:formatDate value="${showtime.showTime}" pattern="HH:mm" />

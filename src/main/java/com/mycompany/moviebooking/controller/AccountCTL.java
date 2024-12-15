@@ -8,8 +8,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import com.mycompany.moviebooking.model.User;
 import com.mycompany.moviebooking.utility.JDBCDataSource;
+import com.mycompany.moviebooking.model.Booking;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,6 +41,7 @@ public class AccountCTL extends HttpServlet {
                 request.setAttribute("email",rs.getString("email"));
                 request.setAttribute("phone",rs.getString("phone"));
             }
+            fetchBookingHistory(conn, user_id, request);
         } catch (SQLException e) {
             request.setAttribute("error", "Failed to fetch user details");
         } catch (Exception ex) {
@@ -127,5 +131,30 @@ public class AccountCTL extends HttpServlet {
         stmt.setInt(1, user_id);
         stmt.executeUpdate();
         request.setAttribute("success", "Account deleted successfully");
+    }
+
+    private void fetchBookingHistory(Connection conn, int user_id, HttpServletRequest request) throws SQLException {
+        String sql = "SELECT b.booking_id, m.title AS movie_title, t.name AS theatre_name, "
+                   + "CONCAT(s.show_date, ' ', s.show_time) AS showtime, b.seat_numbers, b.status "
+                   + "FROM bookings b "
+                   + "JOIN showtimes s ON b.showtime_id = s.showtime_id "
+                   + "JOIN movies m ON s.movie_id = m.movie_id "
+                   + "JOIN theatres t ON s.theatre_id = t.theatre_id "
+                   + "WHERE b.user_id = ?";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setInt(1, user_id);
+        ResultSet rs = stmt.executeQuery();
+        List<Booking> bookings = new ArrayList<>();
+        while (rs.next()) {
+            Booking booking = new Booking();
+            booking.setBookingId(rs.getInt("booking_id"));
+            booking.setMovieTitle(rs.getString("movie_title"));
+            booking.setTheatreName(rs.getString("theatre_name"));
+            booking.setShowtime(rs.getString("showtime"));
+            booking.setSeatNumbers(rs.getString("seat_numbers"));
+            booking.setStatus(rs.getString("status"));
+            bookings.add(booking);
+        }
+        request.setAttribute("bookings", bookings);
     }
 }
