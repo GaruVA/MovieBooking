@@ -1,6 +1,6 @@
 package com.mycompany.moviebooking.controller;
 
-import com.google.gson.Gson;
+import com.mycompany.moviebooking.model.User;
 import com.mycompany.moviebooking.utility.JDBCDataSource;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,111 +9,73 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.ResultSet;
 
-/**
- *
- * @author User
- */
 @WebServlet(name = "register", urlPatterns = {"/register"})
 public class RegisterCTL extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RegisterCTL</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet RegisterCTL at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("/register.jsp").forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-
+        // Retrieve form data
         String username = request.getParameter("username");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
         String password = request.getParameter("password");
 
-        String jsonResponse = null;
-        try (Connection conn = JDBCDataSource.getConnection()) {
-            String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
-            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                stmt.setString(1, username);
-                stmt.setString(2, password);
-                
-                if (stmt.executeUpdate() > 0) {
-                    jsonResponse = "{\"message\": \"User  registered successfully!\"}";
-                } else {
-                    jsonResponse = "{\"message\": \"User  registration failed!\"}";
+        // Default role for new user
+        String role = "user";
+
+        User user = new User();
+        user.setUsername(username);
+        user.setEmail(email);
+        user.setPhone(phone);
+        user.setPassword(password);
+        user.setRole(role);
+
+        boolean isRegistered = false;
+
+        // Database logic directly in the servlet
+        String sql = "INSERT INTO users (username, email, phone, password, role) VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection con = JDBCDataSource.getConnection(); PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+
+            ps.setString(1, username);
+            ps.setString(2, email);
+            ps.setString(3, phone);
+            ps.setString(4, password); // Password should be hashed in production
+            ps.setString(5, role);
+
+            int rowsInserted = ps.executeUpdate();
+
+            // Get the generated user_id (auto-incremented)
+            if (rowsInserted > 0) {
+                ResultSet generatedKeys = ps.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    user.setUserId(generatedKeys.getInt(1));
                 }
-            } catch (SQLException e) {
-                Logger.getLogger(RegisterCTL.class.getName()).log(Level.SEVERE, null, e);
-                jsonResponse = "{\"error\": \"Error during registration: " + e.getMessage() + "\"}";
-                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                isRegistered = true;
             }
-        } catch (SQLException e) {
-            Logger.getLogger(RegisterCTL.class.getName()).log(Level.SEVERE, null, e);
-            jsonResponse = "{\"error\": \"Database connection error: " + e.getMessage() + "\"}";
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-        } catch (Exception ex) {
-            Logger.getLogger(RegisterCTL.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        response.getWriter().write(jsonResponse);
+        // Redirect based on the registration result
+        if (isRegistered) {
+            response.sendRedirect("login?success=true");
+        } else {
+            response.sendRedirect("register?error=true");
+        }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Servlet for user registration";

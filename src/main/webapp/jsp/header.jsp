@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,6 +10,9 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+        <!-- Font Awesome CDN for star icon -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
         <!-- Common styles for header and footer -->
         <link href="css/common.css" rel="stylesheet">
         <!-- Allow for page-specific CSS -->
@@ -39,10 +43,20 @@
                         <li class="nav-item">
                             <a class="nav-link ${param.activePage == 'about' ? 'active' : ''}" href="#">About</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link ${param.activePage == 'feedback' ? 'active' : ''}" href="./feedback">Feedback</a>
+                        </li>
                     </ul>
                     <div class="d-flex gap-3">
-                        <a href="#" class="nav-link ${param.activePage == 'login' ? 'active' : ''}">Login</a>
                         <a href="./booking-selection" class="btn btn-book-now">Book Now</a>
+                        <c:choose>
+                            <c:when test="${sessionScope.user_id == null}">
+                                <a href="./login" class="nav-link ${param.activePage == 'login' ? 'active' : ''}">Login</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="./account" class="nav-link ${param.activePage == 'account' ? 'active' : ''}">My Account</a>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>

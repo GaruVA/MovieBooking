@@ -11,12 +11,6 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     role VARCHAR(20)
 );
-/*
-CREATE TABLE users (
-    user_id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL
-);*/
 
 CREATE TABLE movies (
     movie_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -28,6 +22,12 @@ CREATE TABLE movies (
     duration TIME,
     image_path VARCHAR(255) NOT NULL,
     imdb_rating FLOAT(2, 1) DEFAULT NULL,
+    actors VARCHAR(255),
+    characters VARCHAR(255),
+    director VARCHAR(100),
+    produce VARCHAR(100),
+    writer VARCHAR(100),
+    music VARCHAR(100),
     last_updated DATETIME
 );
 
@@ -48,13 +48,57 @@ CREATE TABLE showtimes (
     FOREIGN KEY (theatre_id) REFERENCES theatres(theatre_id)
 );
 
+CREATE TABLE temp_seats (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    seat_number VARCHAR(10),
+    showtime_id INT,
+    booking_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (showtime_id) REFERENCES showtimes(showtime_id)
+);
+
+CREATE TABLE bookings (
+    booking_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    showtime_id INT,
+    seat_numbers VARCHAR(255),
+    amount FLOAT,
+    payment_date DATETIME,
+    payment_method VARCHAR(50),
+    status VARCHAR(50),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (showtime_id) REFERENCES showtimes(showtime_id)
+);
+
+CREATE TABLE feedback (
+    feedback_id INT AUTO_INCREMENT PRIMARY KEY,         
+    rating INT CHECK (rating BETWEEN 1 AND 5),  
+    comment VARCHAR(255),                             
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+);
+
+-- Add trigger to remove "Temp Booked" seats after 5 minutes if not finalized
+DELIMITER //
+
+CREATE EVENT remove_temp_bookings
+ON SCHEDULE EVERY 1 MINUTE
+DO
+BEGIN
+    DELETE FROM temp_seats
+    WHERE booking_time < NOW() - INTERVAL 5 MINUTE;
+END //
+
+DELIMITER ;
 
 -- INSERT TEST DATA
-INSERT INTO movies (movie_id, title, description, release_date, status, genre, duration, image_path, imdb_rating, last_updated) VALUES 
-(1, 'Inception', 'A thief who enters the dreams of others to steal their secrets gets a chance to regain his old life in exchange for planting an idea in a CEO\'s mind.', '2010-07-16', 'Now Showing', 'Sci-Fi/Action', '02:28:00', './images/inception.jpg', 8.8, NOW()),
-(2, 'The Dark Knight', 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.', '2008-07-18', 'Now Showing', 'Action/Crime/Drama', '02:32:00', './images/dark_knight.jpg', 9.0, NOW()),
-(3, 'Interstellar', 'A team of explorers travel through a wormhole in space in an attempt to ensure humanity\'s survival.', '2014-11-07', 'Now Showing', 'Sci-Fi/Adventure', '02:49:00', './images/interstellar.jpg', 8.6, NOW()),
-(4, 'Dune: Part Two', 'A mythic and emotionally charged hero’s journey, Dune: Part Two will explore the mythic dimensions of Denis Villeneuve’s universe.', '2024-12-15', 'Coming Soon', 'Sci-Fi/Adventure', '02:30:00', './images/dune_part_two.jpg', 0.0, NOW());
+INSERT INTO users (user_id, username, email, phone, password, role) VALUES
+(1, 'admin', 'admin@example.com', '123-456-7890', 'password', 'admin'),
+(2, 'user', 'user@example.com', '098-765-4321', 'password', 'user');
+
+INSERT INTO movies (movie_id, title, description, release_date, status, genre, duration, image_path, imdb_rating, actors, characters, director, produce, writer, music, last_updated) VALUES 
+(1, 'Inception', 'A thief who enters the dreams of others to steal their secrets gets a chance to regain his old life in exchange for planting an idea in a CEO’s mind.', '2010-07-16', 'Now Showing', 'Sci-Fi/Action', '02:28:00', './images/inception.jpg', 8.8, 'Leonardo DiCaprio,Joseph Gordon-Levitt,Elliot Page', 'Cobb,Arthur,Ariadne', 'Christopher Nolan', 'Emma Thomas', 'Christopher Nolan', 'Hans Zimmer', NOW()),
+(2, 'The Dark Knight', 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.', '2008-07-18', 'Now Showing', 'Action/Crime/Drama', '02:32:00', './images/dark_knight.jpg', 9.0, 'Christian Bale,Heath Ledger,Aaron Eckhart', 'Bruce Wayne / Batman,Joker,Harvey Dent / Two-Face', 'Christopher Nolan', 'Emma Thomas', 'Jonathan Nolan', 'Hans Zimmer', NOW()),
+(3, 'Interstellar', 'A team of explorers travel through a wormhole in space in an attempt to ensure humanity’s survival.', '2014-11-07', 'Now Showing', 'Sci-Fi/Adventure', '02:49:00', './images/interstellar.jpg', 8.6, 'Matthew McConaughey,Anne Hathaway,Jessica Chastain', 'Cooper,Brand,Murph', 'Christopher Nolan', 'Emma Thomas', 'Jonathan Nolan', 'Hans Zimmer', NOW()),
+(4, 'Dune: Part Two', 'A mythic and emotionally charged hero’s journey, Dune: Part Two will explore the mythic dimensions of Denis Villeneuve’s universe.', '2024-12-15', 'Coming Soon', 'Sci-Fi/Adventure', '02:30:00', './images/dune_part_two.jpg', 0.0, 'Timothée Chalamet,Zendaya,Rebecca Ferguson', 'Paul Atreides,Chani,Lady Jessica', 'Denis Villeneuve', 'Mary Parent', 'Jon Spaihts', 'Hans Zimmer', NOW());
 
 INSERT INTO theatres (theatre_id, name, location, image_path) VALUES
 (1, 'Cinema City', '123 Main Street, Downtown','./images/theatre1.jpg'),
@@ -99,34 +143,38 @@ VALUES
     (3, 2, CURRENT_DATE + INTERVAL 2 DAY, '11:00:00'),
     (3, 2, CURRENT_DATE + INTERVAL 2 DAY, '14:00:00');
 
+INSERT INTO temp_seats (seat_number, showtime_id) VALUES
+('L1C2', 1),
+('R1C2', 2);
+
+INSERT INTO bookings (user_id, showtime_id, seat_numbers, amount, payment_date, payment_method, status) VALUES
+(2, 1, 'L1C1', 1250.0, NOW(), 'Credit Card', 'Booked'),
+(2, 2, 'R1C1', 1250.0, NOW(), 'Credit Card', 'Booked');
 
 -- DISPLAY TABLE
 SELECT * FROM users;
-
 SELECT * FROM movies;
-
 SELECT * FROM theatres;
-
 SELECT * FROM showtimes;
-
+SELECT * FROM temp_seats;
+SELECT * FROM bookings;
+SELECT * FROM feedback;
 
 -- DELETE TABLE
 DROP TABLE users;
-
 DROP TABLE movies;
-
 DROP TABLE theatres;
-
 DROP TABLE showtimes;
-
+DROP TABLE temp_seats;
+DROP TABLE bookings;
+DROP TABLE feedback;
+DROP EVENT remove_temp_bookings;
 
 -- DELETE TABLE DATA
 TRUNCATE TABLE users;
-
 TRUNCATE TABLE movies;
-
 TRUNCATE TABLE theatres;
-
 TRUNCATE TABLE showtimes;
-
-select * from booking;
+TRUNCATE TABLE temp_seats;
+TRUNCATE TABLE bookings;
+TRUNCATE TABLE feedback;

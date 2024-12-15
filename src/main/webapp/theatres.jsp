@@ -12,7 +12,13 @@
     <!-- Admin Controls -->
     <div class="row mb-4">
         <div class="col-12">
-            <h2 class="title mb-4">Theatres</h2>
+            <h2 class="title mb-3">THEATRES</h2>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-end">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="./">HOME</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">THEATRES</li>
+                </ol>
+            </nav>
             <c:if test="${sessionScope.role eq 'admin'}">
                 <button type="button" class="btn btn-outline-primary cs-button" data-bs-toggle="modal" data-bs-target="#addTheatreModal">
                     Add New Theatre
@@ -57,7 +63,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <c:if test="${sessionScope.role eq 'admin'}">
                                     <div>
-                                        <button class="btn btn-outline-primary btn-sm me-2" onclick="editTheatre(${theatre.id}, '${theatre.name}', '${theatre.location}', '${theatre.imagePath}')" >
+                                        <button class="btn btn-outline-secondary btn-sm me-2" onclick="editTheatre(${theatre.id}, '${theatre.name}', '${theatre.location}', '${theatre.imagePath}')" >
                                             <i class="bi bi-pencil-square"></i> Edit
                                         </button>
                                         <button class="btn btn-outline-danger btn-sm" onclick="deleteTheatre(${theatre.id})">
