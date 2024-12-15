@@ -43,6 +43,13 @@ CREATE TABLE showtimes (
     FOREIGN KEY (theatre_id) REFERENCES theatres(theatre_id)
 );
 
+CREATE TABLE feedback (
+    feedback_id INT AUTO_INCREMENT PRIMARY KEY,         
+    rating INT CHECK (rating BETWEEN 1 AND 5),  
+    comment VARCHAR(255),                             
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+);
+
 
 -- INSERT TEST DATA
 INSERT INTO users (username, email, phone, password, role) VALUES
@@ -108,6 +115,7 @@ SELECT * FROM theatres;
 
 SELECT * FROM showtimes;
 
+SELECT * FROM feedback;
 
 -- DELETE TABLE
 DROP TABLE users;
@@ -118,6 +126,7 @@ DROP TABLE theatres;
 
 DROP TABLE showtimes;
 
+DROP TABLE feedback;
 
 -- DELETE TABLE DATA
 TRUNCATE TABLE users;
@@ -127,3 +136,5 @@ TRUNCATE TABLE movies;
 TRUNCATE TABLE theatres;
 
 TRUNCATE TABLE showtimes;
+
+TRUNCATE TABLE feedback;
