@@ -69,6 +69,13 @@ CREATE TABLE bookings (
     FOREIGN KEY (showtime_id) REFERENCES showtimes(showtime_id)
 );
 
+CREATE TABLE feedback (
+    feedback_id INT AUTO_INCREMENT PRIMARY KEY,         
+    rating INT CHECK (rating BETWEEN 1 AND 5),  
+    comment VARCHAR(255),                             
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+);
+
 -- Add trigger to remove "Temp Booked" seats after 5 minutes if not finalized
 DELIMITER //
 
@@ -151,6 +158,7 @@ SELECT * FROM theatres;
 SELECT * FROM showtimes;
 SELECT * FROM temp_seats;
 SELECT * FROM bookings;
+SELECT * FROM feedback;
 
 -- DELETE TABLE
 DROP TABLE users;
@@ -159,6 +167,7 @@ DROP TABLE theatres;
 DROP TABLE showtimes;
 DROP TABLE temp_seats;
 DROP TABLE bookings;
+DROP TABLE feedback;
 DROP EVENT remove_temp_bookings;
 
 -- DELETE TABLE DATA
@@ -168,3 +177,4 @@ TRUNCATE TABLE theatres;
 TRUNCATE TABLE showtimes;
 TRUNCATE TABLE temp_seats;
 TRUNCATE TABLE bookings;
+TRUNCATE TABLE feedback;
