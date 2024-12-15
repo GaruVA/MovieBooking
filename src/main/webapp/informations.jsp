@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!-- Include header with parameters -->
 <jsp:include page="jsp/header.jsp">
@@ -38,7 +39,6 @@
                     </div>
                     <!-- Horizontal line-->
                     <hr class="custom-hr">
-
                 </div>
                 <br>
 
@@ -50,23 +50,22 @@
                 <hr class="custom-hr">
 
                 <h4>CAST</h4>
-
                 <div class="row">
                     <div class="col-md-6">
                         <h6>Actors</h6>
                         <ul style="font-size: 0.8rem; margin: 0; padding: 0; list-style: none;">
-                            ${movie.actor1}<br>
-                            ${movie.actor2}<br>
-                            ${movie.actor3}
+                            <c:forEach var="actor" items="${fn:split(movie.actors, ',')}">
+                                <li>${actor}</li>
+                            </c:forEach>
                         </ul>
                     </div>
 
                     <div class="col-md-6">
                         <h6>Characters</h6>
                         <ul style="font-size: 0.8rem; margin: 0; padding: 0; list-style: none;">
-                            ${movie.character1}<br>
-                            ${movie.character2}<br>
-                            ${movie.character3}
+                            <c:forEach var="character" items="${fn:split(movie.characters, ',')}">
+                                <li>${character}</li>
+                            </c:forEach>
                         </ul>
                     </div>
                 </div><br>
@@ -90,12 +89,9 @@
                         <span style="font-size: 0.9rem;">${movie.music}</span>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </c:if>
-
 </div>
 
 <!-- Include footer -->

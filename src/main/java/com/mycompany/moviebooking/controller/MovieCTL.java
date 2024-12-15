@@ -35,7 +35,6 @@ public class MovieCTL extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Movie> movies = new ArrayList<>();
-        List<Movie> nowShowMovies = new ArrayList<>();
 
         try (Connection conn = JDBCDataSource.getConnection()) {
             String sql = "SELECT * FROM movies";
@@ -52,21 +51,12 @@ public class MovieCTL extends HttpServlet {
                     movie.setRelease_date(rs.getDate("release_date"));
                     movie.setImage_path(rs.getString("image_path"));
                     movie.setStatus(rs.getString("status"));
-                    movie.setActor1(rs.getString("actor1"));
-                    movie.setActor2(rs.getString("actor2"));
-                    movie.setActor3(rs.getString("actor3"));
-                    movie.setCharacter1(rs.getString("character1"));
-                    movie.setCharacter2(rs.getString("character2"));
-                    movie.setCharacter3(rs.getString("character3"));
+                    movie.setActors(rs.getString("actors"));
+                    movie.setCharacters(rs.getString("characters"));
                     movie.setDirector(rs.getString("director"));
                     movie.setProduce(rs.getString("produce"));
                     movie.setWriter(rs.getString("writer"));
                     movie.setMusic(rs.getString("music"));
-//                    theatre.setId(rs.getInt("theatre_id"));
-//                    theatre.setName(rs.getString("name"));
-//                    theatre.setLocation(rs.getString("location"));
-//                    movie.setImage_path(rs.getString("image_path"));
-//                    theatres.add(theatre);
                     movies.add(movie);
                 }
             }
@@ -79,10 +69,6 @@ public class MovieCTL extends HttpServlet {
             request.setAttribute("error", "An unexpected error occurred.");
         }
 
-//        request.setAttribute("moviess", movies);
-//        request.getRequestDispatcher("/movies.jsp").forward(request, response);
-//        
-        // Set both lists as request attributes
         request.setAttribute("movies", movies);         // All movies
 
         // Forward to index.jsp once
@@ -133,12 +119,8 @@ public class MovieCTL extends HttpServlet {
         String duration = request.getParameter("duration");
         String release_date = request.getParameter("release_date");
         String status = request.getParameter("status");
-        String actor1 = request.getParameter("actor1");
-        String actor2 = request.getParameter("actor2");
-        String actor3 = request.getParameter("actor3");
-        String character1 = request.getParameter("character1");
-        String character2 = request.getParameter("character2");
-        String character3 = request.getParameter("character3");
+        String actors = request.getParameter("actors");
+        String characters = request.getParameter("characters");
         String director = request.getParameter("director");
         String produce = request.getParameter("produce");
         String writer = request.getParameter("writer");
@@ -146,7 +128,7 @@ public class MovieCTL extends HttpServlet {
         String image_path = processImageUpload(request);
 
         try (Connection conn = JDBCDataSource.getConnection()) {
-            String sql = "INSERT INTO movies (title, genre, description, imdb_rating, duration, release_date, image_path, status, actor1, actor2, actor3, character1, character2, character3, director, produce, writer, music) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO movies (title, genre, description, imdb_rating, duration, release_date, image_path, status, actors, characters, director, produce, writer, music) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, title);
                 stmt.setString(2, genre);
@@ -156,16 +138,12 @@ public class MovieCTL extends HttpServlet {
                 stmt.setString(6, release_date);
                 stmt.setString(7, image_path);
                 stmt.setString(8, status);
-                stmt.setString(9, actor1);
-                stmt.setString(10, actor2);
-                stmt.setString(11, actor3);
-                stmt.setString(12, character1);
-                stmt.setString(13, character2);
-                stmt.setString(14, character3);
-                stmt.setString(15, director);
-                stmt.setString(16, produce);
-                stmt.setString(17, writer);
-                stmt.setString(18, music);
+                stmt.setString(9, actors);
+                stmt.setString(10, characters);
+                stmt.setString(11, director);
+                stmt.setString(12, produce);
+                stmt.setString(13, writer);
+                stmt.setString(14, music);
                 stmt.executeUpdate();
             }
         }
@@ -180,12 +158,8 @@ public class MovieCTL extends HttpServlet {
         String duration = request.getParameter("duration");
         String release_date = request.getParameter("release_date");
         String status = request.getParameter("status");
-        String actor1 = request.getParameter("actor1");
-        String actor2 = request.getParameter("actor2");
-        String actor3 = request.getParameter("actor3");
-        String character1 = request.getParameter("character1");
-        String character2 = request.getParameter("character2");
-        String character3 = request.getParameter("character3");
+        String actors = request.getParameter("actors");
+        String characters = request.getParameter("characters");
         String director = request.getParameter("director");
         String produce = request.getParameter("produce");
         String writer = request.getParameter("writer");
@@ -209,8 +183,8 @@ public class MovieCTL extends HttpServlet {
 
         try (Connection conn = JDBCDataSource.getConnection()) {
             String sql = newImagePath != null
-                    ? "UPDATE movies SET title = ?, genre = ?, description = ?, imdb_rating = ?, duration = ?, release_date = ?, status = ?, actor1 = ?, actor2 = ?, actor3 = ?, character1 = ?, character2 = ?, character3 = ?, director = ?, produce = ?, writer = ?, music = ?, image_path = ? WHERE movie_id = ?"
-                    : "UPDATE movies SET title = ?, genre = ?, description = ?, imdb_rating = ?, duration = ?, release_date = ?, status = ?, actor1 = ?, actor2 = ?, actor3 = ?, character1 = ?, character2 = ?, character3 = ?, director = ?, produce = ?, writer = ?, music = ? WHERE movie_id = ?";
+                    ? "UPDATE movies SET title = ?, genre = ?, description = ?, imdb_rating = ?, duration = ?, release_date = ?, status = ?, actors = ?, characters = ?, director = ?, produce = ?, writer = ?, music = ?, image_path = ? WHERE movie_id = ?"
+                    : "UPDATE movies SET title = ?, genre = ?, description = ?, imdb_rating = ?, duration = ?, release_date = ?, status = ?, actors = ?, characters = ?, director = ?, produce = ?, writer = ?, music = ? WHERE movie_id = ?";
 
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, title);
@@ -220,25 +194,21 @@ public class MovieCTL extends HttpServlet {
                 stmt.setString(5, duration);
                 stmt.setString(6, release_date);
                 stmt.setString(7, status);
-                stmt.setString(8, actor1);
-                stmt.setString(9, actor2);
-                stmt.setString(10, actor3);
-                stmt.setString(11, character1);
-                stmt.setString(12, character2);
-                stmt.setString(13, character3);
-                stmt.setString(14, director);
-                stmt.setString(15, produce);
-                stmt.setString(16, writer);
-                stmt.setString(17, music);
+                stmt.setString(8, actors);
+                stmt.setString(9, characters);
+                stmt.setString(10, director);
+                stmt.setString(11, produce);
+                stmt.setString(12, writer);
+                stmt.setString(13, music);
                 if (newImagePath != null) {
-                    stmt.setString(18, newImagePath);
-                    stmt.setInt(19, movieId);
+                    stmt.setString(14, newImagePath);
+                    stmt.setInt(15, movieId);
                     // Delete old image after successful update
                     if (oldImagePath != null) {
                         deleteImage(oldImagePath);
                     }
                 } else {
-                    stmt.setInt(18, movieId);
+                    stmt.setInt(14, movieId);
                 }
                 stmt.executeUpdate();
             }

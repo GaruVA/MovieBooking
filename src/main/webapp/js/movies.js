@@ -1,4 +1,4 @@
-function editMovie(id, title, genre, description, imdb_rating, duration, image_Path, release_date, status, actor1, actor2, actor3, character1, character2, character3, director, produce, writer, music) {
+function editMovie(id, title, genre, description, imdb_rating, duration, image_Path, release_date, status, actors, characters, director, produce, writer, music) {
     document.getElementById('editMovieId').value = id;
     document.getElementById('editMovieTitle').value = title;
     document.getElementById('editMovieGenre').value = genre;
@@ -7,12 +7,8 @@ function editMovie(id, title, genre, description, imdb_rating, duration, image_P
     document.getElementById('editMovieDuration').value = duration;
     document.getElementById('editMovieRelease_date').value = release_date;
     document.getElementById('editMovieStatus').value = status;
-    document.getElementById('editMovieActor1').value = actor1;
-    document.getElementById('editMovieActor2').value = actor2;
-    document.getElementById('editMovieActor3').value = actor3;
-    document.getElementById('editMovieCharacter1').value = character1;
-    document.getElementById('editMovieCharacter2').value = character2;
-    document.getElementById('editMovieCharacter3').value = character3;
+    document.getElementById('editMovieActors').value = actors;
+    document.getElementById('editMovieCharacters').value = characters;
     document.getElementById('editMovieDirector').value = director;
     document.getElementById('editMovieProduce').value = produce;
     document.getElementById('editMovieWriter').value = writer;
