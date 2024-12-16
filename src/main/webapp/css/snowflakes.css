@@ -1,0 +1,27 @@
+/* snowflakes.css */
+body {
+    overflow: hidden;
+    background-color: #282c34;
+    color: white;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    color: white;
+    font-size: 1em;
+    pointer-events: none;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
+}

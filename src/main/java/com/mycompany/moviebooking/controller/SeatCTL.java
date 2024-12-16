@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -42,6 +43,12 @@ public class SeatCTL extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession(false);
+        if (session == null || session.getAttribute("user_id") == null) {
+            resp.sendRedirect("login");
+            return;
+        }
+
         try {
             String[] selectedSeats = req.getParameter("selectedSeats").split(",");
             int showtimeId = Integer.parseInt(req.getParameter("showtime_id"));
@@ -68,7 +75,7 @@ public class SeatCTL extends HttpServlet {
             req.getRequestDispatcher("/seatselections.jsp").forward(req, resp);
             return;
         }
-        req.getRequestDispatcher("next-servlet").forward(req, resp);
+        req.getRequestDispatcher("/forwardToPayment").forward(req, resp);
     }
 
     public List<Seat> getBookedSeats(int showtimeId) throws Exception {

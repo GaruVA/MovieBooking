@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
-     <welcome-file-list>
-        <welcome-file>index</welcome-file>  <!-- Or index.jsp -->
+    <welcome-file-list>
+        <welcome-file>index</welcome-file>
+        <!-- Or index.jsp -->
     </welcome-file-list>
     <servlet>
         <servlet-name>NewServlet</servlet-name>
@@ -15,14 +16,16 @@
         <servlet-name>User</servlet-name>
         <servlet-class>User</servlet-class>
     </servlet>
-
     <!-- Servlet Configuration -->
     <servlet>
         <servlet-name>SeatSelectionServlet</servlet-name>
         <servlet-class>com.mycompany.moviebooking.controller.SeatCTL</servlet-class>
     </servlet>
-
     <!-- Servlet Mapping -->
+    <servlet>
+        <servlet-name>PayServlet</servlet-name>
+        <servlet-class>com.mycompany.moviebooking.controller.PayServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SeatSelectionServlet</servlet-name>
         <url-pattern>/seat-selection</url-pattern>
@@ -38,6 +41,10 @@
     <servlet-mapping>
         <servlet-name>User</servlet-name>
         <url-pattern>/User</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PayServlet</servlet-name>
+        <url-pattern>/PayServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
