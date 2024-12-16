@@ -151,6 +151,12 @@ INSERT INTO bookings (user_id, showtime_id, seat_numbers, amount, payment_date, 
 (2, 1, 'L1C1', 1250.0, NOW(), 'Credit Card', 'Booked'),
 (2, 2, 'R1C1', 1250.0, NOW(), 'Credit Card', 'Booked');
 
+INSERT INTO feedback (rating, comment) VALUES
+(5, 'Amazing experience!'),
+(3, 'Average experience, nothing special.'),
+(1, 'Very poor service and rude staff.'),
+(4, 'Great service, but the seats could be more comfortable.');
+
 -- DISPLAY TABLE
 SELECT * FROM users;
 SELECT * FROM movies;

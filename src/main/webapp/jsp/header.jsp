@@ -41,9 +41,6 @@
                             <a class="nav-link ${param.activePage == 'theatres' ? 'active' : ''}" href="./theatres">Theatres</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ${param.activePage == 'about' ? 'active' : ''}" href="#">About</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link ${param.activePage == 'feedback' ? 'active' : ''}" href="./feedback">Feedback</a>
                         </li>
                     </ul>

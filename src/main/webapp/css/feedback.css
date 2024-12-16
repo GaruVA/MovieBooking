@@ -21,3 +21,23 @@
 .star-rating label:hover~label {
     color: #f5b301;
 }
+
+.container.py-5 {
+    max-width: 800px;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+}
