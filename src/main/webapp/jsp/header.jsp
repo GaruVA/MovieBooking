@@ -43,9 +43,6 @@
                         <li class="nav-item">
                             <a class="nav-link ${param.activePage == 'feedback' ? 'active' : ''}" href="./feedback">Feedback</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link ${param.activePage == 'about' ? 'active' : ''}" href="#">About</a>
-                        </li>
                     </ul>
                     <div class="d-flex gap-3">
                         <a href="./booking-selection" class="btn btn-book-now">Book Now</a>
