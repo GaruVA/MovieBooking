@@ -75,7 +75,7 @@ public class SeatCTL extends HttpServlet {
             req.getRequestDispatcher("/seatselections.jsp").forward(req, resp);
             return;
         }
-        req.getRequestDispatcher("next-servlet").forward(req, resp);
+        req.getRequestDispatcher("/forwardToPayment").forward(req, resp);
     }
 
     public List<Seat> getBookedSeats(int showtimeId) throws Exception {
