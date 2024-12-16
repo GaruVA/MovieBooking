@@ -164,10 +164,10 @@ INSERT INTO temp_seats (seat_number, showtime_id) VALUES
 ('R2C3', 4);
 
 INSERT INTO bookings (user_id, showtime_id, seat_numbers, amount, payment_date, payment_method, status) VALUES
-(2, 1, 'L1C1', 1250.0, NOW(), 'Credit Card', 'Booked'),
-(2, 2, 'R1C1', 1250.0, NOW(), 'Credit Card', 'Booked'),
-(3, 3, 'L2C1,L2C2', 2500.0, NOW(), 'Debit Card', 'Booked'),
-(4, 4, 'R2C1,R2C2', 2500.0, NOW(), 'PayPal', 'Booked');
+(2, 1, 'L1C1', 5.0, NOW(), 'Credit Card', 'Booked'),
+(2, 2, 'R1C1', 5.0, NOW(), 'Credit Card', 'Booked'),
+(3, 3, 'L2C1,L2C2', 10.0, NOW(), 'Debit Card', 'Booked'),
+(4, 4, 'R2C1,R2C2', 10.0, NOW(), 'PayPal', 'Booked');
 
 INSERT INTO feedback (rating, comment) VALUES
 (5, 'Amazing experience!'),

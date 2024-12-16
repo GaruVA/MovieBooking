@@ -7,6 +7,9 @@ public class Booking {
     private String showtime;
     private String seatNumbers;
     private String status;
+    private double amount;
+    private String paymentMethod;
+    private String paymentDate;
 
     // Getters and Setters
     public int getBookingId() {
@@ -55,5 +58,29 @@ public class Booking {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getPaymentDate() {
+        return paymentDate;
+    }
+
+    public void setPaymentDate(String paymentDate) {
+        this.paymentDate = paymentDate;
     }
 }

@@ -36,7 +36,7 @@
                 <option value="5">5</option>
                 <option value="6">6</option>
             </select>
-            <p>Ticket Price: Rs. 1250 (Adult), Rs. 750 (Child)</p>
+            <p>Ticket Price: $5 (Adult), $3 (Child)</p>
         </div>
         <div class="screen">Screen</div>
         <div class="seats">
