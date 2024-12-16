@@ -4,13 +4,11 @@
 <head>
     <jsp:include page="jsp/header.jsp">
         <jsp:param name="title" value="ABC Cinema - Payment Confirmation" />
-        <jsp:param name="css" value="booking-selection.css" />
+        <jsp:param name="css" value="payment.css" />
     </jsp:include>
-    <link rel="stylesheet" type="text/css" href="css/snowflakes.css">
-    <link rel="stylesheet" type="text/css" href="css/payment.css"> <!-- Include your styles.css -->
 </head>
 <body>
-    <div style="text-align: center;"> <!-- Centering content using CSS -->
+    <div style="text-align: center;" class="container py-4"> <!-- Centering content using CSS -->
         <h1>Order Summary</h1>
         <p>Selected Seats: ${selectedSeats}</p>
         <p>Total Price: $${totalPrice}</p>
@@ -24,7 +22,6 @@
         </form>
     </div>
 
-    <script src="js/snowflakes.js"></script> <!-- Adjust path as necessary -->
 
     <jsp:include page="jsp/footer.jsp">
         <jsp:param name="js" value="booking-selection.js" />

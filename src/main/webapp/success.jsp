@@ -9,17 +9,55 @@
     <title>Payment Success</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container py-5">
         <h1>Payment Successful!</h1>
         <p>Thank you for your booking. Your payment has been processed successfully.</p>
         
         <!-- Display booking details -->
-        <div class="booking-details">
-            <p><strong>Selected Seats:</strong> ${selectedSeats}</p>
-            <p><strong>Total Price:</strong> $${totalPrice}</p>
-            <p><strong>Showtime ID:</strong> ${showtime_id}</p>
-            <p><strong>Payment Method:</strong> ${paymentMethod}</p>
-            <p><strong>Payment Status:</strong> ${paymentStatus}</p>
+        <div class="booking-summary" id="bookingSummary">            
+            <div class="summary-body">
+                <p>Your booking has been confirmed and an e-ticket has been sent to your email!</p>
+                
+                <table class="booking-details-table">
+                    <tr>
+                        <th>Booking ID:</th>
+                        <td>${booking.bookingId}</td>
+                    </tr>
+                    <tr>
+                        <th>Movie Name:</th>
+                        <td>${booking.movieTitle}</td>
+                    </tr>
+                    <tr>
+                        <th>Date:</th>
+                        <td>${booking.showtime.split(" ")[0]}</td>
+                    </tr>
+                    <tr>
+                        <th>Time:</th>
+                        <td>${booking.showtime.split(" ")[1]}</td>
+                    </tr>
+                    <tr>
+                        <th>Seat Numbers:</th>
+                        <td>${booking.seatNumbers}</td>
+                    </tr>
+                    <tr>
+                        <th>Amount Paid:</th>
+                        <td>$${booking.amount}</td>
+                    </tr>
+                    <tr>
+                        <th>Payment Method:</th>
+                        <td>${booking.paymentMethod}</td>
+                    </tr>
+                    <tr>
+                        <th>Status:</th>
+                        <td>${booking.status}</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="summary-footer">
+                <p>Booking Date & Time: <span>${booking.paymentDate}</span></p>
+                <p>An e-ticket has been sent to: <span>${booking.userEmail}</span></p>
+            </div>
         </div>
 
         <!-- Back to home button -->

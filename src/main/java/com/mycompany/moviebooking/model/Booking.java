@@ -10,6 +10,7 @@ public class Booking {
     private double amount;
     private String paymentMethod;
     private String paymentDate;
+    private String userEmail;
 
     // Getters and Setters
     public int getBookingId() {
@@ -82,5 +83,13 @@ public class Booking {
 
     public void setPaymentDate(String paymentDate) {
         this.paymentDate = paymentDate;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 }
