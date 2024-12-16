@@ -103,83 +103,83 @@ INSERT INTO movies (movie_id, title, description, release_date, status, genre, d
 (4, 'Dune: Part Two', 'A mythic and emotionally charged hero’s journey, Dune: Part Two will explore the mythic dimensions of Denis Villeneuve’s universe.', '2024-12-15', 'Coming Soon', 'Sci-Fi/Adventure', '02:30:00', './images/dune_part_two.jpg', 0.0, 'Timothée Chalamet,Zendaya,Rebecca Ferguson', 'Paul Atreides,Chani,Lady Jessica', 'Denis Villeneuve', 'Mary Parent', 'Jon Spaihts', 'Hans Zimmer', NOW()),
 (5, 'Sonic 3', 'Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched, Team Sonic must seek out an unlikely alliance.', '2014-11-07', 'Coming Soon', 'Sci-Fi/Adventure', '02:30:00', './images/sonic3.jpg', 8.0, 'Jim Carrey,Ben Schwartz,Keanu Reeves', 'Ivo Robotnik/Gerald Robotnik,Sonic,Shadow', 'Jeff Fowler', 'Emma Thomas', 'Jonathan Nolan', 'Hans Zimmer', NOW()),
 (6, 'The Nutcracker', 'Join Clara at a delightful Christmas Eve party that becomes a magical adventure once everyone else is tucked up in bed. Marvel at the brilliance of Tchaikovsky’s score, as Clara and her enchanted Nutcracker fight the Mouse King and visit the Sugar Plum Fairy in the glittering Kingdom of Sweets.', '2014-11-07', 'Coming Soon', 'Musical/Dance', '02:45:00', './images/theNutcracker.jpg', 5.6, 'The Prince,Anne Hathaway,Jessica Chastain', 'Leo Dixon,Marcelino Sambe,Murph', 'Christopher Nolan', 'Emma Thomas', 'Jonathan Nolan', 'Hans Zimmer', NOW()),
-(7, 'The Wild Robot', 'After a shipwreck, an intelligent robot called Roz is stranded on an uninhabited island. To survive the harsh environment, Roz bonds with the island’s animals and cares for an orphaned baby goose.', '2014-11-07', 'Coming Soon', 'Sci-Fi/Adventure', '02:42:00', './images/theWildRobot.jpg', 0.0, 'Pedro Pascal,Kit Connor,Jessica Chastain', 'Roz/Rummagevoice),Fink(voice),Brightbill(voice)', 'Chris Sanders', 'Emma Thomas', 'Jonathan Nolan', '	Kris Bowers', NOW()),
-(8, 'Wicked', 'Wicked tells the story of Elphaba, the future Wicked Witch of the West and her relationship with Glinda, the Good Witch of the North. Their friendship struggles through their opposing personalities and viewpoints, rivalry over the same love-interest, their reactions to the Wizard’s corrupt government, and, ultimately, Elphaba’s public fall from grace. ', '2014-12-028', 'Coming Soon', 'Fairy/Adventure', '02:40:00', './images/wicked.jpg', 7.6, 'Cynthia Erivo,Ariana Grande,Jonathan Bailey', '	Elphaba,Glinda,Fiyero', 'Jon M. Chu', '	Jared LeBoff', 'Jonathan Nolan', 'John Powell', NOW()),
-(9, 'Red One', 'After Santa Claus (code name: Red One) is kidnapped, the North Pole’s Head of Security (Dwayne Johnson) must team up with the world’s most infamous bounty hunter (Chris Evans) in a globe-trotting, action-packed mission to save Christmas.', '2014-12-17', 'Now Showing', 'Sci-Fi/Comedy', '02:03:00', './images/redOne.jpg', 0.0, 'Dwayne Johnson,Chris Evans,Jessica Chastain', 'Callum Drift,Jack O’Malley,Zoe', 'Jake Kasdan', 'Emma Thomas', 'Jonathan Nolan', 'Henry Jackman', NOW()),;
+(7, 'The Wild Robot', 'After a shipwreck, an intelligent robot called Roz is stranded on an uninhabited island. To survive the harsh environment, Roz bonds with the island’s animals and cares for an orphaned baby goose.', '2014-11-07', 'Coming Soon', 'Sci-Fi/Adventure', '02:42:00', './images/theWildRobot.jpg', 0.0, 'Pedro Pascal,Kit Connor,Jessica Chastain', 'Roz/Rummagevoice),Fink(voice),Brightbill(voice)', 'Chris Sanders', 'Emma Thomas', 'Jonathan Nolan', 'Kris Bowers', NOW()),
+(8, 'Wicked', 'Wicked tells the story of Elphaba, the future Wicked Witch of the West and her relationship with Glinda, the Good Witch of the North. Their friendship struggles through their opposing personalities and viewpoints, rivalry over the same love-interest, their reactions to the Wizard’s corrupt government, and, ultimately, Elphaba’s public fall from grace. ', '2014-12-28', 'Coming Soon', 'Fairy/Adventure', '02:40:00', './images/wicked.jpg', 7.6, 'Cynthia Erivo,Ariana Grande,Jonathan Bailey', 'Elphaba,Glinda,Fiyero', 'Jon M. Chu', 'Jared LeBoff', 'Jonathan Nolan', 'John Powell', NOW()),
+(9, 'Red One', 'After Santa Claus (code name: Red One) is kidnapped, the North Pole’s Head of Security (Dwayne Johnson) must team up with the world’s most infamous bounty hunter (Chris Evans) in a globe-trotting, action-packed mission to save Christmas.', '2014-12-17', 'Now Showing', 'Sci-Fi/Comedy', '02:03:00', './images/redOne.jpg', 0.0, 'Dwayne Johnson,Chris Evans,Jessica Chastain', 'Callum Drift,Jack O’Malley,Zoe', 'Jake Kasdan', 'Emma Thomas', 'Jonathan Nolan', 'Henry Jackman', NOW());
 
 INSERT INTO theatres (theatre_id, name, location, image_path) VALUES
 (1, 'Cinema City', '123 Main Street, Downtown','./images/theatre1.jpg'),
 (2, 'Starlight Theatre', '456 Park Avenue, Uptown','./images/theatre2.jpg'),
 (3, 'Grand Cinema', '789 Broadway, Midtown','./images/theatre3.jpg');
 
-INSERT INTO showtimes (movie_id, theatre_id, show_date, show_time)
+INSERT INTO showtimes (showtime_id, movie_id, theatre_id, show_date, show_time)
 VALUES
-    (1, 1, CURRENT_DATE, '10:00:00'),
-    (1, 1, CURRENT_DATE, '13:00:00'),
-    (1, 1, CURRENT_DATE + INTERVAL 1 DAY, '10:00:00'),
-    (1, 1, CURRENT_DATE + INTERVAL 1 DAY, '13:00:00'),
-    (1, 1, CURRENT_DATE + INTERVAL 1 DAY, '16:00:00'),
-    (1, 1, CURRENT_DATE + INTERVAL 2 DAY, '10:00:00'),
-    (1, 2, CURRENT_DATE, '11:00:00'),
-    (1, 2, CURRENT_DATE, '14:00:00'),
-    (1, 2, CURRENT_DATE + INTERVAL 1 DAY, '11:00:00'),
-    (1, 2, CURRENT_DATE + INTERVAL 1 DAY, '14:00:00'),
-    (1, 2, CURRENT_DATE + INTERVAL 2 DAY, '11:00:00'),
-    (1, 2, CURRENT_DATE + INTERVAL 2 DAY, '14:00:00'),
-    (1, 2, CURRENT_DATE + INTERVAL 2 DAY, '17:00:00'),
-    (2, 1, CURRENT_DATE, '11:30:00'),
-    (2, 1, CURRENT_DATE + INTERVAL 1 DAY, '11:30:00'),
-    (2, 1, CURRENT_DATE + INTERVAL 2 DAY, '11:30:00'),
-    (2, 1, CURRENT_DATE + INTERVAL 2 DAY, '14:30:00'),
-    (2, 2, CURRENT_DATE, '10:30:00'),
-    (2, 2, CURRENT_DATE + INTERVAL 1 DAY, '10:30:00'),
-    (2, 2, CURRENT_DATE + INTERVAL 1 DAY, '13:30:00'),
-    (2, 2, CURRENT_DATE + INTERVAL 2 DAY, '10:30:00'),
-    (2, 2, CURRENT_DATE + INTERVAL 2 DAY, '13:30:00'),
-    (2, 2, CURRENT_DATE + INTERVAL 2 DAY, '16:30:00'),
-    (3, 1, CURRENT_DATE, '12:00:00'),
-    (3, 1, CURRENT_DATE, '15:00:00'),
-    (3, 1, CURRENT_DATE + INTERVAL 1 DAY, '12:00:00'),
-    (3, 1, CURRENT_DATE + INTERVAL 1 DAY, '15:00:00'),
-    (3, 1, CURRENT_DATE + INTERVAL 2 DAY, '12:00:00'),
-    (3, 1, CURRENT_DATE + INTERVAL 2 DAY, '15:00:00'),
-    (3, 1, CURRENT_DATE + INTERVAL 2 DAY, '18:00:00'),
-    (3, 2, CURRENT_DATE, '11:00:00'),
-    (3, 2, CURRENT_DATE, '14:00:00'),
-    (3, 2, CURRENT_DATE + INTERVAL 1 DAY, '11:00:00'),
-    (3, 2, CURRENT_DATE + INTERVAL 1 DAY, '14:00:00'),
-    (3, 2, CURRENT_DATE + INTERVAL 2 DAY, '11:00:00'),
-    (3, 2, CURRENT_DATE + INTERVAL 2 DAY, '14:00:00'),
-    (4, 3, CURRENT_DATE, '10:00:00'),
-    (4, 3, CURRENT_DATE, '13:00:00'),
-    (4, 3, CURRENT_DATE + INTERVAL 1 DAY, '10:00:00'),
-    (4, 3, CURRENT_DATE + INTERVAL 1 DAY, '13:00:00'),
-    (4, 3, CURRENT_DATE + INTERVAL 1 DAY, '16:00:00'),
-    (4, 3, CURRENT_DATE + INTERVAL 2 DAY, '10:00:00');
+    (1, 1, 1, CURRENT_DATE, '10:00:00'),
+    (2, 1, 1, CURRENT_DATE, '13:00:00'),
+    (3, 1, 1, CURRENT_DATE + INTERVAL 1 DAY, '10:00:00'),
+    (4, 1, 1, CURRENT_DATE + INTERVAL 1 DAY, '13:00:00'),
+    (5, 1, 1, CURRENT_DATE + INTERVAL 1 DAY, '16:00:00'),
+    (6, 1, 1, CURRENT_DATE + INTERVAL 2 DAY, '10:00:00'),
+    (7, 1, 2, CURRENT_DATE, '11:00:00'),
+    (8, 1, 2, CURRENT_DATE, '14:00:00'),
+    (9, 1, 2, CURRENT_DATE + INTERVAL 1 DAY, '11:00:00'),
+    (10, 1, 2, CURRENT_DATE + INTERVAL 1 DAY, '14:00:00'),
+    (11, 1, 2, CURRENT_DATE + INTERVAL 2 DAY, '11:00:00'),
+    (12, 1, 2, CURRENT_DATE + INTERVAL 2 DAY, '14:00:00'),
+    (13, 1, 2, CURRENT_DATE + INTERVAL 2 DAY, '17:00:00'),
+    (14, 2, 1, CURRENT_DATE, '11:30:00'),
+    (15, 2, 1, CURRENT_DATE + INTERVAL 1 DAY, '11:30:00'),
+    (16, 2, 1, CURRENT_DATE + INTERVAL 2 DAY, '11:30:00'),
+    (17, 2, 1, CURRENT_DATE + INTERVAL 2 DAY, '14:30:00'),
+    (18, 2, 2, CURRENT_DATE, '10:30:00'),
+    (19, 2, 2, CURRENT_DATE + INTERVAL 1 DAY, '10:30:00'),
+    (20, 2, 2, CURRENT_DATE + INTERVAL 1 DAY, '13:30:00'),
+    (21, 2, 2, CURRENT_DATE + INTERVAL 2 DAY, '10:30:00'),
+    (22, 2, 2, CURRENT_DATE + INTERVAL 2 DAY, '13:30:00'),
+    (23, 2, 2, CURRENT_DATE + INTERVAL 2 DAY, '16:30:00'),
+    (24, 3, 1, CURRENT_DATE, '12:00:00'),
+    (25, 3, 1, CURRENT_DATE, '15:00:00'),
+    (26, 3, 1, CURRENT_DATE + INTERVAL 1 DAY, '12:00:00'),
+    (27, 3, 1, CURRENT_DATE + INTERVAL 1 DAY, '15:00:00'),
+    (28, 3, 1, CURRENT_DATE + INTERVAL 2 DAY, '12:00:00'),
+    (29, 3, 1, CURRENT_DATE + INTERVAL 2 DAY, '15:00:00'),
+    (30, 3, 1, CURRENT_DATE + INTERVAL 2 DAY, '18:00:00'),
+    (31, 3, 2, CURRENT_DATE, '11:00:00'),
+    (32, 3, 2, CURRENT_DATE, '14:00:00'),
+    (33, 3, 2, CURRENT_DATE + INTERVAL 1 DAY, '11:00:00'),
+    (34, 3, 2, CURRENT_DATE + INTERVAL 1 DAY, '14:00:00'),
+    (35, 3, 2, CURRENT_DATE + INTERVAL 2 DAY, '11:00:00'),
+    (36, 3, 2, CURRENT_DATE + INTERVAL 2 DAY, '14:00:00'),
+    (37, 4, 3, CURRENT_DATE, '10:00:00'),
+    (38, 4, 3, CURRENT_DATE, '13:00:00'),
+    (39, 4, 3, CURRENT_DATE + INTERVAL 1 DAY, '10:00:00'),
+    (40, 4, 3, CURRENT_DATE + INTERVAL 1 DAY, '13:00:00'),
+    (41, 4, 3, CURRENT_DATE + INTERVAL 1 DAY, '16:00:00'),
+    (42, 4, 3, CURRENT_DATE + INTERVAL 2 DAY, '10:00:00');
 
-INSERT INTO temp_seats (seat_number, showtime_id) VALUES
-('L1C2', 1),
-('R1C2', 2),
-('L2C3', 3),
-('R2C3', 4);
+INSERT INTO temp_seats (id, seat_number, showtime_id) VALUES
+(1, 'L1C2', 1),
+(2, 'R1C2', 2),
+(3, 'L2C3', 3),
+(4, 'R2C3', 4);
 
-INSERT INTO bookings (user_id, showtime_id, seat_numbers, amount, payment_date, payment_method, status) VALUES
-(2, 1, 'L1C1', 5.0, NOW(), 'Credit Card', 'Booked'),
-(2, 2, 'R1C1', 5.0, NOW(), 'Credit Card', 'Booked'),
-(3, 3, 'L2C1,L2C2', 10.0, NOW(), 'Debit Card', 'Booked'),
-(4, 4, 'R2C1,R2C2', 10.0, NOW(), 'PayPal', 'Booked');
+INSERT INTO bookings (booking_id, user_id, showtime_id, seat_numbers, amount, payment_date, payment_method, status) VALUES
+(1, 2, 1, 'L1C1', 5.0, NOW(), 'Credit Card', 'Booked'),
+(2, 2, 2, 'R1C1', 5.0, NOW(), 'Credit Card', 'Booked'),
+(3, 3, 3, 'L2C1,L2C2', 10.0, NOW(), 'Debit Card', 'Booked'),
+(4, 4, 4, 'R2C1,R2C2', 10.0, NOW(), 'PayPal', 'Booked');
 
-INSERT INTO feedback (rating, comment) VALUES
-(5, 'Amazing experience!'),
-(4, 'Great service, but the seats could be more comfortable.'),
-(3, 'Average experience, nothing special.'),
-(2, 'Not satisfied with the cleanliness.'),
-(1, 'Very poor service and rude staff.'),
-(5, 'Loved the movie and the atmosphere!'),
-(4, 'Good experience overall, but the snacks were overpriced.'),
-(3, 'It was okay, nothing extraordinary.'),
-(2, 'The sound system was too loud.'),
-(1, 'Terrible experience, will not come back.');
+INSERT INTO feedback (feedback_id, rating, comment) VALUES
+(1, 5, 'Amazing experience!'),
+(2, 4, 'Great service, but the seats could be more comfortable.'),
+(3, 3, 'Average experience, nothing special.'),
+(4, 2, 'Not satisfied with the cleanliness.'),
+(5, 1, 'Very poor service and rude staff.'),
+(6, 5, 'Loved the movie and the atmosphere!'),
+(7, 4, 'Good experience overall, but the snacks were overpriced.'),
+(8, 3, 'It was okay, nothing extraordinary.'),
+(9, 2, 'The sound system was too loud.'),
+(10, 1, 'Terrible experience, will not come back.');
 
 -- DISPLAY TABLE
 SELECT * FROM users;
