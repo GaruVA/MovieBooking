@@ -1,11 +1,9 @@
 package com.mycompany.moviebooking.model;
 
 public class Feedback {
-
     private int feedbackId;
+    private int rating;
     private String comment;
-    private int rating; // Change to int
-
 
     // Getters and Setters
     public int getFeedbackId() {
@@ -16,11 +14,11 @@ public class Feedback {
         this.feedbackId = feedbackId;
     }
 
-    public int getRating() { // Change to int
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(int rating) { // Change to int
+    public void setRating(int rating) {
         this.rating = rating;
     }
 
@@ -31,5 +29,4 @@ public class Feedback {
     public void setComment(String comment) {
         this.comment = comment;
     }
-
 }

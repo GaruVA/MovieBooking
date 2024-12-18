@@ -164,10 +164,16 @@ INSERT INTO temp_seats (id, seat_number, showtime_id) VALUES
 (4, 'R2C3', 4);
 
 INSERT INTO bookings (booking_id, user_id, showtime_id, seat_numbers, amount, payment_date, payment_method, status) VALUES
-(1, 2, 1, 'L1C1', 5.0, NOW(), 'Credit Card', 'Booked'),
-(2, 2, 2, 'R1C1', 5.0, NOW(), 'Credit Card', 'Booked'),
-(3, 3, 3, 'L2C1,L2C2', 10.0, NOW(), 'Debit Card', 'Booked'),
-(4, 4, 4, 'R2C1,R2C2', 10.0, NOW(), 'PayPal', 'Booked');
+(1, 2, 1, 'L1C1', 5.0, NOW() - INTERVAL 10 DAY, 'Credit Card', 'Booked'),
+(2, 2, 2, 'R1C1', 5.0, NOW() - INTERVAL 9 DAY, 'Credit Card', 'Booked'),
+(3, 3, 3, 'L2C1,L2C2', 10.0, NOW() - INTERVAL 8 DAY, 'Debit Card', 'Booked'),
+(4, 4, 4, 'R2C1,R2C2', 10.0, NOW() - INTERVAL 7 DAY, 'PayPal', 'Booked'),
+(5, 2, 1, 'L1C1', 5.0, NOW() - INTERVAL 6 DAY, 'Credit Card', 'Booked'),
+(6, 2, 2, 'R1C1', 5.0, NOW() - INTERVAL 5 DAY, 'Credit Card', 'Booked'),
+(7, 3, 3, 'L2C1,L2C2', 10.0, NOW() - INTERVAL 4 DAY, 'Debit Card', 'Booked'),
+(8, 4, 4, 'R2C1,R2C2', 10.0, NOW() - INTERVAL 3 DAY, 'PayPal', 'Booked'),
+(9, 2, 1, 'L1C1', 5.0, NOW() - INTERVAL 2 DAY, 'Credit Card', 'Booked'),
+(10, 2, 2, 'R1C1', 5.0, NOW() - INTERVAL 1 DAY, 'Credit Card', 'Booked');
 
 INSERT INTO feedback (feedback_id, rating, comment) VALUES
 (1, 5, 'Amazing experience!'),
@@ -191,14 +197,14 @@ SELECT * FROM bookings;
 SELECT * FROM feedback;
 
 -- DELETE TABLE
-DROP TABLE users;
+DROP EVENT remove_temp_bookings;
+DROP TABLE feedback;
+DROP TABLE bookings;
+DROP TABLE temp_seats;
+DROP TABLE showtimes;
 DROP TABLE movies;
 DROP TABLE theatres;
-DROP TABLE showtimes;
-DROP TABLE temp_seats;
-DROP TABLE bookings;
-DROP TABLE feedback;
-DROP EVENT remove_temp_bookings;
+DROP TABLE users;
 
 -- DELETE TABLE DATA
 TRUNCATE TABLE users;

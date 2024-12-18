@@ -1,0 +1,30 @@
+/* Admin panel styles */
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.card {
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1.5rem;
+    color: #007BFF;
+}
+
+.list-group-item {
+    font-size: 1rem;
+}
+
+canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+
+/* Additional admin panel styles go here */

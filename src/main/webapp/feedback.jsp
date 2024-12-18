@@ -46,31 +46,6 @@
     </form>
 </div>
 
-<!-- Admin View Section -->
-<c:if test="${sessionScope.role eq 'admin'}">
-    <div class="container py-5">
-        <h2 class="text-center mb-4">All Feedbacks</h2>
-        <table class="table table-striped table-bordered shadow-sm">
-            <thead class="table-dark">
-                <tr>
-                    <th>Feedback ID</th>
-                    <th>Rating</th>
-                    <th>Comment</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="feedback" items="${feedbacks}">
-                    <tr>
-                        <td>${feedback.feedbackId}</td>
-                        <td>${feedback.rating}</td>
-                        <td>${feedback.comment}</td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-    </div>
-</c:if>
-
 <jsp:include page="jsp/footer.jsp">
     <jsp:param name="js" value="feedback.js" />
 </jsp:include>
