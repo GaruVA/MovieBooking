@@ -38,10 +38,17 @@ h2 {
 .card {
     background-color: var(--primary);
     color: var(--surface) !important;
+    margin-bottom: 20px;
 }
 .card-body {
     background-color: var(--primary);
     color: var(--surface) !important;
+}
+
+center {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
 }
 
 

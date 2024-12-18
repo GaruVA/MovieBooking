@@ -43,6 +43,11 @@
                         <li class="nav-item">
                             <a class="nav-link ${param.activePage == 'feedback' ? 'active' : ''}" href="./feedback">Feedback</a>
                         </li>
+                        <c:if test="${sessionScope.role == 'admin'}">
+                            <li class="nav-item">
+                                <a class="nav-link ${param.activePage == 'admin' ? 'active' : ''}" href="./admin">Analytics</a>
+                            </li>
+                        </c:if>
                     </ul>
                     <div class="d-flex gap-3">
                         <a href="./booking-selection" class="btn btn-book-now">Book Now</a>
