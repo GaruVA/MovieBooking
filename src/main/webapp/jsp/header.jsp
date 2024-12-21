@@ -12,7 +12,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
         <!-- Font Awesome CDN for star icon -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
         <!-- Common styles for header and footer -->
         <link href="css/common.css" rel="stylesheet">
         <!-- Allow for page-specific CSS -->
@@ -20,10 +21,10 @@
         <link href="css/${param.css}" rel="stylesheet">
     </c:if>
 </head>
-<body>
+<body class="bg-gray-900 text-gray-100">
     <!-- Header content here -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-gray-800">
             <div class="container">
                 <a class="navbar-brand" href="./"><img src="./images/ABC.png" alt="ABC Cinema" height="50px"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

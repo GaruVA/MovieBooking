@@ -1,3 +1,121 @@
 .card-table {
     overflow-x: scroll;
 }
+
+.card {
+    background-color: #1f2937;
+    color: #f3f4f6;
+    border: none;
+}
+
+.card-body {
+    background-color: #1f2937;
+    color: #f3f4f6;
+}
+
+.form-label {
+    color: #f3f4f6;
+}
+
+.form-control {
+    background-color: #374151;
+    color: #f3f4f6;
+    border: 1px solid #4b5563;
+}
+
+.form-control:focus {
+    border-color: #6b7280;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(107, 114, 128, 0.5);
+}
+
+.btn-outline-primary {
+    color: #e0e0e0;
+    border-color: #4b5563;
+    background-color: #09090b;
+}
+
+.btn-outline-primary:hover {
+    background-color: #374151;
+    color: #ffffff;
+}
+
+.btn-outline-danger {
+    color: #e3342f;
+    border-color: #e3342f;
+    background-color: transparent;
+}
+
+.btn-outline-danger:hover {
+    background-color: #e3342f;
+    color: #ffffff;
+}
+
+.btn-outline-secondary {
+    color: #e0e0e0;
+    border-color: #4b5563;
+    background-color: #09090b;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #374151;
+    color: #ffffff;
+}
+
+.alert-success {
+    background-color: #28a745;
+    color: #ffffff;
+    border-color: #218838;
+}
+
+.alert-danger {
+    background-color: #dc3545;
+    color: #ffffff;
+    border-color: #bd2130;
+}
+
+.table {
+    margin-bottom: 0;
+    background-color: #1f2937;
+    color: #f3f4f6;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, .03);
+}
+
+.table th {
+    border-top: none;
+    font-weight: 600;
+}
+
+.table-dark {
+    background-color: #1f2937;
+    color: #f3f4f6;
+}
+
+.table-dark th,
+.table-dark td {
+    border-top: 1px solid #374151;
+}
+
+.btn-primary {
+    background-color: #4B5563;
+    border: none;
+    color: #e0e0e0;
+    font-weight: bold;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.btn-primary:hover {
+    background-color: #6b7280;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.form-control:disabled {
+    background-color: #1f2937;
+    opacity: 1;
+}

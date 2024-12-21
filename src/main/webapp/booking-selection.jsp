@@ -10,7 +10,7 @@
 
 <div class="container py-5">
     <h2 class="title mb-4">Book Movie Tickets</h2>
-    <div class="card">
+    <div class="card bg-gray-800 border-gray-700 text-gray-100">
         <div class="card-body">
 
             <c:if test="${not empty error}">
@@ -22,7 +22,7 @@
             <form id="bookingForm" action="booking-selection" method="get" class="row g-3 mb-4">
                 <div class="col-md-4">
                     <label for="movieSelect" class="form-label">Select Movie</label>
-                    <select class="form-select" id="movieSelect" name="movie_id" onchange="refreshShowtimes()">
+                    <select class="form-select bg-gray-700 text-gray-100 border-gray-600" id="movieSelect" name="movie_id" onchange="refreshShowtimes()">
                         <option value="">All Movies</option>
                         <c:forEach var="movie" items="${movies}">
                             <option value="${movie.id}" ${param.movie_id == movie.id ? 'selected' : ''}>
@@ -34,7 +34,7 @@
 
                 <div class="col-md-4">
                     <label for="theatreSelect" class="form-label">Select Theatre</label>
-                    <select class="form-select" id="theatreSelect" name="theatre_id" onchange="refreshShowtimes()">
+                    <select class="form-select bg-gray-700 text-gray-100 border-gray-600" id="theatreSelect" name="theatre_id" onchange="refreshShowtimes()">
                         <option value="">All Theatres</option>
                         <c:forEach var="theatre" items="${theatres}">
                             <option value="${theatre.id}" ${param.theatre_id == theatre.id ? 'selected' : ''}>
@@ -46,7 +46,7 @@
 
                 <div class="col-md-4">
                     <label for="dateSelect" class="form-label">Select Date</label>
-                    <input type="date" class="form-control" id="dateSelect" name="show_date" 
+                    <input type="date" class="form-control bg-gray-700 text-gray-100 border-gray-600" id="dateSelect" name="show_date" 
                            value="${empty param.show_date ? todayDate : param.show_date}" 
                            min="${todayDate}" required onchange="refreshShowtimes()">
                 </div>
@@ -61,13 +61,13 @@
 
                 <c:forEach var="movieEntry" items="${movieShowtimes}">
                     <div class="movie-section mb-3">
-                        <div class="movie-header p-3 bg-light rounded d-flex justify-content-between align-items-center" 
+                        <div class="movie-header p-3 bg-gray-700 rounded d-flex justify-content-between align-items-center" 
                              onclick="toggleContent('movie-${movieEntry.key}')">
                             <h5 class="mb-0">${movieEntry.value.movie.title}</h5>
                             <i class="bi bi-chevron-down"></i>
                         </div>
 
-                        <div class="movie-content p-3" id="movie-${movieEntry.key}">
+                        <div class="movie-content p-3 bg-gray-800 border-gray-700" id="movie-${movieEntry.key}">
                             <c:forEach var="theatreEntry" items="${movieEntry.value.theatres}">
                                 <div class="theatre-name">${theatreEntry.value.theatre.name}</div>
                                 <div class="showtime-grid">

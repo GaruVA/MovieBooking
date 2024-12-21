@@ -13,11 +13,11 @@
     <c:if test="${error != null && not empty error}">
         <div class="alert alert-danger mt-3">${error}</div>
     </c:if>
-    <div class="theater">
+    <div class="theater bg-gray-800 text-gray-100">
         <h1>Select Your Seats</h1>
         <div class="ticket-info">
             <label for="adults">Adults:</label>
-            <select id="adults" name="adults" onchange="handleDropdownChange()">
+            <select id="adults" name="adults" class="bg-gray-700 text-gray-100 border-gray-600" onchange="handleDropdownChange()">
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -27,7 +27,7 @@
                 <option value="6">6</option>
             </select>
             <label for="children">Children:</label>
-            <select id="children" name="children" onchange="handleDropdownChange()">
+            <select id="children" name="children" class="bg-gray-700 text-gray-100 border-gray-600" onchange="handleDropdownChange()">
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -38,7 +38,7 @@
             </select>
             <p>Ticket Price: $5 (Adult), $3 (Child)</p>
         </div>
-        <div class="screen">Screen</div>
+        <div class="screen bg-gray-700">Screen</div>
         <div class="seats">
             <%
                 int rows = 5;
@@ -91,12 +91,12 @@
         </div>
         <p id="seatCount" class="seat-count">0 ticket(s) selected. Please select attendees.</p>
         <div class="buttons">
-            <button onclick="history.back()">Back</button>
+            <button class="btn btn-outline-secondary" onclick="history.back()">Back</button>
             <form id="seatForm" action="seat-selection" method="POST">
                 <input type="hidden" id="selectedSeatsInput" name="selectedSeats" />
                 <input type="hidden" id="totalPriceInput" name="totalPrice" />
                 <input type="hidden" id="showtimeIdInput" name="showtime_id" value="<%= request.getParameter("showtime_id") %>" />
-                <button type="submit" id="continueButton" onclick="submitSeats()" disabled>Continue</button>
+                <button type="submit" id="continueButton" class="btn btn-primary" onclick="submitSeats()" disabled>Continue</button>
             </form>
         </div>
     </div>

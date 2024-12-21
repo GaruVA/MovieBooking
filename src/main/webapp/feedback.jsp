@@ -10,7 +10,7 @@
 <!-- Feedback Form Section -->
 <div class="container py-5">
     <h2 class="text-center mb-4">We Value Your Feedback!</h2>
-    <form action="./feedback" method="POST" class="shadow p-4 rounded bg-light">
+    <form action="./feedback" method="POST" class="shadow p-4 rounded bg-gray-800 text-gray-100">
         <c:if test="${not empty error}">
             <div class="alert alert-danger">${error}</div>
         </c:if>
@@ -39,7 +39,7 @@
 
         <div class="mb-3">
             <label for="comment" class="form-label">Additional Comments</label>
-            <textarea class="form-control" id="comment" name="comment" rows="3" placeholder="Share your thoughts..."></textarea>
+            <textarea class="form-control bg-gray-700 text-gray-100 border-gray-600" id="comment" name="comment" rows="3" placeholder="Share your thoughts..."></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary w-100">Submit Feedback</button>

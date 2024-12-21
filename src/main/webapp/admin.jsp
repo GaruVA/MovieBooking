@@ -10,7 +10,7 @@
     <h2 class="title mb-3">ANALYTICS</h2>
     <div class="row">
         <div class="col-md-4">
-            <div class="card shadow-sm">
+            <div class="card shadow-sm bg-gray-800 text-gray-100">
                 <div class="card-body">
                     <h5 class="card-title">Number of Movies</h5>
                     <p class="card-text">${movieCount}</p>
@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card shadow-sm">
+            <div class="card shadow-sm bg-gray-800 text-gray-100">
                 <div class="card-body">
                     <h5 class="card-title">Number of Theatres</h5>
                     <p class="card-text">${theatreCount}</p>
@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card shadow-sm">
+            <div class="card shadow-sm bg-gray-800 text-gray-100">
                 <div class="card-body">
                     <h5 class="card-title">Total Sales</h5>
                     <p class="card-text">$${totalSales}</p>
@@ -36,7 +36,7 @@
     </div>
     <div class="row mt-4">
         <div class="col-md-12">
-            <div class="card shadow-sm">
+            <div class="card shadow-sm bg-gray-800 text-gray-100">
                 <div class="card-body">
                     <h5 class="card-title">Sales Data</h5>
                     <canvas id="salesChart"></canvas>
@@ -46,21 +46,21 @@
     </div>
     <div class="row mt-4">
         <div class="col-md-6">
-            <div class="card shadow-sm">
+            <div class="card shadow-sm bg-gray-800 text-gray-100">
                 <div class="card-body">
                     <h5 class="card-title">Customer Feedbacks</h5>
                     <ul class="list-group">
                         <c:forEach var="feedback" items="${feedbacks}">
-                            <li class="list-group-item">${feedback}</li>
+                            <li class="list-group-item bg-gray-700 text-gray-100">${feedback}</li>
                         </c:forEach>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
-            <div class="card shadow-sm">
+            <div class="card shadow-sm bg-gray-800 text-gray-100">
                 <div class="card-body">
-                    <table class="table table-striped table-bordered shadow-sm">
+                    <table class="table table-striped table-dark">
                         <thead class="table-dark">
                             <tr>
                                 <th>Metric</th>

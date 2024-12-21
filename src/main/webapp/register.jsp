@@ -4,10 +4,10 @@
     <jsp:param name="activePage" value="register" />
 </jsp:include>
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
+<div class="container">
+    <div class="row justify-content-center bg-gray-800 p-4 rounded shadow">
         <div class="col-md-6">
-            <h2 class="text-center mb-4">Create an Account</h2>
+            <h2 class="text-center mb-4 text-gray-100">Create an Account</h2>
 
             <!-- Error Message Display -->
             <%
@@ -31,19 +31,19 @@
             <form action="register" method="post">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" id="username" name="username" class="form-control" placeholder="Choose a username" required>
+                    <input type="text" id="username" name="username" class="form-control bg-gray-700 text-gray-100 border-gray-600" placeholder="Choose a username" required>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email address" required>
+                    <input type="email" id="email" name="email" class="form-control bg-gray-700 text-gray-100 border-gray-600" placeholder="Enter your email address" required>
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="form-label">Phone Number</label>
-                    <input type="text" id="phone" name="phone" class="form-control" placeholder="Enter your phone number">
+                    <input type="text" id="phone" name="phone" class="form-control bg-gray-700 text-gray-100 border-gray-600" placeholder="Enter your phone number">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Create a password" required>
+                    <input type="password" id="password" name="password" class="form-control bg-gray-700 text-gray-100 border-gray-600" placeholder="Create a password" required>
                 </div>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-primary">Register</button>
@@ -51,8 +51,8 @@
             </form>
 
             <!-- Login Link -->
-            <p class="mt-3 text-center">
-                Already have an account? <a href="login">Login here</a>.
+            <p class="mt-3 text-center text-gray-100">
+                Already have an account? <a href="login" class="text-primary">Login here</a>.
             </p>
         </div>
     </div>

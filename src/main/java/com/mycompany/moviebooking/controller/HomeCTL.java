@@ -44,6 +44,7 @@ public class HomeCTL extends HttpServlet {
                     movie.setDescription(rs.getString("description"));
                     movie.setImdb_rating(rs.getFloat("imdb_rating"));
                     movie.setImage_path(rs.getString("image_path"));
+                    movie.setRelease_date(rs.getDate("release_date"));
                     nowShowMovies.add(movie);
                 }
             }
@@ -58,6 +59,7 @@ public class HomeCTL extends HttpServlet {
                     movie.setDescription(rs.getString("description"));
                     movie.setImdb_rating(rs.getFloat("imdb_rating"));
                     movie.setImage_path(rs.getString("image_path"));
+                    movie.setRelease_date(rs.getDate("release_date"));
                     comingSoonMovies.add(movie);
                 }
             }

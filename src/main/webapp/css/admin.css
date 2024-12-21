@@ -6,6 +6,9 @@ h1 {
 
 .card {
     margin-bottom: 1rem;
+    background-color: #1f2937;
+    color: #f3f4f6;
+    border: none;
 }
 
 .card-title {
@@ -15,16 +18,72 @@ h1 {
 
 .card-text {
     font-size: 1.5rem;
-    color: #007BFF;
+    color: #10B981;
 }
 
 .list-group-item {
     font-size: 1rem;
+    background-color: #374151;
+    color: #f3f4f6;
+    border: none;
 }
 
 canvas {
     width: 100% !important;
     height: auto !important;
+}
+
+.table {
+    margin-bottom: 0;
+    background-color: #1f2937;
+    color: #f3f4f6;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, .03);
+}
+
+.table th {
+    border-top: none;
+    font-weight: 600;
+}
+
+.table-dark {
+    background-color: #1f2937;
+    color: #f3f4f6;
+}
+
+.table-dark th,
+.table-dark td {
+    border-top: 1px solid #374151;
+}
+
+.btn-primary {
+    background-color: #374151;
+    border-color: #27272a;
+    color: #e0e0e0;
+    font-weight: bold;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.btn-primary:hover {
+    background-color: #4b5563;
+    border-color: #27272a;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.btn-outline-secondary {
+    color: #e0e0e0;
+    border-color: #4b5563;
+    background-color: #09090b;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #374151;
+    color: #ffffff;
 }
 
 /* Additional admin panel styles go here */
