@@ -1,6 +1,7 @@
 package com.mycompany.moviebooking.controller;
 
 import com.mycompany.moviebooking.model.User;
+import com.mycompany.moviebooking.utility.EmailSenderUtility;
 import com.mycompany.moviebooking.utility.JDBCDataSource;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -70,15 +71,27 @@ public class RegisterCTL extends HttpServlet {
 
         // Redirect based on the registration result
         if (isRegistered) {
+            // Send welcome email
+            sendWelcomeEmail(user);
             response.sendRedirect("login?success=true");
         } else {
             response.sendRedirect("register?error=true");
         }
     }
 
+    private void sendWelcomeEmail(User user) {
+        String subject = "Welcome to ABC Cinema!";
+        String htmlContent = "<h1>Welcome to ABC Cinema, " + user.getUsername() + "!</h1>"
+                + "<p>Thank you for registering with us. We are excited to have you as a part of our community.</p>"
+                + "<p>At ABC Cinema, you can book tickets for the latest movies, check showtimes, and much more.</p>"
+                + "<p>We hope you have a great experience with us!</p>"
+                + "<p>Best Regards,<br>ABC Cinema Team</p>";
+
+        EmailSenderUtility.sendEmailWithHtml(user.getEmail(), subject, htmlContent);
+    }
+
     @Override
     public String getServletInfo() {
         return "Servlet for user registration";
-    }// </editor-fold>
-
+    }
 }

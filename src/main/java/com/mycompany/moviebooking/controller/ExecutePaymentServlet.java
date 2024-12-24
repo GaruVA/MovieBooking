@@ -1,6 +1,7 @@
 package com.mycompany.moviebooking.controller;
 
 import com.mycompany.moviebooking.model.Booking;
+import com.mycompany.moviebooking.utility.EmailSenderUtility;
 import com.mycompany.moviebooking.utility.JDBCDataSource;
 import com.mycompany.moviebooking.utility.PayPalConfig;
 import com.paypal.api.payments.Payment;
@@ -71,7 +72,7 @@ public class ExecutePaymentServlet extends HttpServlet {
 
             // Send email
             String emailContent = createEmailContent(booking);
-            EmailSenderCTL.sendEmailWithHtml(
+            EmailSenderUtility.sendEmailWithHtml(
                 booking.getUserEmail(),
                 "Your Booking Confirmation - ABC Cinema",
                 emailContent
