@@ -46,7 +46,7 @@
                         </li>
                         <c:if test="${sessionScope.role == 'admin'}">
                             <li class="nav-item">
-                                <a class="nav-link ${param.activePage == 'admin' ? 'active' : ''}" href="./admin">Analytics</a>
+                                <a class="nav-link ${param.activePage == 'admin' ? 'active' : ''}" href="./admin">Admin</a>
                             </li>
                         </c:if>
                     </ul>

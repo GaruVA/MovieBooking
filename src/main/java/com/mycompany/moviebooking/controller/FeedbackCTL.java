@@ -7,10 +7,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "feedback", urlPatterns = {"/feedback"})
 public class FeedbackCTL extends HttpServlet {
@@ -18,6 +22,25 @@ public class FeedbackCTL extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        if (session != null && "admin".equals(session.getAttribute("role"))) {
+            try (Connection conn = JDBCDataSource.getConnection()) {
+                String feedbackQuery = "SELECT rating, comment FROM feedback ORDER BY feedback_id DESC";
+                try (PreparedStatement stmt = conn.prepareStatement(feedbackQuery)) {
+                    ResultSet rs = stmt.executeQuery();
+                    List<Feedback> feedbacks = new ArrayList<>();
+                    while (rs.next()) {
+                        Feedback feedback = new Feedback();
+                        feedback.setRating(rs.getInt("rating"));
+                        feedback.setComment(rs.getString("comment"));
+                        feedbacks.add(feedback);
+                    }
+                    request.setAttribute("feedbacks", feedbacks);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         request.getRequestDispatcher("/feedback.jsp").forward(request, response);
     }
 

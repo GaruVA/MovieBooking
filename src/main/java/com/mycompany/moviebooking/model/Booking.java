@@ -2,6 +2,7 @@ package com.mycompany.moviebooking.model;
 
 public class Booking {
     private int bookingId;
+    private int userId;
     private String movieTitle;
     private String theatreName;
     private String showtime;
@@ -19,6 +20,14 @@ public class Booking {
 
     public void setBookingId(int bookingId) {
         this.bookingId = bookingId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getMovieTitle() {

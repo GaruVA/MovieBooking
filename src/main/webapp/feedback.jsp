@@ -44,6 +44,30 @@
 
         <button type="submit" class="btn btn-primary w-100">Submit Feedback</button>
     </form>
+
+    <c:if test="${sessionScope.role eq 'admin'}">
+        <div class="mt-5">
+            <h2 class="text-center mb-4">Customer Feedbacks</h2>
+            <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+                <table class="table table-striped table-dark">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Rating</th>
+                            <th>Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="feedback" items="${feedbacks}" varStatus="status">
+                            <tr>
+                                <td>${feedback.rating}</td>
+                                <td>${feedback.comment}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </c:if>
 </div>
 
 <jsp:include page="jsp/footer.jsp">

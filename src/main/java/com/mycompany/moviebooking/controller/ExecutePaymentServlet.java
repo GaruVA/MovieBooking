@@ -23,6 +23,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import com.mycompany.moviebooking.utility.Email;
 
 @WebServlet(name = "ExecutePaymentServlet", urlPatterns = {"/execute"})
 public class ExecutePaymentServlet extends HttpServlet {
@@ -62,7 +63,7 @@ public class ExecutePaymentServlet extends HttpServlet {
 
             // Extract payment method and status from executed payment
             String paymentMethod = executedPayment.getPayer().getPaymentMethod(); // e.g., "paypal"
-            String paymentStatus = executedPayment.getState(); // e.g., "approved"
+            String paymentStatus = "Booked";
 
             // Save booking details to the database
             saveBooking(userId, seatNumbers, amount, showtimeId, paymentMethod, paymentStatus);
@@ -72,11 +73,8 @@ public class ExecutePaymentServlet extends HttpServlet {
 
             // Send email
             String emailContent = createEmailContent(booking);
-            EmailSenderUtility.sendEmailWithHtml(
-                booking.getUserEmail(),
-                "Your Booking Confirmation - ABC Cinema",
-                emailContent
-            );
+            Email email = new Email(booking.getUserEmail(), "Your Booking Confirmation - ABC Cinema", emailContent);
+            email.send();
 
             // Pass attributes to success.jsp
             request.setAttribute("booking", booking);

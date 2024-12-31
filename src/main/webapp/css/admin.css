@@ -86,4 +86,47 @@ canvas {
     color: #ffffff;
 }
 
+.table-users {
+    background-color: #1f2937;
+    color: #f3f4f6;
+}
+
+.table-users th,
+.table-users td {
+    border-top: 1px solid #374151;
+}
+
+.table-users tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, .03);
+}
+
+.table-users th {
+    border-top: none;
+    font-weight: 600;
+}
+
+.btn-action {
+    margin-right: 0.5rem;
+    padding: 5px 10px;
+    font-size: 0.875rem;
+}
+
+.btn-action.make-admin {
+    background-color: #10B981;
+    border-color: #059669;
+    color: #ffffff;
+}
+
+.btn-action.make-user {
+    background-color: #3B82F6;
+    border-color: #2563EB;
+    color: #ffffff;
+}
+
+.btn-action.delete-user {
+    background-color: #EF4444;
+    border-color: #DC2626;
+    color: #ffffff;
+}
+
 /* Additional admin panel styles go here */

@@ -1,6 +1,8 @@
 package com.mycompany.moviebooking.controller;
 
 import com.google.gson.Gson;
+import com.mycompany.moviebooking.model.Booking;
+import com.mycompany.moviebooking.model.User;
 import com.mycompany.moviebooking.utility.JDBCDataSource;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,6 +15,9 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -54,17 +59,24 @@ public class AdminCTL extends HttpServlet {
             String feedbackQuery = "SELECT rating, comment FROM feedback";
             try (PreparedStatement stmt = conn.prepareStatement(feedbackQuery)) {
                 ResultSet rs = stmt.executeQuery();
-                List<String> feedbacks = new ArrayList<>();
+                List<FeedbackData> feedbacks = new ArrayList<>();
                 int totalFeedbacks = 0;
                 int totalRating = 0;
                 while (rs.next()) {
-                    feedbacks.add(rs.getInt("rating") + " - " + rs.getString("comment"));
+                    FeedbackData feedback = new FeedbackData();
+                    feedback.setRating(rs.getInt("rating"));
+                    feedback.setComment(rs.getString("comment"));
+                    feedbacks.add(feedback);
                     totalFeedbacks++;
                     totalRating += rs.getInt("rating");
                 }
                 request.setAttribute("feedbacks", feedbacks);
                 request.setAttribute("totalFeedbacks", totalFeedbacks);
                 request.setAttribute("averageRating", totalFeedbacks > 0 ? (double) totalRating / totalFeedbacks : 0);
+                Gson gson = new Gson();
+                String feedbackDataJson = gson.toJson(feedbacks);
+                request.setAttribute("feedbackDataJson", feedbackDataJson);
+                LOGGER.log(Level.INFO, "Feedback Data JSON: {0}", feedbackDataJson);
             }
 
             // Fetch sales data
@@ -87,39 +99,47 @@ public class AdminCTL extends HttpServlet {
                 LOGGER.log(Level.INFO, "Sales Data JSON: {0}", salesDataJson);
             }
 
-            // Fetch most selected theatre
-            String mostSelectedTheatreQuery = "SELECT t.name, COUNT(b.booking_id) AS count FROM bookings b " +
-                                              "JOIN showtimes s ON b.showtime_id = s.showtime_id " +
-                                              "JOIN theatres t ON s.theatre_id = t.theatre_id " +
-                                              "GROUP BY t.name ORDER BY count DESC LIMIT 1";
-            try (PreparedStatement stmt = conn.prepareStatement(mostSelectedTheatreQuery)) {
+            // Fetch bookings
+            String bookingsQuery = "SELECT b.booking_id, b.user_id, m.title AS movie_title, t.name AS theatre_name, " +
+                                   "CONCAT(s.show_date, ' ', s.show_time) AS showtime, b.seat_numbers, b.status " +
+                                   "FROM bookings b " +
+                                   "JOIN showtimes s ON b.showtime_id = s.showtime_id " +
+                                   "JOIN movies m ON s.movie_id = m.movie_id " +
+                                   "JOIN theatres t ON s.theatre_id = t.theatre_id " +
+                                   "ORDER BY b.payment_date DESC";
+            try (PreparedStatement stmt = conn.prepareStatement(bookingsQuery)) {
                 ResultSet rs = stmt.executeQuery();
-                if (rs.next()) {
-                    request.setAttribute("mostSelectedTheatre", rs.getString("name"));
+                List<Booking> bookings = new ArrayList<>();
+                while (rs.next()) {
+                    Booking booking = new Booking();
+                    booking.setBookingId(rs.getInt("booking_id"));
+                    booking.setUserId(rs.getInt("user_id"));
+                    booking.setMovieTitle(rs.getString("movie_title"));
+                    booking.setTheatreName(rs.getString("theatre_name"));
+                    booking.setShowtime(rs.getString("showtime"));
+                    booking.setSeatNumbers(rs.getString("seat_numbers"));
+                    booking.setStatus(rs.getString("status"));
+                    bookings.add(booking);
                 }
+                request.setAttribute("bookings", bookings);
+                request.setAttribute("now", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             }
 
-            // Fetch most selected movie
-            String mostSelectedMovieQuery = "SELECT m.title, COUNT(b.booking_id) AS count FROM bookings b " +
-                                            "JOIN showtimes s ON b.showtime_id = s.showtime_id " +
-                                            "JOIN movies m ON s.movie_id = m.movie_id " +
-                                            "GROUP BY m.title ORDER BY count DESC LIMIT 1";
-            try (PreparedStatement stmt = conn.prepareStatement(mostSelectedMovieQuery)) {
+            // Fetch users
+            String usersQuery = "SELECT user_id, username, email, role FROM users";
+            try (PreparedStatement stmt = conn.prepareStatement(usersQuery)) {
                 ResultSet rs = stmt.executeQuery();
-                if (rs.next()) {
-                    request.setAttribute("mostSelectedMovie", rs.getString("title"));
+                List<User> users = new ArrayList<>();
+                while (rs.next()) {
+                    User user = new User();
+                    user.setUserId(rs.getInt("user_id"));
+                    user.setUsername(rs.getString("username"));
+                    user.setEmail(rs.getString("email"));
+                    user.setRole(rs.getString("role"));
+                    users.add(user);
                 }
-            }
-
-            // Fetch preferred time slots
-            String preferredTimeSlotsQuery = "SELECT s.show_time, COUNT(b.booking_id) AS count FROM bookings b " +
-                                             "JOIN showtimes s ON b.showtime_id = s.showtime_id " +
-                                             "GROUP BY s.show_time ORDER BY count DESC LIMIT 1";
-            try (PreparedStatement stmt = conn.prepareStatement(preferredTimeSlotsQuery)) {
-                ResultSet rs = stmt.executeQuery();
-                if (rs.next()) {
-                    request.setAttribute("preferredTimeSlot", rs.getString("show_time"));
-                }
+                request.setAttribute("users", users);
+                request.setAttribute("currentUserId", session.getAttribute("user_id"));
             }
 
         } catch (Exception e) {
@@ -132,7 +152,79 @@ public class AdminCTL extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Handle admin panel form submissions or actions here
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("user_id") == null || !"admin".equals(session.getAttribute("role"))) {
+            response.sendRedirect("./");
+            return;
+        }
+
+        String formType = request.getParameter("formType");
+        String bookingId = request.getParameter("bookingId");
+        String userId = request.getParameter("userId");
+
+        try (Connection conn = JDBCDataSource.getConnection()) {
+            // Handle booking cancellation
+            if ("cancelBooking".equals(formType)) {
+                cancelBooking(conn, Integer.parseInt(bookingId), request);
+            } else if ("makeAdmin".equals(formType)) {
+                updateUserRole(conn, Integer.parseInt(userId), "admin", request);
+            } else if ("makeUser".equals(formType)) {
+                updateUserRole(conn, Integer.parseInt(userId), "user", request);
+            } else if ("deleteUser".equals(formType)) {
+                deleteUser(conn, Integer.parseInt(userId), request);
+            }
+        } catch (SQLException e) {
+            request.setAttribute("error", "Database error occurred");
+        } catch (Exception ex) {
+            request.setAttribute("error", "Something went wrong, please try again later.");
+            LOGGER.log(Level.SEVERE, null, ex);
+        }
+        doGet(request, response);
+    }
+
+    private void cancelBooking(Connection conn, int bookingId, HttpServletRequest request) throws SQLException {
+        String checkShowtimeQuery = "SELECT CONCAT(s.show_date, ' ', s.show_time) AS showtime FROM bookings b " +
+                                    "JOIN showtimes s ON b.showtime_id = s.showtime_id " +
+                                    "WHERE b.booking_id = ?";
+        try (PreparedStatement checkStmt = conn.prepareStatement(checkShowtimeQuery)) {
+            checkStmt.setInt(1, bookingId);
+            ResultSet rs = checkStmt.executeQuery();
+            if (rs.next()) {
+                String showtimeStr = rs.getString("showtime");
+                LocalDateTime showtime = LocalDateTime.parse(showtimeStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                if (showtime.isAfter(LocalDateTime.now())) {
+                    String cancelQuery = "UPDATE bookings SET status = 'Cancelled' WHERE booking_id = ?";
+                    try (PreparedStatement cancelStmt = conn.prepareStatement(cancelQuery)) {
+                        cancelStmt.setInt(1, bookingId);
+                        cancelStmt.executeUpdate();
+                        request.setAttribute("success", "Booking cancelled successfully");
+                    }
+                } else {
+                    request.setAttribute("error", "Cannot cancel booking as the showtime has already passed");
+                }
+            } else {
+                request.setAttribute("error", "Booking not found or you do not have permission to cancel this booking");
+            }
+        }
+    }
+
+    private void updateUserRole(Connection conn, int userId, String role, HttpServletRequest request) throws SQLException {
+        String updateRoleQuery = "UPDATE users SET role = ? WHERE user_id = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(updateRoleQuery)) {
+            stmt.setString(1, role);
+            stmt.setInt(2, userId);
+            stmt.executeUpdate();
+            request.setAttribute("success", "User role updated successfully");
+        }
+    }
+
+    private void deleteUser(Connection conn, int userId, HttpServletRequest request) throws SQLException {
+        String deleteUserQuery = "DELETE FROM users WHERE user_id = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(deleteUserQuery)) {
+            stmt.setInt(1, userId);
+            stmt.executeUpdate();
+            request.setAttribute("success", "User deleted successfully");
+        }
     }
 
     private class SalesData {
@@ -153,6 +245,27 @@ public class AdminCTL extends HttpServlet {
 
         public void setTotalSales(double totalSales) {
             this.totalSales = totalSales;
+        }
+    }
+
+    private class FeedbackData {
+        private int rating;
+        private String comment;
+
+        public int getRating() {
+            return rating;
+        }
+
+        public void setRating(int rating) {
+            this.rating = rating;
+        }
+
+        public String getComment() {
+            return comment;
+        }
+
+        public void setComment(String comment) {
+            this.comment = comment;
         }
     }
 }

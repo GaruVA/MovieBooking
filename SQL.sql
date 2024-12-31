@@ -166,14 +166,14 @@ INSERT INTO temp_seats (id, seat_number, showtime_id) VALUES
 INSERT INTO bookings (booking_id, user_id, showtime_id, seat_numbers, amount, payment_date, payment_method, status) VALUES
 (1, 2, 1, 'L1C1', 5.0, NOW() - INTERVAL 10 DAY, 'Credit Card', 'Booked'),
 (2, 2, 2, 'R1C1', 5.0, NOW() - INTERVAL 9 DAY, 'Credit Card', 'Booked'),
-(3, 3, 3, 'L2C1,L2C2', 10.0, NOW() - INTERVAL 8 DAY, 'Debit Card', 'Booked'),
-(4, 4, 4, 'R2C1,R2C2', 10.0, NOW() - INTERVAL 7 DAY, 'PayPal', 'Booked'),
-(5, 2, 1, 'L1C1', 5.0, NOW() - INTERVAL 6 DAY, 'Credit Card', 'Booked'),
-(6, 2, 2, 'R1C1', 5.0, NOW() - INTERVAL 5 DAY, 'Credit Card', 'Booked'),
-(7, 3, 3, 'L2C1,L2C2', 10.0, NOW() - INTERVAL 4 DAY, 'Debit Card', 'Booked'),
-(8, 4, 4, 'R2C1,R2C2', 10.0, NOW() - INTERVAL 3 DAY, 'PayPal', 'Booked'),
-(9, 2, 1, 'L1C1', 5.0, NOW() - INTERVAL 2 DAY, 'Credit Card', 'Booked'),
-(10, 2, 2, 'R1C1', 5.0, NOW() - INTERVAL 1 DAY, 'Credit Card', 'Booked');
+(3, 3, 5, 'L2C1,L2C2', 10.0, NOW() - INTERVAL 8 DAY, 'Debit Card', 'Booked'),
+(4, 4, 35, 'R2C1,R2C2', 10.0, NOW() - INTERVAL 7 DAY, 'PayPal', 'Booked'),
+(5, 2, 30, 'L1C1', 5.0, NOW() - INTERVAL 6 DAY, 'Credit Card', 'Booked'),
+(6, 2, 15, 'R1C1', 5.0, NOW() - INTERVAL 5 DAY, 'Credit Card', 'Cancelled'),
+(7, 3, 10, 'L2C1,L2C2', 10.0, NOW() - INTERVAL 4 DAY, 'Debit Card', 'Booked'),
+(8, 4, 40, 'R2C1,R2C2', 10.0, NOW() - INTERVAL 3 DAY, 'PayPal', 'Booked'),
+(9, 2, 20, 'L1C1', 5.0, NOW() - INTERVAL 2 DAY, 'Credit Card', 'Cancelled'),
+(10, 2, 25, 'R1C1', 5.0, NOW() - INTERVAL 1 DAY, 'Credit Card', 'Booked');
 
 INSERT INTO feedback (feedback_id, rating, comment) VALUES
 (1, 5, 'Amazing experience!'),
@@ -182,10 +182,10 @@ INSERT INTO feedback (feedback_id, rating, comment) VALUES
 (4, 2, 'Not satisfied with the cleanliness.'),
 (5, 1, 'Very poor service and rude staff.'),
 (6, 5, 'Loved the movie and the atmosphere!'),
-(7, 4, 'Good experience overall, but the snacks were overpriced.'),
+(7, 5, 'Good experience overall'),
 (8, 3, 'It was okay, nothing extraordinary.'),
 (9, 2, 'The sound system was too loud.'),
-(10, 1, 'Terrible experience, will not come back.');
+(10, 5, 'It was great');
 
 -- DISPLAY TABLE
 SELECT * FROM users;

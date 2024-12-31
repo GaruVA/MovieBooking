@@ -3,6 +3,7 @@ package com.mycompany.moviebooking.controller;
 import com.mycompany.moviebooking.model.User;
 import com.mycompany.moviebooking.utility.EmailSenderUtility;
 import com.mycompany.moviebooking.utility.JDBCDataSource;
+import com.mycompany.moviebooking.utility.Email;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -87,7 +88,8 @@ public class RegisterCTL extends HttpServlet {
                 + "<p>We hope you have a great experience with us!</p>"
                 + "<p>Best Regards,<br>ABC Cinema Team</p>";
 
-        EmailSenderUtility.sendEmailWithHtml(user.getEmail(), subject, htmlContent);
+        Email email = new Email(user.getEmail(), subject, htmlContent);
+        email.send();
     }
 
     @Override

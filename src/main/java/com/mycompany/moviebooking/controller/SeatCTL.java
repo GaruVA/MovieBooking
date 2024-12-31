@@ -60,7 +60,7 @@ public class SeatCTL extends HttpServlet {
                     if (seat.getSeatNumber().equals(seatNumber) && (seat.getSeatStatus().equals("Booked") || seat.getSeatStatus().equals("Temp Booked"))) {
                         req.setAttribute("error", "One or more selected seats are already booked or temporarily booked.");
                         req.setAttribute("showtime_id", showtimeId);
-                        req.getRequestDispatcher("/seatselections.jsp").forward(req, resp);
+                        doGet(req, resp);
                         return;
                     }
                 }
