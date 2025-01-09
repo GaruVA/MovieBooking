@@ -9,12 +9,12 @@
     <title>Payment Success</title>
 </head>
 <body>
-    <div class="container py-5">
+    <div class="container py-5 text-gray-100">
         <h1>Payment Successful!</h1>
         <p>Thank you for your booking. Your payment has been processed successfully.</p>
         
         <!-- Display booking details -->
-        <div class="booking-summary" id="bookingSummary">            
+        <div class="booking-summary bg-gray-800 text-gray-100" id="bookingSummary">            
             <div class="summary-body">
                 <p>Your booking has been confirmed and an e-ticket has been sent to your email!</p>
                 
@@ -62,7 +62,7 @@
 
         <!-- Back to home button -->
         <p>
-            <a href="http://localhost:8080/moviebooking/" class="button">Back to Home</a>
+            <a href="http://localhost:8080/moviebooking/" class="btn btn-primary">Back to Home</a>
         </p>
     </div>
 

@@ -1,4 +1,4 @@
-package com.mycompany.moviebooking.controller;
+package com.mycompany.moviebooking.utility;
 
 import java.util.Properties;
 import jakarta.mail.Authenticator;
@@ -9,7 +9,7 @@ import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 
-public class EmailSenderCTL {
+public class EmailSenderUtility {
     public static void sendEmailWithHtml(String toEmail, String subject, String htmlContent) {
         String fromEmail = "yasinducsilva@gmail.com"; // Replace with your email
         String password = "vroy wkvg xlwt yhao"; // Replace with your email password
@@ -42,6 +42,3 @@ public class EmailSenderCTL {
         }
     }
 }
-
-
-

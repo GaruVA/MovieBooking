@@ -8,7 +8,7 @@
     </jsp:include>
 </head>
 <body>
-    <div style="text-align: center;" class="container py-4"> <!-- Centering content using CSS -->
+    <div style="text-align: center;" class="container py-4 text-gray-100"> <!-- Centering content using CSS -->
         <h1>Order Summary</h1>
         <p>Selected Seats: ${selectedSeats}</p>
         <p>Total Price: $${totalPrice}</p>

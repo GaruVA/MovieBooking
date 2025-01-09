@@ -54,6 +54,48 @@ public class BookingSelectionCTL extends HttpServlet {
         request.getRequestDispatcher("/booking-selection.jsp").forward(request, response);
     }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getParameter("action");
+
+        try (Connection conn = JDBCDataSource.getConnection()) {
+            if ("add".equals(action)) {
+                addShowtime(request, conn);
+                request.setAttribute("success", "Showtime added successfully.");
+            } else if ("delete".equals(action)) {
+                deleteShowtime(request, conn);
+                request.setAttribute("success", "Showtime deleted successfully.");
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(BookingSelectionCTL.class.getName()).log(Level.SEVERE, "Error managing showtimes", e);
+            request.setAttribute("error", "Failed to manage showtimes. Please try again later.");
+        } catch (Exception ex) {
+            Logger.getLogger(BookingSelectionCTL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        doGet(request, response);
+    }
+
+    private void addShowtime(HttpServletRequest request, Connection conn) throws SQLException {
+        String sql = "INSERT INTO showtimes (movie_id, theatre_id, show_date, show_time) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, Integer.parseInt(request.getParameter("movie_id")));
+            stmt.setInt(2, Integer.parseInt(request.getParameter("theatre_id")));
+            stmt.setString(3, request.getParameter("show_date"));
+            stmt.setString(4, request.getParameter("show_time"));
+            stmt.executeUpdate();
+        }
+    }
+
+    private void deleteShowtime(HttpServletRequest request, Connection conn) throws SQLException {
+        String sql = "DELETE FROM showtimes WHERE showtime_id = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, Integer.parseInt(request.getParameter("showtime_id")));
+            stmt.executeUpdate();
+        }
+    }
+
     private void loadMovies(HttpServletRequest request) throws SQLException {
         List<Movie> movies = new ArrayList<>();
         String sql = "SELECT movie_id, title FROM movies WHERE status='Now Showing' ORDER BY title";

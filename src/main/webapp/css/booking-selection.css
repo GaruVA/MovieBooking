@@ -16,7 +16,13 @@
 }
 .showtime-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(120px,1fr));
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.showtime-grid-admin {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px,1fr));
     gap: 10px;
     margin-bottom: 15px;
 }
@@ -49,5 +55,100 @@
   color: var(--primary);
   font-size: 2rem;
   font-weight: bold;
+}
+
+/* Dark theme styles */
+.card {
+    background-color: #1f2937;
+    border-color: #374151;
+    color: #f3f4f6;
+}
+
+.card-body {
+    background-color: #1f2937;
+    color: #f3f4f6;
+}
+
+.form-select,
+.form-control {
+    background-color: #374151;
+    color: #f3f4f6;
+    border: 1px solid #4b5563;
+}
+
+.form-select:focus,
+.form-control:focus {
+    border-color: #6b7280;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(107, 114, 128, 0.5);
+}
+
+.movie-header {
+    background-color: #374151;
+    color: #f3f4f6;
+}
+
+.movie-header:hover {
+    background-color: #4b5563;
+}
+
+.movie-content {
+    background-color: #1f2937;
+    border-color: #374151;
+}
+
+.theatre-name {
+    color: #f3f4f6;
+}
+
+.showtime-button {
+    background-color: #374151;
+    color: #f3f4f6;
+    border-color: #4b5563;
+}
+
+.showtime-button:hover {
+    background-color: #4b5563;
+    color: #ffffff;
+}
+
+.alert-info {
+    background-color: #374151;
+    color: #f3f4f6;
+    border-color: #4b5563;
+}
+
+.alert-danger {
+    background-color: #dc3545;
+    color: #ffffff;
+    border-color: #bd2130;
+}
+
+.showtime-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #1f2937;
+    color: #f3f4f6;
+}
+
+.modal-header {
+    border-bottom: 1px solid #374151;
+}
+
+.modal-footer {
+    border-top: 1px solid #374151;
+}
+
+.btn-close {
+    background-color: transparent;
+    border: none;
+    color: #f3f4f6;
+}
+
+.btn-close:hover {
+    color: #ffffff;
 }
 

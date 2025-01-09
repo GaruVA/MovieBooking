@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @WebServlet(name = "account", urlPatterns = {"/account"})
 public class AccountCTL extends HttpServlet {
@@ -65,6 +67,7 @@ public class AccountCTL extends HttpServlet {
         String phone = request.getParameter("phone");
         String currentPassword = request.getParameter("currentPassword");
         String newPassword = request.getParameter("newPassword");
+        String bookingId = request.getParameter("bookingId");
 
         try (Connection conn = JDBCDataSource.getConnection()) {
             // Handle user info update
@@ -81,7 +84,11 @@ public class AccountCTL extends HttpServlet {
                 session.invalidate(); // Invalidate session after account deletion
                 response.sendRedirect("index"); // Redirect to home page after deletion
                 return;
-            }            
+            }
+            // Handle booking cancellation
+            else if ("cancelBooking".equals(formType)) {
+                cancelBooking(conn, user_id, Integer.parseInt(bookingId), request);
+            }
         } catch (SQLException e) {
             request.setAttribute("error", "Database error occurred");
         } catch (Exception ex) {
@@ -140,7 +147,8 @@ public class AccountCTL extends HttpServlet {
                    + "JOIN showtimes s ON b.showtime_id = s.showtime_id "
                    + "JOIN movies m ON s.movie_id = m.movie_id "
                    + "JOIN theatres t ON s.theatre_id = t.theatre_id "
-                   + "WHERE b.user_id = ?";
+                   + "WHERE b.user_id = ? "
+                   + "ORDER BY b.payment_date DESC"; // Order by payment_date in descending order
         PreparedStatement stmt = conn.prepareStatement(sql);
         stmt.setInt(1, user_id);
         ResultSet rs = stmt.executeQuery();
@@ -156,5 +164,34 @@ public class AccountCTL extends HttpServlet {
             bookings.add(booking);
         }
         request.setAttribute("bookings", bookings);
+        request.setAttribute("now", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+    }
+
+    private void cancelBooking(Connection conn, int user_id, int bookingId, HttpServletRequest request) throws SQLException {
+        String checkShowtimeQuery = "SELECT CONCAT(s.show_date, ' ', s.show_time) AS showtime FROM bookings b " +
+                                    "JOIN showtimes s ON b.showtime_id = s.showtime_id " +
+                                    "WHERE b.booking_id = ? AND b.user_id = ?";
+        try (PreparedStatement checkStmt = conn.prepareStatement(checkShowtimeQuery)) {
+            checkStmt.setInt(1, bookingId);
+            checkStmt.setInt(2, user_id);
+            ResultSet rs = checkStmt.executeQuery();
+            if (rs.next()) {
+                String showtimeStr = rs.getString("showtime");
+                LocalDateTime showtime = LocalDateTime.parse(showtimeStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                if (showtime.isAfter(LocalDateTime.now())) {
+                    String cancelQuery = "UPDATE bookings SET status = 'Cancelled' WHERE booking_id = ? AND user_id = ?";
+                    try (PreparedStatement cancelStmt = conn.prepareStatement(cancelQuery)) {
+                        cancelStmt.setInt(1, bookingId);
+                        cancelStmt.setInt(2, user_id);
+                        cancelStmt.executeUpdate();
+                        request.setAttribute("success", "Booking cancelled successfully");
+                    }
+                } else {
+                    request.setAttribute("error", "Cannot cancel booking as the showtime has already passed");
+                }
+            } else {
+                request.setAttribute("error", "Booking not found or you do not have permission to cancel this booking");
+            }
+        }
     }
 }

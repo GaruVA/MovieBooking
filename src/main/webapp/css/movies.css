@@ -1,99 +1,4 @@
-/* Button Style */
-/*.btn-primary {
-    background-color: var(--surface) !important;
-    border: 2px solid var(--primary);
-    color: var(--primary);
-    font-weight: bold;
-    padding: 10px 20px;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    border-radius: 4px;
-}
-
-.btn-primary:hover {
-    background-color: var(--primary);
-    color: var(--primary);
-    cursor: pointer;
-}*/
-
-.movie-title {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.ri-star-s-fill {
-    color: #FFD700; 
-    font-size: 1.5rem;
-    margin-right: 5px;
-}
-
-.card {
-    background-color: #F5F5F5;
-    color: #333333 !important;
-    margin-bottom: 20px;
-    flex: 0 0 auto;
-    width: 322px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-right: 0px;
-    /* Remove gaps between cards */
-}
-
-@media (max-width: 768px) {
-    .card {
-        width: 100%;
-        /* Make cards full width on smaller screens */
-    }
-}
-
-.card-body {
-    background-color: #F5F5F5;
-    color: #333333 !important;
-}
-
-center {
-    margin-top: 15px;
-    display: flex;
-    justify-content: space-around;
-}
-
-.hero-section {
-    background: linear-gradient(to bottom, transparent, black), url('https://via.placeholder.com/1200x400');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 20px;
-}
-.hero-section h1 {
-    font-size: 3rem;
-    font-weight: bold;
-}
-
-.scroll-container {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    gap: 0px;
-    padding: 10px 0;
-}
-
-.scroll-container::-webkit-scrollbar {
-    height: 3px;
-}
-
-.scroll-container::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
-}
-
-.scroll-container::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
+/* ...existing code... */
 
 .rounded-lg {
     border-radius: 0.5rem;
@@ -130,10 +35,6 @@ center {
 
 .border-gray-700 {
     border-color: #374151;
-}
-
-.border-none {
-    border: 0;
 }
 
 .overflow-hidden {
@@ -310,13 +211,77 @@ center {
     color: #ffffff;
 }
 
-.imdb-rating {
-    font-size: 1.25rem;
-    color: #FFD700;
-    margin-left: 10px;
+.modal-content {
+    background-color: #1f2937;
+    color: #f3f4f6;
 }
 
+.modal-header {
+    border-bottom: 1px solid #374151;
+}
 
+.modal-footer {
+    border-top: 1px solid #374151;
+}
 
+.btn-close {
+    background-color: transparent;
+    border: none;
+    color: #f3f4f6;
+}
 
+.btn-close:hover {
+    color: #ffffff;
+}
 
+input[type="text"],
+input[type="date"],
+input[type="file"],
+select {
+    background-color: #374151;
+    color: #f3f4f6;
+    border: 1px solid #4b5563;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="file"]:focus,
+select:focus {
+    border-color: #6b7280;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(107, 114, 128, 0.5);
+}
+
+select {
+    background-color: #374151 !important;
+    color: #f3f4f6 !important;
+    border: 1px solid #4b5563 !important;
+}
+
+.btn-primary {
+    background-color: #374151;
+    border-color: #27272a;
+    color: #e0e0e0;
+    font-weight: bold;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.btn-primary:hover {
+    background-color: #4b5563;
+    border-color: #27272a;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.btn-outline-secondary {
+    color: #e0e0e0;
+    border-color: #4b5563;
+    background-color: #09090b;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #374151;
+    color: #ffffff;
+}

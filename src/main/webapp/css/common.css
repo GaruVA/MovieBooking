@@ -1,23 +1,30 @@
 :root {
-    --primary: #1F2937;
-    --secondary: #DC2626;
-    --accent: #FCD34D;
+    --primary: #1f2937;
+    --secondary: #111827;
+    --accent: #374151;
 
-    --background: #F3F4F6;
-    --surface: #FFFFFF;
-    --text: #1F2937;
-    --text-light: #6B7280;
+    --background: #111827;
+    --surface: #1f2937;
+    --text: #f3f4f6;
+    --text-light: #d1d5db;
 
     --success: #10B981;
     --warning: #F59E0B;
     --error: #EF4444;
 }
 
+h1 { font-size: 2.25rem; font-weight: bold; }
+h2 { font-size: 1.5rem; font-weight: bold; }
+h3 { font-size: 1.25rem; font-weight: bold; }
+
 body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     background-color: var(--background);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: var(--text);
 }
 
 .navbar {
@@ -26,7 +33,7 @@ body {
 }
 
 .navbar-brand {
-    color: var(--surface) !important;
+    color: var(--text) !important;
     font-weight: bold;
     font-size: 1.5rem;
     padding-top: 0px;
@@ -44,12 +51,12 @@ body {
 }
 
 .nav-link.active {
-    color: var(--surface) !important;
+    color: var(--text) !important;
 }
 
 .btn.btn-book-now {
     background-color: var(--secondary);
-    color: var(--surface);
+    color: var(--text);
     border: none;
     padding: 0.5rem 1.5rem;
     transition: opacity 0.3s ease;
@@ -57,12 +64,17 @@ body {
 
 .btn.btn-book-now:hover {
     opacity: 0.9;
-    color: var(--surface);
+    color: var(--text);
     background-color: var(--secondary);
 }
 
 main {
     flex: 1 0 auto;
+}
+
+main .container {
+    margin: 0 auto;
+    padding: 48px 0;
 }
 
 /*footer*/
@@ -95,7 +107,7 @@ footer {
 }
 
 .footer-section h3 {
-    color: var(--surface) !important;
+    color: var(--text) !important;
     margin-bottom: 15px;
     font-size: 1.25rem;
 }
@@ -148,7 +160,7 @@ footer {
     border-top: 1px solid var(--secondary);
     padding-top: 15px;
     font-size: 0.9rem;
-    color: var(--surface) !important;
+    color: var(--text) !important;
 }
 
 /* Responsive Design */
@@ -198,7 +210,7 @@ footer {
     color: var(--text);
     font-size: 2rem;
     font-weight: bold;
-    font-family: 'Arial', sans-serif; 
+    font-family: 'Inter', sans-serif; 
 }
 
 .card {
@@ -208,7 +220,7 @@ footer {
 
 .card-header {
     background-color: var(--primary);
-    color: var(--surface);
+    color: var(--text);
     border-radius: 10px 10px 0 0 !important;
     padding: 1rem;
 }
@@ -237,4 +249,32 @@ footer {
 .table th {
     border-top: none;
     font-weight: 600;
+}
+
+.btn-outline-secondary {
+    color: #e0e0e0;
+    border-color: #4b5563;
+    background-color: #09090b;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #374151;
+    color: #ffffff;
+}
+
+.btn-primary {
+    background-color: #374151;
+    border-color: #27272a;
+    color: #e0e0e0;
+    font-weight: bold;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.btn-primary:hover {
+    background-color: #4b5563;
+    border-color: #27272a;
+    color: #ffffff;
+    cursor: pointer;
 }
